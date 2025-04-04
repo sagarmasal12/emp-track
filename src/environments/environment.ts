@@ -1,3 +1,4 @@
 export const environment = {
-    API_URL:"https://api.freeprojectapi.com/api/EmployeeOnboarding/"
+    production:false,
+    API_URL:"https://api.freeprojectapi.com/api"
 };

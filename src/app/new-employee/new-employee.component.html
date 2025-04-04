@@ -1,0 +1,48 @@
+<form [formGroup]="dynamicForm"  (ngSubmit)="onReactiveSave()" class="row g-3">
+    <div *ngFor="let field of formList" [ngClass]="field.className">
+      
+      <!-- Text, Number, Date Input -->
+      <div *ngIf="field.type === 'text' || field.type === 'number' || field.type === 'date'">
+        <label class="form-label">{{ field.label }}</label>
+        <input [type]="field.type" class="form-control" [formControlName]="field.controlName" [placeholder]="field.placeholder">
+      </div>
+  
+      <!-- Select Dropdown -->
+      <div *ngIf="field.type === 'select'">
+        <label class="form-label">{{ field.label }}</label>
+        <select class="form-select" [formControlName]="field.controlName">
+          <option value="" disabled selected>{{ field.placeholder }}</option>
+          <option *ngFor="let option of field.options" [value]="option">{{ option }}</option>
+        </select>
+      </div>
+  
+      <!-- Radio Buttons -->
+      <div *ngIf="field.type === 'radio'">
+        <label class="form-label">{{ field.label }}</label>
+        <div *ngFor="let option of field.options" class="form-check">
+          <input type="radio" class="form-check-input" [value]="option" [formControlName]="field.controlName">
+          <label class="form-check-label">{{ option }}</label>
+        </div>
+      </div>
+  
+      <!-- Textarea -->
+      <div *ngIf="field.type === 'textarea'">
+        <label class="form-label">{{ field.label }}</label>
+        <textarea class="form-control" [formControlName]="field.controlName" [rows]="field.rows"></textarea>
+      </div>
+  
+      <!-- Checkbox -->
+      <div *ngIf="field.type === 'checkbox'" class="form-check">
+        <input type="checkbox" class="form-check-input" [formControlName]="field.controlName">
+        <label class="form-check-label">{{ field.label }}</label>
+      </div>
+  
+    </div>
+  
+    <!-- Submit Button -->
+    <div class="col-12">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+  
+ 

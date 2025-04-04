@@ -16,4 +16,8 @@ export class EmployeeService {
   createEmployee(employeeObj:any):Observable<IApIResponce>{
     return this.http.post<IApIResponce>(environment.API_URL + constant.API_METHOD_NAME.EMPLOYEE.CREATE_EMPLOYEE,employeeObj);
   }
+  getEmployee():Observable<IApIResponce>{
+    return this.http.get<IApIResponce>(environment.API_URL + constant.API_METHOD_NAME.EMPLOYEE.GET_EMPLOYEE);
+  }
+  
 }
