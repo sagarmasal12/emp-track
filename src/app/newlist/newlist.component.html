@@ -1,1 +1,25 @@
-<p>newlist works!</p>
+<h2>Employee List</h2>
+<table class="table table-bordered">
+  
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>fullName</th>
+        <th>department</th>
+        <th>designation</th>
+        <th>dateOfJoining</th>
+        <th>email</th>
+        <th>phone1</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emp of employeesList">
+          <td>{{ emp.id }}</td>
+          <td>{{ emp.name }}</td>
+          <td>{{ emp.email }}</td>
+          <td>{{ emp.position }}</td>
+      </tr>
+    </tbody>
+  
+</table>
+
