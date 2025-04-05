@@ -218,25 +218,35 @@
                 <div class="col-md-4 pt-3">
                     <div class="form-group">
                         <label>Gender</label><br>
-                        <input type="radio" id="Female" name="gender" formControlName="gender" value="Female">
-                        <label for="female">Female</label>
-                        <input type="radio" id="male" name="gender" value="Male">
-                        <label for="male">Male</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" id="Female" name="gender" value="Female" formControlName="gender">
+                            <label class="form-check-label" for="Female">Female</label>
+                        </div>
+                    
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" id="Male" name="gender" value="Male" formControlName="gender">
+                            <label class="form-check-label" for="Male">Male</label>
+                        </div>
                         <div class="text-danger"
                             *ngIf="personalInfoForm.controls['gender'].touched || personalInfoForm.controls['gender'].dirty">
                             <span *ngIf="personalInfoForm.controls['gender'].errors?.['required']">This is Required</span>
                         </div>
                     </div>
                 </div>
-    
                 <div class="col-md-4 pt-3">
                     <div class="form-group">
                         <label for="Marital Status">MaritalStatus</label><br>
-                        <input type="radio" id="Married" name="maritalStatus" value="Married"
-                            formControlName="maritalStatus">
-                        <label for="Married">Married</label>
-                        <input class="ps-2" type="radio" id="Unmarried" name="maritalStatus" value="Unmarried">
-                        <label for="Unmarried">Unmarried</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" id="Married" name="maritalStatus" value="Married"
+                                formControlName="maritalStatus">
+                            <label class="form-check-label" for="Married">Married</label>
+                        </div>
+                        
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" id="Unmarried" name="maritalStatus" value="Unmarried"
+                                formControlName="maritalStatus">
+                            <label class="form-check-label" for="Unmarried">Unmarried</label>
+                        </div>
                         <div class="text-danger"
                             *ngIf="personalInfoForm.controls['maritalStatus'].touched || personalInfoForm.controls['maritalStatus'].dirty">
                             <span *ngIf="personalInfoForm.controls['maritalStatus'].errors?.['required']">This is
@@ -244,7 +254,24 @@
                         </div>
                     </div>
                 </div>
-    
+                <div class="col-md-4 pt-3">
+                    <div class="form-group">
+                        <label>Shift Type</label><br>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" id="Fixed" name="shiftType" value="Fixed" formControlName="shiftType">
+                            <label class="form-check-label" for="Fixed">Fixed</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" id="Rotational" name="shiftType" value="Rotational" formControlName="shiftType">
+                            <label class="form-check-label" for="Rotational">Rotational</label>
+                          </div>
+                          <div class="text-danger"
+                            *ngIf="personalInfoForm.controls['shiftType'].touched || personalInfoForm.controls['shiftType'].dirty">
+                            <span *ngIf="personalInfoForm.controls['shiftType'].errors?.['required']">This is
+                                Required</span>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-md-4 pt-3">
                     <div class="form-group">
                         <label>Religion</label>
@@ -300,19 +327,7 @@
                                 Required</span>
                         </div>
                     </div>
-                </div>
-    
-                <div class="col-md-4 pt-3">
-                    <div class="form-group">
-                        <label>Shift Type</label><br>
-                        <input type="radio" id="Fixed" name="shiftType" value="Fixed" formControlName="shiftType">
-                        <label for="Fixed">Fixed</label>
-    
-                        <input type="radio" id="Rotational" name="shiftType" value="Rotational">
-                        <label for="Rotational">Rotational</label>
-                    </div>
-                </div>
-    
+                </div>               
                 <div class="col-md-4 pt-3">
                     <div class="form-group">
                         <label>Shift Option</label>

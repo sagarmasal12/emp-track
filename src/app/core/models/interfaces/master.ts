@@ -1,9 +1,22 @@
 
 export interface IApiResponse {
-    id: number;
-    name: string;
-    email: string;
-    position: string;
+
+  id: number;
+  fullName: string;
+  email: string;
+  designation: string;
+  department: string;
+  dateOfJoining: string; // or Date
+  phone1: string;
+}
+
+
+    // id: number;
+    // name: string;
+    // email: string;
+    // position: string;
+    // department:string;
+
 
     // fullName
     // department
@@ -11,4 +24,3 @@ export interface IApiResponse {
     // dateOfJoining
     // email
     // phone1
-  }

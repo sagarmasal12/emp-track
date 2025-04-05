@@ -33,7 +33,7 @@ export class EmployeeComponent implements OnInit {
         aadharNo:['554546484978', [Validators.required,Validators.pattern(/^[2-9]{1}[0-9]{11}$/)]],
         cardNo:['11156516',Validators.required],
         postAppliedFor:['TAGGING OPERATOR1',Validators.required],
-        designation:['asfdsf',Validators.required],
+        designation:['TAGGING OPERATOR2',Validators.required],
         entryDate:[formatDate('2024-12-05','yyyy-MM-dd','en'),Validators.required],
         fullName:['sadf',Validators.required],
         department:['PRODUCTION',Validators.required],
@@ -44,7 +44,7 @@ export class EmployeeComponent implements OnInit {
         motherName:['hvhj',Validators.required],
         dateOfBirth:[formatDate('2024-12-05','yyyy-MM-dd','en'),Validators.required],
         age:['65',Validators.required],
-        maritalStatus:['',Validators.required],
+        maritalStatus:['Unmarried',Validators.required],
         gender:['Female',Validators.required],
         nationality:['KJ',Validators.required],
         religion:['JBJH',Validators.required],
@@ -78,12 +78,12 @@ export class EmployeeComponent implements OnInit {
         permanentAddress:['11',Validators.required],
         state:['11',Validators.required],
         district:['11',Validators.required],
-        phone1:['11',[Validators.required]], // Starts with 6-9 and has exactly 10 digits
+        phone1:['91',[Validators.required]], // Starts with 6-9 and has exactly 10 digits
         whatsappNo:['11',Validators.required],
         pincode:['11',Validators.required],
-        email:['11',Validators.required],
+        email:['ssm',Validators.required],
         employeeFamilyMembers:this.fb.array([])
-      }), 
+      }),
       qualificationExpe: this.fb.group({
         qualification: ['11', Validators.required],
         technicalQualification:['11',Validators.required],
@@ -104,7 +104,7 @@ export class EmployeeComponent implements OnInit {
         dateOfJoining: [formatDate('2024-12-05','yyyy-MM-dd','en'), Validators.required],
         salary: ['25000', Validators.required],
         confirmDate: [formatDate('2024-12-05','yyyy-MM-dd','en'), Validators.required],
-        employmentStatus: ['', Validators.required],
+        employmentStatus: ['pass', Validators.required],
         individualBioData: [false],
         photoAttached: [false],
         applicationAttached: [false],
