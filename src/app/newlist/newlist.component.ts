@@ -16,7 +16,8 @@ export class NewlistComponent implements OnInit {
   constructor(private employeeService: EmployeeService) {}
 
   ngOnInit(): void {
-    this.getEmployees(); // Call the method when the component loads
+    this.getEmployees(); 
+    // Call the method when the component loads
   }
 
   getEmployees() {
