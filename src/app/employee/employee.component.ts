@@ -1,12 +1,13 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, Inject, inject, OnInit } from '@angular/core';
+
+import { Component, inject, OnInit } from '@angular/core';
 
 import { ButtonModule } from 'primeng/button';
 import { StepperModule } from 'primeng/stepper';
-import {FormArray, FormBuilder, FormControlName, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {AbstractControl, FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import { EmployeeService } from '../core/services/employee/employee.service';
 import { IApIResponce } from '../core/models/interfaces/master';
-import { CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common'; 
+import { AutoErrorDirective } from '../directives/auto-error.directive';
 @Component({
   selector: 'app-employee',
   standalone:true,
@@ -18,19 +19,18 @@ export class EmployeeComponent implements OnInit {
 
   personalDetail:any[]=[];
   formData:any;
-  
-
   employeeService=inject(EmployeeService);
- 
-
   employeeForm: FormGroup;
-
+  step = 1;
+  masterData: any;
+  companyList: any []= [];
+  validationErrors: string[] = [];
   
   constructor(private fb: FormBuilder) {
     this.employeeForm = this.fb.nonNullable.group({
       personalInfo: this.fb.group({
         payCode: ['', Validators.required],
-        aadharNo:['', [Validators.required, Validators.pattern(/^[2-9][0-9]{11}$/)]],
+        aadharNo:['', [Validators.required]],
         cardNo:['',Validators.required],
         postAppliedFor:['',Validators.required],
         designation:['',Validators.required],
@@ -55,6 +55,7 @@ export class EmployeeComponent implements OnInit {
         shiftOption:['',Validators.required],
         weight:['',Validators.required],
         bloodGroup:['',Validators.required],
+        employerLiability : [0],
         reportingDate:['',Validators.required],
         transferFrom:['',Validators.required],
         transferTo:['',Validators.required],
@@ -65,40 +66,37 @@ export class EmployeeComponent implements OnInit {
         bankIfscCode:['',Validators.required],
         bankBranch:['',Validators.required],
         costCentre:['',Validators.required],
-        panCardNo:['',Validators.required],
+        panCardNo:['',[Validators.required, Validators.pattern(/^[A-Z]{5}[0-9]{4}[A-Z]$/)]],
         pfUanNo:['',Validators.required],
         workerLwfNo:['',Validators.required],
         cadre:['',Validators.required],
         company:['',Validators.required],
         location:['',Validators.required],
       }),
-      contactFamily: this.fb.group({
-        
+      contactFamily: this.fb.group({ 
         presentAddress:['',Validators.required],
-        permanentAddress:['',Validators.required],
-        state:['',Validators.required],
-        district:['',Validators.required],
-        phone1:['',Validators.required],
-        whatsappNo:['',Validators.required],
-        pincode:['',Validators.required],
-        email:['',Validators.required],
+        permanentAddress:['11',Validators.required],
+        state:['11',Validators.required],
+        district:['11',Validators.required],
+        phone1:['11',[Validators.required]], // Starts with 6-9 and has exactly 10 digits
+        whatsappNo:['11',Validators.required],
+        pincode:['11',Validators.required],
+        email:['11',Validators.required],
         employeeFamilyMembers:this.fb.array([])
-      }),
-      
+      }), 
       qualificationExpe: this.fb.group({
-        qualification: ['', Validators.required],
-        technicalQualification:['',Validators.required],
-        languagesKnown:['',Validators.required],
-        totalExperienceYears:['',Validators.required],
-        employeeExperiences:this.fb.array([])
-      
+        qualification: ['11', Validators.required],
+        technicalQualification:['11',Validators.required],
+        languagesKnown:['11',Validators.required],
+        totalExperienceYears:['11',Validators.required],
+        employeeExperiences:this.fb.array([]) 
       }),
       
-      additionalInfo: this.fb.group({    // Controls are nested here
-        relativeWorkingInCompany: [null, Validators.required],
-        relativeName: [''],
-        relativeRelationship: [''],
-        entryDate: ['', Validators.required],
+      additionalInfo: this.fb.group({
+        relativeWorkingInCompany: [true, Validators.required],
+        relativeName: ['', Validators.required],
+        relativeRelationship: ['', Validators.required],
+        entryDate: [new Date(), Validators.required],
         location: ['', Validators.required],
         interviewDate: ['', Validators.required],
         interviewedBy: ['', Validators.required],
@@ -115,51 +113,120 @@ export class EmployeeComponent implements OnInit {
         joiningReportAttached: [false],
         nominationFormAttached: [false],
         proofOfAge: [false],
-        proofName: ['']
+        proofName: ['',Validators.required],
       }),
       salaryPayroll: this.fb.group({
-        transportFacility: ['false'],
-        routeNo: [''],
-        actualCtc: [''],
-        basicSalary: [''],
-        hra: [''],
-        conv: [''],
-        others: [''],
-        medicalAllowance: [''],
-        attendanceIncentive: [''],
-        grossSalary: [''],
-        pfEmployee: [''],
-        esiEmployee: [''],
-        lwfEmployee: [''],
-        totalDeduction: [''],
-        pfEmployer: [''],
-        esiEmployer: [''],
-        lwfEmployer: [''],
-        bonus: [''],
-        ctcExgratia: [''],
-        subTotal: [''],
-        employerLiability: [''],
-        employeeType: [''],
-        wageCalculationType: [''],
-        paymentType: [''],
-        overtimeEnabled:['false'],    
-        nightRate:[''],
-        foodingEnabled:['false'],
-        fixedCtc:[''],
-        remarks:['']
-
+        transportFacility: [false],
+        routeNo: ['11', Validators.required],
+        actualCtc: ['11', Validators.required],
+        basicSalary: ['11', Validators.required],
+        hra: ['11', Validators.required],
+        conv: ['11', Validators.required],
+        others: ['11', Validators.required],
+        medicalAllowance: ['11',Validators.required],
+        attendanceIncentive: ['11',Validators.required],
+        grossSalary: ['11',Validators.required],
+        pfEmployee: ['11',Validators.required],
+        esiEmployee: ['11',Validators.required],
+        lwfEmployee: ['11',Validators.required],
+        totalDeduction: ['11',Validators.required],
+        pfEmployer: ['11',Validators.required],
+        esiEmployer: ['11',Validators.required],
+        lwfEmployer: ['11',Validators.required],
+        bonus: ['11',Validators.required],
+        ctcExgratia: ['11',Validators.required],
+        subTotal: ['11',Validators.required],
+        employerLiability: ['11',Validators.required],
+        employeeType: ['',Validators.required],
+        wageCalculationType: ['11',Validators.required],
+        paymentType: ['11',Validators.required],
+        overtimeEnabled:[false],    
+        nightRate:['11',Validators.required],
+        foodingEnabled:[false],
+        fixedCtc:['11',Validators.required],
+        remarks:['11',Validators.required]
+      }),
+      statutory: this.fb.group({
+        esiInsuranceNo: ['11',Validators.required],
+        pfAccountNo:['11',Validators.required],
+        esiEmployerCode:['11',Validators.required],
+        esiLocalOffice:['11',Validators.required],
+        dispensary:['11',Validators.required],
+        pfNominee:['11',Validators.required],
+        pfSharePercent:['11',Validators.required],
+        gratuityNominee:['11',Validators.required],
+        gratuitySharePercent:['11',Validators.required],
       })
-      // statutory: this.fb.group({
-      //     password: ['', [Validators.required, Validators.minLength(6)]],
-      //     confirmPassword: ['', Validators.required]
-      // })
+    
 
-    });
-
-    // console.log(this.employeeForm.value);
-
+    }); 
   };
 
+  loadMaster( ){
+    this.employeeService.getMasterData().subscribe({
+      next: (response) => {
+       this.masterData =  response
+      },
+      error: (err) => {
+        alert(JSON.stringify(err.error))
+      }
+      
+    });
+  }
+  GetCompanies( ){
+    this.employeeService.GetCompanies().subscribe({
+      next: (response) => {
+       this.companyList =  response
+      },
+      error: (err) => {
+        alert(JSON.stringify(err.error))
+      }
+      
+    });
+  }
+  
+  nextStep() {
+    const currentGroup = this.getStepGroup();
+    if (currentGroup.valid) {
+      this.validationErrors = [];
+      this.step++;
+    } else {
+      this.validationErrors = this.getValidationErrors(currentGroup);
+      currentGroup.markAllAsTouched();
+    }
+  }
+
+  prevStep() {
+    if (this.step > 1) this.step--;
+  }
+
+  getStepGroup(): FormGroup {
+    switch (this.step) {
+      case 1: return this.employeeForm.get('personalInfo') as FormGroup;
+      case 2: return this.employeeForm.get('contactFamily') as FormGroup;
+      case 3: return this.employeeForm.get('qualificationExpe') as FormGroup;
+      case 4: return this.employeeForm.get('additionalInfo') as FormGroup;
+      case 5: return this.employeeForm.get('salaryPayroll') as FormGroup;
+      case 6: return this.employeeForm.get('statutory') as FormGroup;
+      default: return this.employeeForm;
+    }
+  }
+
+  getValidationErrors(group: FormGroup): string[] {
+    const errors: string[] = [];
+    Object.keys(group.controls).forEach(key => {
+      const control = group.get(key);
+      if (control && control.invalid) {
+        errors.push(`${key} is required.`);
+      }
+    });
+    return errors;
+  }
+
+  isFieldInvalid(groupName: string, fieldName: string): boolean {
+    const control = this.employeeForm.get(`${groupName}.${fieldName}`);
+    return control?.invalid && control?.touched ? true : false;
+  }
   get personalInfoForm(): FormGroup {
     return this.employeeForm.get('personalInfo') as FormGroup;
   }
@@ -173,10 +240,6 @@ export class EmployeeComponent implements OnInit {
   get qualificationExpeForm():FormGroup{
     return this.employeeForm.get('qualificationExpe') as FormGroup;
   }
-  // get experienceDetails():FormArray{
-  //   return this.employeeForm.get('qualificationExpe.experienceDetails') as FormArray;
-  // }
- 
   get experienceDetails(): FormArray {
     return this.qualificationExpeForm.get('employeeExperiences') as FormArray;
   }
@@ -186,12 +249,15 @@ export class EmployeeComponent implements OnInit {
   get salaryPayrollForm(): FormGroup {
     return this.employeeForm.get('salaryPayroll') as FormGroup;
   }
+  get statutoryForm():FormGroup{
+    return this.employeeForm.get('statutory') as FormGroup;
+  }
     
  ngOnInit(): void {
-  this.disablePersonalInfoValidators();
-  this.addExperience();  // Initialize with one experience row
-  
-
+  //this.disablePersonalInfoValidators();
+ // this.addExperience();  // Initialize with one experience row
+  this.loadMaster();
+  this.GetCompanies();
   const storedData = localStorage.getItem('formData');
    if (storedData) {
     console.log('Retrieved from localStorage:', JSON.parse(storedData));
@@ -205,9 +271,9 @@ export class EmployeeComponent implements OnInit {
    return this.fb.group({
      familyMemberId: [familyMember?.familyMemberId || 0],
      employeeId: [familyMember?.employeeId || 0],
-     name: [familyMember?.name || '', Validators.required],
-     yearOfBirth: [familyMember?.yearOfBirth || '', Validators.required],
-     relation: [familyMember?.relation || '', Validators.required]
+     name: [familyMember?.name || '11', Validators.required],
+     yearOfBirth: [familyMember?.yearOfBirth || '11', Validators.required],
+     relation: [familyMember?.relation || '11', Validators.required]
    });
   }
 
@@ -224,11 +290,11 @@ export class EmployeeComponent implements OnInit {
 
   createExperience(): FormGroup {
     return this.fb.group({
-      employer: ['', Validators.required],
-      postHeld: ['', Validators.required],
-      fromDate: ['', Validators.required],
-      toDate: ['', Validators.required],
-      reasonForLeaving: ['', Validators.required]
+      employer: ['11', Validators.required],
+      postHeld: ['11', Validators.required],
+      fromDate: ['11', Validators.required],
+      toDate: ['11', Validators.required],
+      reasonForLeaving: ['11', Validators.required]
     });
   }
 
@@ -274,142 +340,54 @@ export class EmployeeComponent implements OnInit {
     }
 
   }
-
-  printConsole(){
-
-    if(this.employeeForm.valid){
+  onSave() {
+    // if (this.employeeForm.invalid) {
+    //   return;
+    // }
+    const formData = this.employeeForm.value;
+    const payload = {
+      employeeId: 0,  // Default or fetch from DB if updating
+      ...formData.personalInfo,
+      ...formData.contactFamily,
+      ...formData.qualificationExpe,
+      ...formData.additionalInfo,
+      ...formData.salaryPayroll,
   
-      const familyMembers = this.familyMembers.value.map((member: any) => ({
-        familyMemberId: member.familyMemberId || 0,
-        employeeId: member.employeeId || 0,
+      employeeFamilyMembers: formData.contactFamily.employeeFamilyMembers.map((member: any) => ({
+        familyMemberId: 0, // Default for new records
+        employeeId: 0, // Fetch if needed
         name: member.name,
         yearOfBirth: member.yearOfBirth,
-        relation: member.relation
-      }));
-
-      this.formData={
-        
-        adharNo: this.employeeForm.get('personalInfo.aadharNo')?.value,
-        payCode: this.employeeForm.get('personalInfo.payCode')?.value,
-        cardNo:this.employeeForm.get('personalInfo.cardNo')?.value,
-        postAppliedFor:this.employeeForm.get('personalInfo.postAppliedFor')?.value,
-        designation:this.employeeForm.get('personalInfo.designation')?.value,
-        entryDate:this.employeeForm.get('personalInfo.entryDate')?.value,
-        fullName:this.employeeForm.get('personalInfo.fullName')?.value,
-        department:this.employeeForm.get('personalInfo.department')?.value,
-        subDepartment:this.employeeForm.get('personalInfo.subDepartment')?.value,
-        fatherOrHusbandName:this.employeeForm.get('personalInfo.fatherOrHusbandName')?.value,
-        division:this.employeeForm.get('personalInfo.division')?.value,
-        category:this.employeeForm.get('personalInfo.category')?.value,
-        motherName:this.employeeForm.get('personalInfo.motherName')?.value,
-        dateOfBirth:this.employeeForm.get('personalInfo.dateOfBirth')?.value,
-        age:this.employeeForm.get('personalInfo.age')?.value,
-        maritalStatus:this.employeeForm.get('personalInfo.maritalStatus')?.value,
-        gender:this.employeeForm.get('personalInfo.gender')?.value,
-        nationality:this.employeeForm.get('personalInfo.nationality')?.value,
-        religion:this.employeeForm.get('personalInfo.religion')?.value,
-        caste:this.employeeForm.get('personalInfo.caste')?.value,
-        region:this.employeeForm.get('personalInfo.region')?.value,
-        identityMark:this.employeeForm.get('personalInfo.identityMark')?.value,
-        shiftType:this.employeeForm.get('personalInfo.shiftType')?.value,
-        shiftOption:this.employeeForm.get('personalInfo.shiftOption')?.value,
-        weight:this.employeeForm.get('personalInfo.weight')?.value,
-        bloodGroup:this.employeeForm.get('personalInfo.bloodGroup')?.value,
-        reportingDate:this.employeeForm.get('personalInfo.reportingDate')?.value,
-        transferFrom:this.employeeForm.get('personalInfo.transferFrom')?.value,
-        transferTo:this.employeeForm.get('personalInfo.transferTo')?.value,
-        transferDate:this.employeeForm.get('personalInfo.transferDate')?.value,
-        appointmentMonths:this.employeeForm.get('personalInfo.appointmentMonths')?.value,
-        bankAccountNo:this.employeeForm.get('personalInfo.bankAccountNo')?.value,
-        bankName:this.employeeForm.get('personalInfo.bankName')?.value,
-        bankIfscCode:this.employeeForm.get('personalInfo.bankIfscCode')?.value,
-        bankBranch:this.employeeForm.get('personalInfo.bankBranch')?.value,
-        costCentre:this.employeeForm.get('personalInfo.costCentre')?.value,
-        panCardNo:this.employeeForm.get('personalInfo.panCardNo')?.value,
-        pfUanNo:this.employeeForm.get('personalInfo.pfUanNo')?.value,
-        workerLwfNo:this.employeeForm.get('personalInfo.workerLwfNo')?.value,
-        cadre:this.employeeForm.get('personalInfo.cadre')?.value,
-        company:this.employeeForm.get('personalInfo.company')?.value,
-        location:this.employeeForm.get('personalInfo.location')?.value,
-        presentAddress:this.employeeForm.get('contactFamily.presentAddress')?.value,
-        permanentAddress:this.employeeForm.get('contactFamily.permanentAddress')?.value,
-        state:this.employeeForm.get('contactFamily.state')?.value,
-        district:this.employeeForm.get('contactFamily.district')?.value,
-        phone1:this.employeeForm.get('contactFamily.phone1')?.value,
-        whatsappNo:this.employeeForm.get('contactFamily.whatsappNo')?.value,
-        pincode:this.employeeForm.get('contactFamily.pincode')?.value,
-        email:this.employeeForm.get('contactFamily.email')?.value,
-        employeeFamilyMembers:familyMembers,
-        qualification:this.employeeForm.get('qualificationExpe.qualification')?.value,
-        technicalQualification:this.employeeForm.get('qualificationExpe.technicalQualification')?.value,
-        languagesKnown:this.employeeForm.get('qualificationExpe.languagesKnown')?.value,
-        totalExperienceYears:this.employeeForm.get('qualificationExpe.totalExperienceYears')?.value,
-        employeeExperiences:this.experienceDetails.value,
-
-        relativeWorkingInCompany: this.additionalInfoForm.get('relativeWorkingInCompany')?.value,
-        relativeName: this.additionalInfoForm.get('relativeName')?.value,
-        relativeRelationship: this.additionalInfoForm.get('relativeRelationship')?.value,
-        // entryDate: this.additionalInfoForm.get('entryDate')?.value,
-        // location: this.additionalInfoForm.get('location')?.value,
-        interviewDate: this.additionalInfoForm.get('interviewDate')?.value,
-        interviewedBy: this.additionalInfoForm.get('interviewedBy')?.value,
-        approvedBy: this.additionalInfoForm.get('approvedBy')?.value,
-        dateOfJoining: this.additionalInfoForm.get('dateOfJoining')?.value,
-        salary: this.additionalInfoForm.get('salary')?.value,
-        confirmDate: this.additionalInfoForm.get('confirmDate')?.value,
-        employmentStatus: this.additionalInfoForm.get('employmentStatus')?.value,
-        individualBioData: this.additionalInfoForm.get('individualBioData')?.value,
-        photoAttached: this.additionalInfoForm.get('photoAttached')?.value,
-        applicationAttached: this.additionalInfoForm.get('applicationAttached')?.value,
-        certificatesAttached: this.additionalInfoForm.get('certificatesAttached')?.value,
-        contractAttached: this.additionalInfoForm.get('contractAttached')?.value,
-        joiningReportAttached: this.additionalInfoForm.get('joiningReportAttached')?.value,
-        nominationFormAttached: this.additionalInfoForm.get('nominationFormAttached')?.value,
-        proofOfAge: this.additionalInfoForm.get('proofOfAge')?.value,
-        proofName: this.additionalInfoForm.get('proofName')?.value,
-        
-        // salar& payroll data
-        transportFacility: this.employeeForm.get('salaryPayroll.transportFacility')?.value,
-        routeNo: this.employeeForm.get('salaryPayroll.routeNo')?.value,
-        actualCtc: this.employeeForm.get('salaryPayroll.actualCtc')?.value,
-        basicSalary: this.employeeForm.get('salaryPayroll.basicSalary')?.value,
-        hra: this.employeeForm.get('salaryPayroll.hra')?.value,
-        conv: this.employeeForm.get('salaryPayroll.conv')?.value,
-        others: this.employeeForm.get('salaryPayroll.others')?.value,
-        medicalAllowance: this.employeeForm.get('salaryPayroll.medicalAllowance')?.value,
-        attendanceIncentive: this.employeeForm.get('salaryPayroll.attendanceIncentive')?.value,
-        grossSalary: this.employeeForm.get('salaryPayroll.grossSalary')?.value,
-        pfEmployee: this.employeeForm.get('salaryPayroll.pfEmployee')?.value,
-        esiEmployee: this.employeeForm.get('salaryPayroll.esiEmployee')?.value,
-        lwfEmployee: this.employeeForm.get('salaryPayroll.lwfEmployee')?.value,
-        totalDeduction: this.employeeForm.get('salaryPayroll.totalDeduction')?.value,
-        pfEmployer: this.employeeForm.get('salaryPayroll.pfEmployer')?.value,
-        esiEmployer: this.employeeForm.get('salaryPayroll.esiEmployer')?.value,
-        lwfEmployer: this.employeeForm.get('salaryPayroll.lwfEmployer')?.value,
-        bonus: this.employeeForm.get('salaryPayroll.bonus')?.value,
-        ctcExgratia: this.employeeForm.get('salaryPayroll.ctcExgratia')?.value,
-        subTotal: this.employeeForm.get('salaryPayroll.subTotal')?.value,
-        employerLiability: this.employeeForm.get('salaryPayroll.employerLiability')?.value,
-        wageCalculationType:this.employeeForm.get('salaryPayroll.wageCalculationType')?.value,
-        paymentType:this.employeeForm.get('salaryPayroll.paymentType')?.value,
-        overtimeEnabled:this.employeeForm.get('salaryPayroll.overtimeEnabled')?.value,
-        nightRate:this.employeeForm.get('salaryPayroll.nightRate')?.value,
-        foodingEnabled:this.employeeForm.get('salaryPayroll.foodingEnabled')?.value,
-        fixedCtc:this.employeeForm.get('salaryPayroll.fixedCtc')?.value,
-        remarks:this.employeeForm.get('salaryPayroll.fixedCtc')?.value,
-
+        relation: member.relation,
+      })),
+  
+      employeeExperiences: formData.qualificationExpe.employeeExperiences.map((exp: any) => ({
+        experienceId: 0, // Default
+        employeeId: 0, // Fetch if needed
+        employerName: exp.employerName,
+        postHeld: exp.postHeld,
+        fromDate: exp.fromDate,
+        toDate: exp.toDate,
+        reasonForLeaving: exp.reasonForLeaving,
+      }))
+    };
+  
+    console.log('Prepared Payload:', payload);
+  
+    this.employeeService.createEmployee(payload).subscribe({
+      next: (response) => {
+        console.log('Success:', response);
+        alert("Employee Create Success")
+      },
+      error: (err) => {
+        alert(JSON.stringify(err.error))
       }
-     
-  
-       // Store the form data in localStorage--try
-       localStorage.setItem('formData', JSON.stringify(this.formData));
-  
-       console.log('Data saved to localStorage:', this.formData);
-    } else {
-      alert('Form is invalid');
-    }
+      
+    });
   }
-
-
-
+  onReset() {
+    this.employeeForm.reset();
+    this.disablePersonalInfoValidators();
+    localStorage.removeItem('formData'); // Clear localStorage if needed
+  }
 }

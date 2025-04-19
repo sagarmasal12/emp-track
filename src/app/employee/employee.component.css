@@ -8,6 +8,7 @@ body {
 .container {
     max-width: 1200px;
     margin: auto;
+    color: black;
 }
 
 /* Card Styles */
@@ -19,7 +20,6 @@ body {
 
 .card-header {
     background-color: #007bff;
-    color: white;
     font-weight: bold;
     text-transform: uppercase;
     padding: 10px;

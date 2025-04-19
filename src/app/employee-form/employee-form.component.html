@@ -1,0 +1,368 @@
+<form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" class="container mt-4">
+  <h2 class="mb-4">Employee Information Form</h2>
+
+  <div class="accordion" id="employeeFormAccordion">
+    <!-- Personal Information Section -->
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#personalInfo">
+          Personal Information
+        </button>
+      </h2>
+      <div id="personalInfo" class="accordion-collapse collapse show" data-bs-parent="#employeeFormAccordion">
+        <div class="accordion-body">
+          <div class="row">
+            <ng-container *ngFor="let control of getControlsBySection('personal')">
+              <div [class]="control.className">
+                <div class="mb-3">
+                  <label [for]="control.controlName" class="form-label">{{control.label}}</label>
+                  <ng-container [ngSwitch]="control.type">
+                    <select *ngSwitchCase="'select'" [id]="control.controlName" [formControlName]="control.controlName"
+                      class="form-select" [class.is-invalid]="isFieldInvalid(control.controlName)">
+                      <option value="">{{control.placeholder}}</option>
+                      <option *ngFor="let option of control.options" [value]="option.value">
+                        {{option.label}}
+                      </option>
+                    </select>
+                    <textarea *ngSwitchCase="'textarea'" [id]="control.controlName" [formControlName]="control.controlName"
+                      [placeholder]="control.placeholder" class="form-control"
+                      [class.is-invalid]="isFieldInvalid(control.controlName)" rows="3"></textarea>
+                    <input *ngSwitchDefault [type]="control.type" [id]="control.controlName"
+                      [formControlName]="control.controlName" [placeholder]="control.placeholder" class="form-control"
+                      [class.is-invalid]="isFieldInvalid(control.controlName)">
+                  </ng-container>
+                  <div class="invalid-feedback" *ngIf="isFieldInvalid(control.controlName)">
+                    {{getErrorMessage(employeeForm.get(control.controlName))}}
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Information Section -->
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#contactInfo">
+          Contact Information
+        </button>
+      </h2>
+      <div id="contactInfo" class="accordion-collapse collapse" data-bs-parent="#employeeFormAccordion">
+        <div class="accordion-body">
+          <div class="row">
+            <ng-container *ngFor="let control of getControlsBySection('contact')">
+              <div [class]="control.className">
+                <div class="mb-3">
+                  <label [for]="control.controlName" class="form-label">{{control.label}}</label>
+                  <ng-container [ngSwitch]="control.type">
+                    <select *ngSwitchCase="'select'" [id]="control.controlName" [formControlName]="control.controlName"
+                      class="form-select" [class.is-invalid]="isFieldInvalid(control.controlName)">
+                      <option value="">{{control.placeholder}}</option>
+                      <option *ngFor="let option of control.options" [value]="option.value">
+                        {{option.label}}
+                      </option>
+                    </select>
+                    <textarea *ngSwitchCase="'textarea'" [id]="control.controlName" [formControlName]="control.controlName"
+                      [placeholder]="control.placeholder" class="form-control"
+                      [class.is-invalid]="isFieldInvalid(control.controlName)" rows="3"></textarea>
+                    <input *ngSwitchDefault [type]="control.type" [id]="control.controlName"
+                      [formControlName]="control.controlName" [placeholder]="control.placeholder" class="form-control"
+                      [class.is-invalid]="isFieldInvalid(control.controlName)">
+                  </ng-container>
+                  <div class="invalid-feedback" *ngIf="isFieldInvalid(control.controlName)">
+                    {{getErrorMessage(employeeForm.get(control.controlName))}}
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#bank">
+         Bank Details
+        </button>
+      </h2>
+      <div id="bank" class="accordion-collapse collapse" data-bs-parent="#employeeFormAccordion">
+        <div class="accordion-body">
+          <div class="row">
+            <ng-container *ngFor="let control of getControlsBySection('bank')">
+              <div [class]="control.className">
+                <div class="mb-3">
+                  <label [for]="control.controlName" class="form-label">{{control.label}}</label>
+                  <ng-container [ngSwitch]="control.type">
+                    <select *ngSwitchCase="'select'" [id]="control.controlName" [formControlName]="control.controlName"
+                      class="form-select" [class.is-invalid]="isFieldInvalid(control.controlName)">
+                      <option value="">{{control.placeholder}}</option>
+                      <option *ngFor="let option of control.options" [value]="option.value">
+                        {{option.label}}
+                      </option>
+                    </select>
+                    <textarea *ngSwitchCase="'textarea'" [id]="control.controlName" [formControlName]="control.controlName"
+                      [placeholder]="control.placeholder" class="form-control"
+                      [class.is-invalid]="isFieldInvalid(control.controlName)" rows="3"></textarea>
+                    <input *ngSwitchDefault [type]="control.type" [id]="control.controlName"
+                      [formControlName]="control.controlName" [placeholder]="control.placeholder" class="form-control"
+                      [class.is-invalid]="isFieldInvalid(control.controlName)">
+                  </ng-container>
+                  <div class="invalid-feedback" *ngIf="isFieldInvalid(control.controlName)">
+                    {{getErrorMessage(employeeForm.get(control.controlName))}}
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+
+    <!-- Employment Details Section -->
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#employmentInfo">
+          Employment Details
+        </button>
+      </h2>
+      <div id="employmentInfo" class="accordion-collapse collapse" data-bs-parent="#employeeFormAccordion">
+        <div class="accordion-body">
+          <div class="row">
+            <ng-container *ngFor="let control of getControlsBySection('employment')">
+              <div [class]="control.className">
+                <div class="mb-3">
+                  <label [for]="control.controlName" class="form-label">{{control.label}}</label>
+                  <ng-container [ngSwitch]="control.type">
+                    <select *ngSwitchCase="'select'" [id]="control.controlName" [formControlName]="control.controlName"
+                      class="form-select" [class.is-invalid]="isFieldInvalid(control.controlName)">
+                      <option value="">{{control.placeholder}}</option>
+                      <option *ngFor="let option of control.options" [value]="option.value">
+                        {{option.label}}
+                      </option>
+                    </select>
+                    <textarea *ngSwitchCase="'textarea'" [id]="control.controlName" [formControlName]="control.controlName"
+                      [placeholder]="control.placeholder" class="form-control"
+                      [class.is-invalid]="isFieldInvalid(control.controlName)" rows="3"></textarea>
+                    <input *ngSwitchDefault [type]="control.type" [id]="control.controlName"
+                      [formControlName]="control.controlName" [placeholder]="control.placeholder" class="form-control"
+                      [class.is-invalid]="isFieldInvalid(control.controlName)">
+                  </ng-container>
+                  <div class="invalid-feedback" *ngIf="isFieldInvalid(control.controlName)">
+                    {{getErrorMessage(employeeForm.get(control.controlName))}}
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Salary & Benefits Section -->
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#salaryInfo">
+          Salary & Benefits
+        </button>
+      </h2>
+      <div id="salaryInfo" class="accordion-collapse collapse" data-bs-parent="#employeeFormAccordion">
+        <div class="accordion-body">
+          <div class="row">
+            <ng-container *ngFor="let control of getControlsBySection('salary')">
+              <div [class]="control.className">
+                <div class="mb-3">
+                  <label [for]="control.controlName" class="form-label">{{control.label}}</label>
+                  <ng-container [ngSwitch]="control.type">
+                    <select *ngSwitchCase="'select'" [id]="control.controlName" [formControlName]="control.controlName"
+                      class="form-select" [class.is-invalid]="isFieldInvalid(control.controlName)">
+                      <option value="">{{control.placeholder}}</option>
+                      <option *ngFor="let option of control.options" [value]="option.value">
+                        {{option.label}}
+                      </option>
+                    </select>
+                    <textarea *ngSwitchCase="'textarea'" [id]="control.controlName" [formControlName]="control.controlName"
+                      [placeholder]="control.placeholder" class="form-control"
+                      [class.is-invalid]="isFieldInvalid(control.controlName)" rows="3"></textarea>
+                    <input *ngSwitchDefault [type]="control.type" [id]="control.controlName"
+                      [formControlName]="control.controlName" [placeholder]="control.placeholder" class="form-control"
+                      [class.is-invalid]="isFieldInvalid(control.controlName)">
+                  </ng-container>
+                  <div class="invalid-feedback" *ngIf="isFieldInvalid(control.controlName)">
+                    {{getErrorMessage(employeeForm.get(control.controlName))}}
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Family Information Section -->
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#familyInfo">
+          Family Information
+        </button>
+      </h2>
+      <div id="familyInfo" class="accordion-collapse collapse" data-bs-parent="#employeeFormAccordion">
+        <div class="accordion-body">
+          <ng-container *ngFor="let control of getControlsBySection('family')">
+            <ng-container *ngIf="control.type === 'formArray'">
+              <div class="card mb-3">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                  <h5 class="mb-0">{{control.label}}</h5>
+                  <button type="button" class="btn btn-primary btn-sm" (click)="addFormArrayItem(control.controlName)">
+                    Add New
+                  </button>
+                </div>
+                <div class="card-body">
+                  <div [formArrayName]="control.controlName">
+                    <div *ngFor="let item of getFormArray(control.controlName).controls; let i=index" [formGroupName]="i"
+                      class="border p-3 mb-3 rounded">
+                      <div class="d-flex justify-content-end mb-2">
+                        <button type="button" class="btn btn-danger btn-sm"
+                          (click)="removeFormArrayItem(control.controlName, i)">
+                          Remove
+                        </button>
+                      </div>
+                      <div *ngFor="let nestedControl of control.controls" class="mb-3">
+                        <label [for]="nestedControl.controlName + i" class="form-label">
+                          {{nestedControl.label}}
+                        </label>
+                        <ng-container [ngSwitch]="nestedControl.type">
+                          <select *ngSwitchCase="'select'" [id]="nestedControl.controlName + i"
+                            [formControlName]="nestedControl.controlName" class="form-select"
+                            [class.is-invalid]="item.get(nestedControl.controlName)?.invalid && 
+                                            (item.get(nestedControl.controlName)?.dirty || 
+                                             item.get(nestedControl.controlName)?.touched)">
+                            <option value="">{{nestedControl.placeholder}}</option>
+                            <option *ngFor="let option of nestedControl.options" [value]="option.value">
+                              {{option.label}}
+                            </option>
+                          </select>
+                          <textarea *ngSwitchCase="'textarea'" [id]="nestedControl.controlName + i"
+                            [formControlName]="nestedControl.controlName" [placeholder]="nestedControl.placeholder"
+                            class="form-control"
+                            [class.is-invalid]="item.get(nestedControl.controlName)?.invalid && 
+                                             (item.get(nestedControl.controlName)?.dirty || 
+                                              item.get(nestedControl.controlName)?.touched)" rows="3"></textarea>
+                          <input *ngSwitchDefault [type]="nestedControl.type" [id]="nestedControl.controlName + i"
+                            [formControlName]="nestedControl.controlName" [placeholder]="nestedControl.placeholder"
+                            class="form-control"
+                            [class.is-invalid]="item.get(nestedControl.controlName)?.invalid && 
+                                           (item.get(nestedControl.controlName)?.dirty || 
+                                            item.get(nestedControl.controlName)?.touched)">
+                        </ng-container>
+                        <div class="invalid-feedback"
+                          *ngIf="item.get(nestedControl.controlName)?.invalid && 
+                            (item.get(nestedControl.controlName)?.dirty || 
+                             item.get(nestedControl.controlName)?.touched)">
+                          {{getErrorMessage(item.get(nestedControl.controlName))}}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+
+    <!-- Work Experience Section -->
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#experienceInfo">
+          Work Experience
+        </button>
+      </h2>
+      <div id="experienceInfo" class="accordion-collapse collapse" data-bs-parent="#employeeFormAccordion">
+        <div class="accordion-body">
+          <ng-container *ngFor="let control of getControlsBySection('experience')">
+            <ng-container *ngIf="control.type === 'formArray'">
+              <div class="card mb-3">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                  <h5 class="mb-0">{{control.label}}</h5>
+                  <button type="button" class="btn btn-primary btn-sm" (click)="addFormArrayItem(control.controlName)">
+                    Add New
+                  </button>
+                </div>
+                <div class="card-body">
+                  <div [formArrayName]="control.controlName">
+                    <div *ngFor="let item of getFormArray(control.controlName).controls; let i=index" [formGroupName]="i"
+                      class="border p-3 mb-3 rounded">
+                      <div class="d-flex justify-content-end mb-2">
+                        <button type="button" class="btn btn-danger btn-sm"
+                          (click)="removeFormArrayItem(control.controlName, i)">
+                          Remove
+                        </button>
+                      </div>
+                      <div *ngFor="let nestedControl of control.controls" class="mb-3">
+                        <label [for]="nestedControl.controlName + i" class="form-label">
+                          {{nestedControl.label}}
+                        </label>
+                        <ng-container [ngSwitch]="nestedControl.type">
+                          <select *ngSwitchCase="'select'" [id]="nestedControl.controlName + i"
+                            [formControlName]="nestedControl.controlName" class="form-select"
+                            [class.is-invalid]="item.get(nestedControl.controlName)?.invalid && 
+                                            (item.get(nestedControl.controlName)?.dirty || 
+                                             item.get(nestedControl.controlName)?.touched)">
+                            <option value="">{{nestedControl.placeholder}}</option>
+                            <option *ngFor="let option of nestedControl.options" [value]="option.value">
+                              {{option.label}}
+                            </option>
+                          </select>
+                          <textarea *ngSwitchCase="'textarea'" [id]="nestedControl.controlName + i"
+                            [formControlName]="nestedControl.controlName" [placeholder]="nestedControl.placeholder"
+                            class="form-control"
+                            [class.is-invalid]="item.get(nestedControl.controlName)?.invalid && 
+                                             (item.get(nestedControl.controlName)?.dirty || 
+                                              item.get(nestedControl.controlName)?.touched)" rows="3"></textarea>
+                          <input *ngSwitchDefault [type]="nestedControl.type" [id]="nestedControl.controlName + i"
+                            [formControlName]="nestedControl.controlName" [placeholder]="nestedControl.placeholder"
+                            class="form-control"
+                            [class.is-invalid]="item.get(nestedControl.controlName)?.invalid && 
+                                           (item.get(nestedControl.controlName)?.dirty || 
+                                            item.get(nestedControl.controlName)?.touched)">
+                        </ng-container>
+                        <div class="invalid-feedback"
+                          *ngIf="item.get(nestedControl.controlName)?.invalid && 
+                            (item.get(nestedControl.controlName)?.dirty || 
+                             item.get(nestedControl.controlName)?.touched)">
+                          {{getErrorMessage(item.get(nestedControl.controlName))}}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Submit button -->
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end my-4">
+    <button type="submit" class="btn btn-primary"  >
+      Submit
+    </button>
+  </div>
+</form>
+<div *ngIf="employeeForm.invalid && invalidFields.length">
+  <h4>🚨 Please fix the following errors:</h4>
+  <ul class="text-danger">
+    <li *ngFor="let field of invalidFields">
+      {{ field | titlecase }} is required or invalid.
+    </li>
+  </ul>
+</div>
