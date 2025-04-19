@@ -63,11 +63,11 @@
                             <label class="required">Post applied for</label>
                             <select class="form-select" formControlName="postAppliedFor" required>
                                 <option value="" disabled selected>Select</option>
-
-                                @for(master of masterData['postAppliedFor']; track $index) {
-                                <option [value]="master.masterId">{{master.masterName}}</option>
-                                }
-
+                                @if (masterData) {
+                                    @for(master of masterData['postAppliedFor']; track $index) {
+                                        <option [value]="master.masterId">{{master.masterName}}</option>
+                                    }
+                                } 
                             </select>
                             <div class="text-danger"
                                 *ngIf="personalInfoForm.controls['postAppliedFor'].touched && personalInfoForm.controls['postAppliedFor'].errors?.['required']">
@@ -80,9 +80,11 @@
                             <label>Designation</label>
                             <select class="form-select" formControlName="designation">
                                 <option value="" disabled>Select</option>
+                                @if (masterData) {
                                 @for(master of masterData['designation']; track $index) {
                                 <option [value]="master.masterId">{{master.masterName}}</option>
                                 }
+                            }
 
                             </select>
                             <div class="text-danger"
@@ -123,9 +125,11 @@
                             <label>Department</label>
                             <select class="form-select" formControlName="department">
                                 <option value="" disabled>Select</option>
+                                @if (masterData) {
                                 @for(master of masterData['department']; track $index) {
                                 <option [value]="master.masterId">{{master.masterName}}</option>
                                 }
+                            }
 
                             </select>
                             <div class="text-danger"
@@ -140,9 +144,11 @@
                             <label>Sub Dept.</label>
                             <select class="form-select" formControlName="subDepartment">
                                 <option selected>Select</option>
+                                @if (masterData) {
                                 @for(master of masterData['subDepartment']; track $index) {
                                 <option [value]="master.masterId">{{master.masterName}}</option>
                                 }
+                            }
                             </select>
                             <div class="text-danger"
                                 *ngIf="personalInfoForm.controls['subDepartment'].touched || personalInfoForm.controls['subDepartment'].dirty">
@@ -172,10 +178,12 @@
                         <div class="form-group">
                             <label>Division</label>
                             <select class="form-select" formControlName="division">
-                                <option selected>GENERAL</option>
+                                <option selected>SESS</option>
+                                @if (masterData) {
                                 @for(master of masterData['division']; track $index) {
                                 <option [value]="master.masterId">{{master.masterName}}</option>
                                 }
+                            }
                             </select>
                             <div class="text-danger"
                                 *ngIf="personalInfoForm.controls['division'].touched || personalInfoForm.controls['division'].dirty">
@@ -189,9 +197,11 @@
                             <label>Category</label>
                             <select class="form-select" formControlName="category">
                                 <option value="" disabled>Select</option>
+                                @if (masterData) {
                                 @for(master of masterData['category']; track $index) {
                                 <option [value]="master.masterId">{{master.masterName}}</option>
                                 }
+                            }
                             </select>
                             <div class="text-danger"
                                 *ngIf="personalInfoForm.controls['category'].touched || personalInfoForm.controls['category'].dirty">
@@ -346,9 +356,11 @@
                             <select class="form-select" formControlName="shiftOption">
                                 <option value="" disabled selected>Select
                                 </option>
+                                @if (masterData) {
                                 @for(master of masterData['shiftOption']; track $index) {
                                 <option [value]="master.masterId">{{master.masterName}}</option>
                                 }
+                            }
                             </select>
                             <div class="text-danger"
                                 *ngIf="personalInfoForm.controls['shiftOption'].touched || personalInfoForm.controls['shiftOption'].dirty">
@@ -364,9 +376,11 @@
                             <label>Transfer From</label>
                             <select class="form-select" formControlName="transferFrom">
                                 <option selected>select</option>
+                                @if (masterData) {
                                 @for(master of masterData['transferFrom']; track $index) {
-                                    <option [value]="master.masterId">{{master.masterName}}</option>
+                                <option [value]="master.masterId">{{master.masterName}}</option>
                                 }
+                            }
                             </select>
                             <div class="text-danger"
                                 *ngIf="personalInfoForm.controls['transferFrom'].touched || personalInfoForm.controls['transferFrom'].dirty">
@@ -381,9 +395,11 @@
                             <label>Transfer To </label>
                             <select class="form-select" formControlName="transferTo">
                                 <option selected>select</option>
+                                @if (masterData) {
                                 @for(master of masterData['transferTo']; track $index) {
-                                    <option [value]="master.masterId">{{master.masterName}}</option>
+                                <option [value]="master.masterId">{{master.masterName}}</option>
                                 }
+                            }
                             </select>
                             <div class="text-danger"
                                 *ngIf="personalInfoForm.controls['transferTo'].touched || personalInfoForm.controls['transferTo'].dirty">
@@ -546,10 +562,12 @@
                         <div class="form-group">
                             <label>Cadre</label>
                             <select class="form-select" formControlName="cadre">
-                                <option selected>WORKER</option>
+                                <option selected>SELE</option>
+                                @if (masterData) {
                                 @for(master of masterData['cadre']; track $index) {
                                 <option [value]="master.masterId">{{master.masterName}}</option>
                                 }
+                            }
                             </select>
                             <div class="text-danger"
                                 *ngIf="personalInfoForm.controls['cadre'].touched || personalInfoForm.controls['cadre'].dirty">
@@ -593,9 +611,11 @@
                             <label>Cost Center</label>
                             <select class="form-select" formControlName="costCentre">
                                 <option selected>select</option>
+                                @if (masterData) {
                                 @for(master of masterData['costCentre']; track $index) {
-                                    <option [value]="master.masterId">{{master.masterName}}</option>
+                                <option [value]="master.masterId">{{master.masterName}}</option>
                                 }
+                            }
                             </select>
                             <div class="text-danger"
                                 *ngIf="personalInfoForm.controls['costCentre'].touched || personalInfoForm.controls['costCentre'].dirty">
@@ -609,9 +629,11 @@
                             <label>RL Band</label>
                             <select class="form-select">
                                 <option selected>Select</option>
+                                @if (masterData) {
                                 @for(master of masterData['rlBand']; track $index) {
                                 <option [value]="master.masterId">{{master.masterName}}</option>
                                 }
+                            }
                             </select>
                         </div>
                     </div>
@@ -1200,15 +1222,15 @@
 
                         <div class="col-md-3">
                             <label>CONV:</label>
-                            <input type="text" class="form-control" formControlName="conv">
+                            <input type="text" class="form-control" formControlName="conveyanceAllowance">
                             <div class="text-danger"
-                                *ngIf="salaryPayrollForm.controls['conv'].touched || salaryPayrollForm.controls['conv'].dirty">
-                                <span *ngIf="salaryPayrollForm.controls['conv'].errors?.['required']">This is
+                                *ngIf="salaryPayrollForm.controls['conveyanceAllowance'].touched || salaryPayrollForm.controls['conveyanceAllowance'].dirty">
+                                <span *ngIf="salaryPayrollForm.controls['conveyanceAllowance'].errors?.['required']">This is
                                     Required</span>
                             </div>
                         </div>
 
-                        <div class="col-md-3">
+                        <!-- <div class="col-md-3">
                             <label>Others:</label>
                             <input type="text" class="form-control" formControlName="others">
                             <div class="text-danger"
@@ -1216,7 +1238,7 @@
                                 <span *ngIf="salaryPayrollForm.controls['others'].errors?.['required']">This is
                                     Required</span>
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="col-md-3">
                             <label>Medical Allowance:</label>
@@ -1460,10 +1482,11 @@
                                         </div>
 
                                         <label>ESI Employer Code</label>
-                                        <input type="text" class="form-control mb-2" formControlName="esiEmployerCode"
-                                            placeholder="Enter ESI Employer Code">
+                                        <input type="text" class="form-control mb-2"
+                                            formControlName="esiEmployerCode" />
                                         <div class="text-danger"
-                                            *ngIf="statutoryForm.controls['esiEmployerCode'].touched || statutoryForm.controls['esiEmployerCode'].dirty">
+                                            *ngIf="statutoryForm.controls['esiEmployerCode'].touched ||
+                                            statutoryForm.controls['esiEmployerCode'].dirty">
                                             <span
                                                 *ngIf="statutoryForm.controls['esiEmployerCode'].errors?.['required']">This
                                                 is Required</span>
@@ -1497,33 +1520,14 @@
                                         <label>Family member residing with insured
                                             person</label>
                                         <input type="text" class="form-control mb-2" id="insuredFamilyMember" value="">
-                                    </div>
 
-                                    <!-- PF Section -->
-
-                                    <div class="col-6">
-                                        <h6><strong>FORM 2 - PF *</strong></h6>
-                                        <label>PF Account No.</label>
-                                        <input type="text" class="form-control mb-2" id="pfAccountNo"
-                                            formControlName="pfAccountNo" placeholder="Enter PF Account No.">
-                                        <div class="text-danger"
-                                            *ngIf="statutoryForm.controls['pfAccountNo'].touched || statutoryForm.controls['pfAccountNo'].dirty">
-                                            <span
-                                                *ngIf="statutoryForm.controls['pfAccountNo'].errors?.['required']">This
-                                                is Required</span>
-                                        </div>
-
-                                        <label>Nominee/Nominees</label>
-                                        <input type="text" class="form-control mb-2" id="pfNominee" value="">
-                                        <label>SHARE %age of nominee</label>
-                                        <input type="text" class="form-control mb-2" id="pfNomineeShare" value="">
-                                        <label>Children Pension</label>
                                         <input type="text" class="form-control mb-2" id="childrenPension" value="">
 
                                         <label>Widow Pension</label>
                                         <input type="text" class="form-control mb-2" id="widowPension" value="">
                                     </div>
                                 </div>
+
 
                             </div>
 

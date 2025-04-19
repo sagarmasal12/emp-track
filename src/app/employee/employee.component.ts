@@ -1,11 +1,10 @@
 
 import { Component, inject, OnInit } from '@angular/core';
-
+import { formatDate } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { StepperModule } from 'primeng/stepper';
 import {AbstractControl, FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import { EmployeeService } from '../core/services/employee/employee.service';
-import { IApIResponce } from '../core/models/interfaces/master';
+import { EmployeeService } from '../core/services/employee/employee.service'; 
 import { CommonModule } from '@angular/common'; 
 import { AutoErrorDirective } from '../directives/auto-error.directive';
 @Component({
@@ -29,61 +28,61 @@ export class EmployeeComponent implements OnInit {
   constructor(private fb: FormBuilder) {
     this.employeeForm = this.fb.nonNullable.group({
       personalInfo: this.fb.group({
-        payCode: ['', Validators.required],
-        aadharNo:['', [Validators.required]],
-        cardNo:['',Validators.required],
-        postAppliedFor:['',Validators.required],
-        designation:['',Validators.required],
-        entryDate:['',Validators.required],
-        fullName:['',Validators.required],
-        department:['',Validators.required],
-        subDepartment:['',Validators.required],
-        fatherOrHusbandName:['',Validators.required],
-        division:['',Validators.required],
-        category:['',Validators.required],
-        motherName:['',Validators.required],
-        dateOfBirth:['',Validators.required],
-        age:['',Validators.required],
-        maritalStatus:['',Validators.required],
-        gender:['',Validators.required],
-        nationality:['',Validators.required],
-        religion:['',Validators.required],
-        caste:['',Validators.required],
-        region:['',Validators.required],
-        identityMark:['',Validators.required],
-        shiftType:['',Validators.required],
-        shiftOption:['',Validators.required],
-        weight:['',Validators.required],
-        bloodGroup:['',Validators.required],
+        payCode: ['554546484978', Validators.required],
+        aadharNo:['554546484978', [Validators.required,Validators.pattern(/^[2-9]{1}[0-9]{11}$/)]],
+        cardNo:['11156516',Validators.required],
+        postAppliedFor:['TAGGING OPERATOR1',Validators.required],
+        designation:['TAGGING OPERATOR2',Validators.required],
+        entryDate:[formatDate('2024-12-05','yyyy-MM-dd','en'),Validators.required],
+        fullName:['sadf',Validators.required],
+        department:['PRODUCTION',Validators.required],
+        subDepartment:['FINISHING',Validators.required],
+        fatherOrHusbandName:['sdf',Validators.required],
+        division:['GENERAL',Validators.required],
+        category:['SEMI-SKILLED B',Validators.required],
+        motherName:['hvhj',Validators.required],
+        dateOfBirth:[formatDate('2024-12-05','yyyy-MM-dd','en'),Validators.required],
+        age:['65',Validators.required],
+        maritalStatus:['Unmarried',Validators.required],
+        gender:['Female',Validators.required],
+        nationality:['KJ',Validators.required],
+        religion:['JBJH',Validators.required],
+        caste:['NH',Validators.required],
+        region:['HBHJ',Validators.required],
+        identityMark:['HHBJ',Validators.required],
+        shiftType:['Rotational',Validators.required],
+        shiftOption:['G-09.00-17.30',Validators.required],
+        weight:['51',Validators.required],
+        bloodGroup:['A',Validators.required],
         employerLiability : [0],
-        reportingDate:['',Validators.required],
-        transferFrom:['',Validators.required],
-        transferTo:['',Validators.required],
-        transferDate:['',Validators.required],
-        appointmentMonths:['',Validators.required],
-        bankAccountNo:['',Validators.required],
-        bankName:['',Validators.required],
-        bankIfscCode:['',Validators.required],
-        bankBranch:['',Validators.required],
-        costCentre:['',Validators.required],
-        panCardNo:['',[Validators.required, Validators.pattern(/^[A-Z]{5}[0-9]{4}[A-Z]$/)]],
-        pfUanNo:['',Validators.required],
-        workerLwfNo:['',Validators.required],
-        cadre:['',Validators.required],
-        company:['',Validators.required],
-        location:['',Validators.required],
+        reportingDate:[formatDate('2024-12-05','yyyy-MM-dd','en'),Validators.required],
+        transferFrom:['test1',Validators.required],
+        transferTo:['test2',Validators.required],
+        transferDate:[formatDate('2024-12-05','yyyy-MM-dd','en'),Validators.required],
+        appointmentMonths:['2',Validators.required],
+        bankAccountNo:['651161651',Validators.required],
+        bankName:['SDF',Validators.required],
+        bankIfscCode:['SDF65',Validators.required],
+        bankBranch:['DSF',Validators.required],
+        costCentre:['AFFLATUS',Validators.required],
+        panCardNo:['HCFPM2249B',[Validators.required, Validators.pattern(/^[A-Z]{5}[0-9]{4}[A-Z]$/)]],
+        pfUanNo:['51',Validators.required],
+        workerLwfNo:['51',Validators.required],
+        cadre:['WORKER',Validators.required],
+        company:['GR VALUE CREATIONS',Validators.required],
+        location:['PLOT NO.10,SEC-8,IMT',Validators.required],
       }),
       contactFamily: this.fb.group({ 
-        presentAddress:['',Validators.required],
+        presentAddress:['ASDFDSF',Validators.required],
         permanentAddress:['11',Validators.required],
         state:['11',Validators.required],
         district:['11',Validators.required],
-        phone1:['11',[Validators.required]], // Starts with 6-9 and has exactly 10 digits
+        phone1:['91',[Validators.required]], // Starts with 6-9 and has exactly 10 digits
         whatsappNo:['11',Validators.required],
         pincode:['11',Validators.required],
-        email:['11',Validators.required],
+        email:['ssm',Validators.required],
         employeeFamilyMembers:this.fb.array([])
-      }), 
+      }),
       qualificationExpe: this.fb.group({
         qualification: ['11', Validators.required],
         technicalQualification:['11',Validators.required],
@@ -94,17 +93,17 @@ export class EmployeeComponent implements OnInit {
       
       additionalInfo: this.fb.group({
         relativeWorkingInCompany: [true, Validators.required],
-        relativeName: ['', Validators.required],
-        relativeRelationship: ['', Validators.required],
+        relativeName: ['SDF', Validators.required],
+        relativeRelationship: ['SADF', Validators.required],
         entryDate: [new Date(), Validators.required],
-        location: ['', Validators.required],
-        interviewDate: ['', Validators.required],
-        interviewedBy: ['', Validators.required],
-        approvedBy: ['', Validators.required],
-        dateOfJoining: ['', Validators.required],
-        salary: ['', Validators.required],
-        confirmDate: ['', Validators.required],
-        employmentStatus: ['', Validators.required],
+        location: ['SADF', Validators.required],
+        interviewDate: [formatDate('2024-12-05','yyyy-MM-dd','en'), Validators.required],
+        interviewedBy: [formatDate('2024-12-05','yyyy-MM-dd','en'), Validators.required],
+        approvedBy: ['DASF', Validators.required],
+        dateOfJoining: [formatDate('2024-12-05','yyyy-MM-dd','en'), Validators.required],
+        salary: ['25000', Validators.required],
+        confirmDate: [formatDate('2024-12-05','yyyy-MM-dd','en'), Validators.required],
+        employmentStatus: ['pass', Validators.required],
         individualBioData: [false],
         photoAttached: [false],
         applicationAttached: [false],
@@ -113,7 +112,7 @@ export class EmployeeComponent implements OnInit {
         joiningReportAttached: [false],
         nominationFormAttached: [false],
         proofOfAge: [false],
-        proofName: ['',Validators.required],
+        proofName: ['DSAF',Validators.required],
       }),
       salaryPayroll: this.fb.group({
         transportFacility: [false],
@@ -121,8 +120,8 @@ export class EmployeeComponent implements OnInit {
         actualCtc: ['11', Validators.required],
         basicSalary: ['11', Validators.required],
         hra: ['11', Validators.required],
-        conv: ['11', Validators.required],
-        others: ['11', Validators.required],
+        conveyanceAllowance: ['11', Validators.required],
+        otherAllowance: ['11', Validators.required],
         medicalAllowance: ['11',Validators.required],
         attendanceIncentive: ['11',Validators.required],
         grossSalary: ['11',Validators.required],
@@ -133,11 +132,11 @@ export class EmployeeComponent implements OnInit {
         pfEmployer: ['11',Validators.required],
         esiEmployer: ['11',Validators.required],
         lwfEmployer: ['11',Validators.required],
-        bonus: ['11',Validators.required],
-        ctcExgratia: ['11',Validators.required],
-        subTotal: ['11',Validators.required],
+        salaryBonus: ['11',Validators.required],
+        exgratia: ['11',Validators.required],
+        subTotalCtc: ['11',Validators.required],
         employerLiability: ['11',Validators.required],
-        employeeType: ['',Validators.required],
+        employeeType: ['casual',Validators.required],
         wageCalculationType: ['11',Validators.required],
         paymentType: ['11',Validators.required],
         overtimeEnabled:[false],    
@@ -161,6 +160,16 @@ export class EmployeeComponent implements OnInit {
 
     }); 
   };
+  nextStep() {
+    const currentGroup = this.getStepGroup();
+    if (currentGroup.valid) {
+      this.validationErrors = [];
+      this.step++;
+    } else {
+      this.validationErrors = this.getValidationErrors(currentGroup);
+      currentGroup.markAllAsTouched();
+    }
+  }
 
   loadMaster( ){
     this.employeeService.getMasterData().subscribe({
@@ -185,16 +194,7 @@ export class EmployeeComponent implements OnInit {
     });
   }
   
-  nextStep() {
-    const currentGroup = this.getStepGroup();
-    if (currentGroup.valid) {
-      this.validationErrors = [];
-      this.step++;
-    } else {
-      this.validationErrors = this.getValidationErrors(currentGroup);
-      currentGroup.markAllAsTouched();
-    }
-  }
+  
 
   prevStep() {
     if (this.step > 1) this.step--;
