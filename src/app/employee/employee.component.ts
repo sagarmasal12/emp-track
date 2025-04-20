@@ -59,7 +59,7 @@ export class EmployeeComponent implements OnInit {
         caste:['NH',Validators.required],
         region:['HBHJ',Validators.required],
         identityMark:['HHBJ',Validators.required],
-        shiftType:['',Validators.required],
+        shiftType:['Fixed',Validators.required],
         shiftOption:['G-09.00-17.30',Validators.required],
         weight:['51',Validators.required],
         bloodGroup:['A',Validators.required],
