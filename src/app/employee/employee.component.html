@@ -1,19 +1,22 @@
-<div class="container mt-4">
-    <div class="progress">
-        <div class="progress-bar" role="progressbar" [style.width]="(step / 6) * 100 + '%'">
-            Step {{ step }} of 6
-        </div>
-    </div>
+<div class="container main-card-wrap py-2">
+    
 
     <form [formGroup]="employeeForm">
-        <div *ngIf="step === 1" formGroupName="personalInfo">
-            <h4>Personal Information</h4>
-            <div class="row">
+        <div class="my-3">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" [style.width]="(step / 6) * 100 + '%'">
+                    Step {{ step }} of 6
+                </div>
+            </div>
+        </div>
+        <div *ngIf="step === 1" formGroupName="personalInfo" class="main-card-wrap1">
+            <h4 class="pt-3 m-0">Personal Information</h4>
+            <div class="row-wpapper">
                 <!-- First Row -->
 
-                <div class="row pt-3">
+                <div class="row">
                     <div class="col-md-12">
-                        <div class="card-header">Personal Details</div>
+                        <div class="card-header my-3">Personal Details</div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
@@ -64,10 +67,10 @@
                             <select class="form-select" formControlName="postAppliedFor" required>
                                 <option value="" disabled selected>Select</option>
                                 @if (masterData) {
-                                    @for(master of masterData['postAppliedFor']; track $index) {
-                                        <option [value]="master.masterId">{{master.masterName}}</option>
-                                    }
-                                } 
+                                @for(master of masterData['postAppliedFor']; track $index) {
+                                <option [value]="master.masterId">{{master.masterName}}</option>
+                                }
+                                }
                             </select>
                             <div class="text-danger"
                                 *ngIf="personalInfoForm.controls['postAppliedFor'].touched && personalInfoForm.controls['postAppliedFor'].errors?.['required']">
@@ -84,7 +87,7 @@
                                 @for(master of masterData['designation']; track $index) {
                                 <option [value]="master.masterId">{{master.masterName}}</option>
                                 }
-                            }
+                                }
 
                             </select>
                             <div class="text-danger"
@@ -129,7 +132,7 @@
                                 @for(master of masterData['department']; track $index) {
                                 <option [value]="master.masterId">{{master.masterName}}</option>
                                 }
-                            }
+                                }
 
                             </select>
                             <div class="text-danger"
@@ -148,7 +151,7 @@
                                 @for(master of masterData['subDepartment']; track $index) {
                                 <option [value]="master.masterId">{{master.masterName}}</option>
                                 }
-                            }
+                                }
                             </select>
                             <div class="text-danger"
                                 *ngIf="personalInfoForm.controls['subDepartment'].touched || personalInfoForm.controls['subDepartment'].dirty">
@@ -183,7 +186,7 @@
                                 @for(master of masterData['division']; track $index) {
                                 <option [value]="master.masterId">{{master.masterName}}</option>
                                 }
-                            }
+                                }
                             </select>
                             <div class="text-danger"
                                 *ngIf="personalInfoForm.controls['division'].touched || personalInfoForm.controls['division'].dirty">
@@ -201,7 +204,7 @@
                                 @for(master of masterData['category']; track $index) {
                                 <option [value]="master.masterId">{{master.masterName}}</option>
                                 }
-                            }
+                                }
                             </select>
                             <div class="text-danger"
                                 *ngIf="personalInfoForm.controls['category'].touched || personalInfoForm.controls['category'].dirty">
@@ -212,7 +215,7 @@
                     </div>
                 </div>
                 <!-- Fifth Row -->
-                <div class="row pt-3">
+                <div class="row pt-3 align-items-center">
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>Mother's Name</label>
@@ -249,12 +252,12 @@
                     </div>
 
                     <div class="col-md-4 pt-3">
-                        <div class="form-group">
-                            <label>Gender</label><br>
+                        <div class="form-group d-flex">
+                            <label class="me-2">Gender</label><br>
                             <input type="radio" id="Female" name="gender" formControlName="gender" value="Female">
-                            <label for="female">Female</label>
+                            <label for="female" class="me-1">Female</label>
                             <input type="radio" id="male" name="gender" value="Male">
-                            <label for="male">Male</label>
+                            <label for="male" class="me-1">Male</label>
                             <div class="text-danger"
                                 *ngIf="personalInfoForm.controls['gender'].touched || personalInfoForm.controls['gender'].dirty">
                                 <span *ngIf="personalInfoForm.controls['gender'].errors?.['required']">This is
@@ -264,13 +267,13 @@
                     </div>
 
                     <div class="col-md-4 pt-3">
-                        <div class="form-group">
-                            <label for="Marital Status">MaritalStatus</label><br>
+                        <div class="form-group d-flex">
+                            <label for="Marital Status" class="me-2">MaritalStatus</label><br>
                             <input type="radio" id="Married" name="maritalStatus" value="Married"
                                 formControlName="maritalStatus">
-                            <label for="Married">Married</label>
+                            <label for="Married" class="me-1">Married</label>
                             <input class="ps-2" type="radio" id="Unmarried" name="maritalStatus" value="Unmarried">
-                            <label for="Unmarried">Unmarried</label>
+                            <label for="Unmarried" class="me-2">Unmarried</label>
                             <div class="text-danger"
                                 *ngIf="personalInfoForm.controls['maritalStatus'].touched || personalInfoForm.controls['maritalStatus'].dirty">
                                 <span *ngIf="personalInfoForm.controls['maritalStatus'].errors?.['required']">This is
@@ -340,12 +343,13 @@
                     </div>
 
                     <div class="col-md-4 pt-3">
-                        <div class="form-group">
-                            <label>Shift Type</label><br>
+                        <div class="form-group d-flex">
+                            <label class="me-2">Shift Type</label><br>
                             <input type="radio" id="Fixed" name="shiftType" value="Fixed" formControlName="shiftType">
-                            <label for="Fixed">Fixed</label>
+                            <label for="Fixed" class="me-1">Fixed</label>
+
                             <input type="radio" id="Rotational" name="shiftType" value="Rotational">
-                            <label for="Rotational">Rotational</label>
+                            <label for="Rotational" class="me-1">Rotational</label>
                         </div>
                     </div>
 
@@ -359,7 +363,7 @@
                                 @for(master of masterData['shiftOption']; track $index) {
                                 <option [value]="master.masterId">{{master.masterName}}</option>
                                 }
-                            }
+                                }
                             </select>
                             <div class="text-danger"
                                 *ngIf="personalInfoForm.controls['shiftOption'].touched || personalInfoForm.controls['shiftOption'].dirty">
@@ -379,7 +383,7 @@
                                 @for(master of masterData['transferFrom']; track $index) {
                                 <option [value]="master.masterId">{{master.masterName}}</option>
                                 }
-                            }
+                                }
                             </select>
                             <div class="text-danger"
                                 *ngIf="personalInfoForm.controls['transferFrom'].touched || personalInfoForm.controls['transferFrom'].dirty">
@@ -398,7 +402,7 @@
                                 @for(master of masterData['transferTo']; track $index) {
                                 <option [value]="master.masterId">{{master.masterName}}</option>
                                 }
-                            }
+                                }
                             </select>
                             <div class="text-danger"
                                 *ngIf="personalInfoForm.controls['transferTo'].touched || personalInfoForm.controls['transferTo'].dirty">
@@ -566,7 +570,7 @@
                                 @for(master of masterData['cadre']; track $index) {
                                 <option [value]="master.masterId">{{master.masterName}}</option>
                                 }
-                            }
+                                }
                             </select>
                             <div class="text-danger"
                                 *ngIf="personalInfoForm.controls['cadre'].touched || personalInfoForm.controls['cadre'].dirty">
@@ -614,7 +618,7 @@
                                 @for(master of masterData['costCentre']; track $index) {
                                 <option [value]="master.masterId">{{master.masterName}}</option>
                                 }
-                            }
+                                }
                             </select>
                             <div class="text-danger"
                                 *ngIf="personalInfoForm.controls['costCentre'].touched || personalInfoForm.controls['costCentre'].dirty">
@@ -632,7 +636,7 @@
                                 @for(master of masterData['rlBand']; track $index) {
                                 <option [value]="master.masterId">{{master.masterName}}</option>
                                 }
-                            }
+                                }
                             </select>
                             <div class="text-danger"
                             *ngIf="personalInfoForm.controls['rlBand'].touched || personalInfoForm.controls['rlBand'].dirty">
@@ -647,8 +651,8 @@
 
         </div>
 
-        <div *ngIf="step === 2" formGroupName="contactFamily">
-            <h4>Contact & Family</h4>
+        <div *ngIf="step === 2" formGroupName="contactFamily" class="main-card-wrap1">
+            <h4 class="pt-3 m-0"> Contact & Family</h4>
             <div class="row pt-3">
                 <div class="col-md-12">
                     <div class="card-header pt-3">Address</div>
@@ -840,8 +844,8 @@
             </div>
         </div>
 
-        <div *ngIf="step === 3" formGroupName="qualificationExpe">
-            <h4>Qualification & Experience</h4>
+        <div *ngIf="step === 3" formGroupName="qualificationExpe" class="main-card-wrap1">
+            <h4 class="pt-3 m-0">Qualification & Experience</h4>
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
@@ -940,8 +944,8 @@
             </div>
         </div>
 
-        <div *ngIf="step === 4" formGroupName="additionalInfo">
-            <h4>Additional Information</h4>
+        <div *ngIf="step === 4" formGroupName="additionalInfo" class="main-card-wrap1">
+            <h4 class="pt-3 m-0">Additional Information</h4>
             <div class="row pt-3">
                 <div class="col-12">
                     <div class="col-md-12">
@@ -1170,15 +1174,17 @@
             </div>
         </div>
 
-        <div *ngIf="step === 5" formGroupName="salaryPayroll">
-            <h4>Salary & Payroll</h4>
-            <div class="card mt-3">
-                <div class="card-header">Salary & Payroll Details</div>
+        <div *ngIf="step === 5" formGroupName="salaryPayroll" class="main-card-wrap1">
+            <h4 class="pt-3 m-0">Salary & Payroll</h4>
+          
+                <div class="card-header my-3">Salary & Payroll Details</div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-4">
-                            <label>Transport Facility(Y/N):</label>
+                            <div class="d-flex">
+                                <label class="ms-2">Transport Facility(Y/N):</label>
                             <input type="checkbox" name="transportFacility" formControlName="transportFacility">
+                            </div>
                             <!-- <input type="radio" formControlName="transportFacility" value="true">  <label for="Yes">Yes</label>
                         <input type="radio" formControlName="transportFacility" value="false"> <label for="No"> No</label> -->
                         </div>
@@ -1203,7 +1209,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <label>Basic Salary:</label>
                             <input type="number" class="form-control" placeholder="Enter Basic Salary"
                                 formControlName="basicSalary">
@@ -1213,7 +1219,7 @@
                                     Required</span>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <label>HRA:</label>
                             <input type="number" class="form-control" placeholder="Enter HRA Amount"
                                 formControlName="hra">
@@ -1224,12 +1230,14 @@
                             </div>
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <label>CONV:</label>
                             <input type="number" class="form-control" formControlName="conveyanceAllowance">
                             <div class="text-danger"
                                 *ngIf="salaryPayrollForm.controls['conveyanceAllowance'].touched || salaryPayrollForm.controls['conveyanceAllowance'].dirty">
-                                <span *ngIf="salaryPayrollForm.controls['conveyanceAllowance'].errors?.['required']">This is
+                                <span
+                                    *ngIf="salaryPayrollForm.controls['conveyanceAllowance'].errors?.['required']">This
+                                    is
                                     Required</span>
                             </div>
                         </div>
@@ -1244,7 +1252,7 @@
                             </div>
                         </div> -->
 
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <label>Medical Allowance:</label>
                             <input type="number" class="form-control" placeholder="Enter Medical Allowance"
                                 formControlName="medicalAllowance">
@@ -1254,7 +1262,7 @@
                                     is Required</span>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <label>Attendance Incentive:</label>
                             <input type="text" class="form-control" placeholder="Enter Incentive"
                                 formControlName="attendanceIncentive">
@@ -1266,7 +1274,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <label>Gross Salary:</label>
                             <input type="number" class="form-control" placeholder="Enter Gross Salary"
                                 formControlName="grossSalary">
@@ -1277,7 +1285,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <label>PF Empe:</label>
                             <input type="number" class="form-control" formControlName="pfEmployee">
                             <div class="text-danger"
@@ -1286,7 +1294,7 @@
                                     Required</span>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <label>ESI Empe:</label>
                             <input type="number" class="form-control" formControlName="esiEmployee">
                             <div class="text-danger"
@@ -1295,7 +1303,7 @@
                                     Required</span>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <label>LWF Empe:</label>
                             <input type="number" class="form-control" placeholder="Enter Incentive"
                                 formControlName="lwfEmployee">
@@ -1305,7 +1313,7 @@
                                     Required</span>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <label>Total Deduction:</label>
                             <input type="number" class="form-control" formControlName="totalDeduction">
                             <div class="text-danger"
@@ -1314,7 +1322,7 @@
                                     Required</span>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <label>PF Empr:</label>
                             <input type="number" class="form-control" formControlName="pfEmployer">
                             <div class="text-danger"
@@ -1323,7 +1331,7 @@
                                     Required</span>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <label>ESI Empr:</label>
                             <input type="number" class="form-control" formControlName="esiEmployer">
                             <div class="text-danger"
@@ -1332,7 +1340,7 @@
                                     Required</span>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <label>LWF Empr:</label>
                             <input type="number" class="form-control" formControlName="lwfEmployer">
                             <div class="text-danger"
@@ -1341,7 +1349,7 @@
                                     Required</span>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <label>Bonus:</label>
                             <input type="number" class="form-control" formControlName="bonus">
                             <div class="text-danger"
@@ -1350,7 +1358,7 @@
                                     Required</span>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <label>CTC Exgratia:</label>
                             <input type="number" class="form-control" formControlName="ctcExgratia">
                             <div class="text-danger"
@@ -1359,7 +1367,7 @@
                                     Required</span>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <label>Sub Total:</label>
                             <input type="number" class="form-control" formControlName="subTotal">
                             <div class="text-danger"
@@ -1369,17 +1377,17 @@
                             </div>
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <label for="Empr PF">Empr PF:</label>
                             <input type="number" class="form-control">
 
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <label for="Empr ESI">Empr ESI:</label>
                             <input type="number" class="form-control">
 
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <label for="Fixed CTC">Fixed CTC:</label>
                             <input type="number" class="form-control" formControlName="fixedCtc">
                             <div class="text-danger"
@@ -1388,6 +1396,50 @@
                                     Required</span>
                             </div>
                         </div>
+                       
+                        <!-- <div class="col-md-3">
+                        <label>EmprLiability CTC Salary:</label>
+                        <input type="text" class="form-control" formControlName="emprLiabilityCtcSalary">
+                    </div> -->
+                    </div>
+
+                    <div class="mt-3">
+                        <div class="row mb-2">
+
+                            <div class="form-group mb-2 d-flex col-md-3">
+                                <label for="Employee Type" class="me-2">EmployeeType:</label><br>
+                                <input type="radio" value="permanent" formControlName="employeeType">
+                                <label for="Permanent" class="me-1">Permanent</label>
+                                <input type="radio" value="casual" formControlName="employeeType">
+                                <label for="Casual" class="me-1">Casual</label>
+                            </div>
+
+                            <div class="form-group mb-2 d-flex col-md-3">
+                                <label for="Wages Calculation" class="me-2">Wages Calculation:</label><br>
+                                <input type="radio" formControlName="wageCalculationType" value="monthly"> <label
+                                    for="Fixed" class="me-1">Monthly</label>
+                                <input type="radio" formControlName="wageCalculationType" value="daily">
+                                <label for="Daily" class="me-1">Daily</label>
+                            </div>
+
+                            <div class="form-group mb-2 d-flex col-md-3">
+                                <label for="Payment Type">Payment Type:</label><br>
+                                <input type="radio" formControlName="paymentType" value="bank"> <label for="Bank"
+                                    class="me-1">Bank</label>
+                                <input type="radio" formControlName="paymentType" value="cheque"> <label for="Cheque"
+                                    class="me-1">Cheque</label>
+                                <input type="radio" formControlName="paymentType" value="neft"> <label for="NEFT"
+                                    class="me-1">NEFT</label>
+                            </div>
+
+                            <div class="form-group mb-2 d-flex col-md-3">
+                                <label for="Overtime" class="me-2">Overtime:</label><br>
+                                <input type="checkbox" formControlName="overtimeEnabled"> <label
+                                    for="Enable">Enable</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-3">
                             <label>Remarks:</label>
                             <input type="text" class="form-control" placeholder="Enter Remarks"
@@ -1398,105 +1450,69 @@
                                     Required</span>
                             </div>
                         </div>
-                        <!-- <div class="col-md-3">
-                        <label>EmprLiability CTC Salary:</label>
-                        <input type="text" class="form-control" formControlName="emprLiabilityCtcSalary">
-                    </div> -->
-                    </div>
-
-                    <div class="container mt-3">
-                        <div class="row mb-2">
-                            <div class="col-md-6">
-                                <div class="form-group mb-2">
-                                    <label for="Employee Type">EmployeeType:</label><br>
-                                    <input type="radio" value="permanent" formControlName="employeeType">
-                                    <label for="Permanent">Permanent</label>
-                                    <input type="radio" value="casual" formControlName="employeeType">
-                                    <label for="Casual">Casual</label>
-                                </div>
-
-                                <div class="form-group mb-2">
-                                    <label for="Wages Calculation">Wages Calculation:</label><br>
-                                    <input type="radio" formControlName="wageCalculationType" value="monthly"> <label
-                                        for="Fixed">Monthly</label>
-                                    <input type="radio" formControlName="wageCalculationType" value="daily">
-                                    <label for="Daily">Daily</label>
-                                </div>
-
-                                <div class="form-group mb-2">
-                                    <label for="Payment Type">Payment Type:</label><br>
-                                    <input type="radio" formControlName="paymentType" value="bank"> <label
-                                        for="Bank">Bank</label>
-                                    <input type="radio" formControlName="paymentType" value="cheque"> <label
-                                        for="Cheque">Cheque</label>
-                                    <input type="radio" formControlName="paymentType" value="neft"> <label
-                                        for="NEFT">NEFT</label>
-                                </div>
-
-                                <div class="form-group mb-2">
-                                    <label for="Overtime">Overtime:</label><br>
-                                    <input type="checkbox" formControlName="overtimeEnabled"> <label
-                                        for="Enable">Enable</label>
-
-
-                                    <br>
-                                    <label>Night Rate:</label>
-                                    <input type="number" class="form-control" formControlName="nightRate">
-                                    <div class="text-danger"
-                                        *ngIf="salaryPayrollForm.controls['nightRate'].touched || salaryPayrollForm.controls['nightRate'].dirty">
-                                        <span *ngIf="salaryPayrollForm.controls['nightRate'].errors?.['required']">This
-                                            is Required</span>
-                                    </div>
-                                </div>
-
-                                <div class="form-group mb-2">
-                                    <label for="Fooding">Fooding Enabled:</label><br>
-                                    <input type="checkbox" formControlName="foodingEnabled">
-
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="me-1">Night Rate:</label>
+                                <input type="text" class="form-control" formControlName="nightRate">
+                                <div class="text-danger"
+                                    *ngIf="salaryPayrollForm.controls['nightRate'].touched || salaryPayrollForm.controls['nightRate'].dirty">
+                                    <span *ngIf="salaryPayrollForm.controls['nightRate'].errors?.['required']">This
+                                        is Required</span>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                        <div class="col-md-3">
+                            <div class="form-group mb-2 ">
+                                <label for="Fooding">Fooding Enabled:</label>
+                                <input type="checkbox" formControlName="foodingEnabled">
 
-            </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3"></div>
+                    </div>
+
+
+                </div>
         </div>
 
-        <div *ngIf="step === 6" formGroupName="statutory">
-            <h4>Statutory Details</h4>
+        <div *ngIf="step === 6" formGroupName="statutory" class="main-card-wrap1">
+            <h4 class="pt-3 m-0">Statutory Details</h4>
             <div class="col-12">
                 <!-- <div class="form"> -->
-                <div class="card mt-3">
-                    <div class="card-header">STATUTORY</div>
+                
+                    <div class="card-header my-3">STATUTORY</div>
                     <div class="card-body">
                         <div class="row">
                             <!-- ESI Section -->
-                            <div class="col-md-12">
-                                <div class="row">
-                                    <div class="col-6">
+                       
+                                
+                                    <div class="col-12">
                                         <h6><strong>FORM 1 - ESI *</strong></h6>
-                                        <label>ESI Insurance No.</label>
-                                        <input type="text" class="form-control mb-2" id="esiInsuranceNo"
-                                            placeholder="Enter ESI Insurance No." formControlName="esiInsuranceNo">
-                                        <div class="text-danger"
-                                            *ngIf="statutoryForm.controls['esiInsuranceNo'].touched || statutoryForm.controls['esiInsuranceNo'].dirty">
-                                            <span
-                                                *ngIf="statutoryForm.controls['esiInsuranceNo'].errors?.['required']">This
-                                                is Required</span>
-                                        </div>
-
-                                        <label>ESI Employer Code</label>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>ESI Insurance No.</label>
+                                                <input type="text" class="form-control mb-2" id="esiInsuranceNo"
+                                                    placeholder="Enter ESI Insurance No." formControlName="esiInsuranceNo">
+                                                <div class="text-danger"
+                                                    *ngIf="statutoryForm.controls['esiInsuranceNo'].touched || statutoryForm.controls['esiInsuranceNo'].dirty">
+                                                    <span
+                                                        *ngIf="statutoryForm.controls['esiInsuranceNo'].errors?.['required']">This
+                                                        is Required</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>ESI Employer Code</label>
                                         <input type="text" class="form-control mb-2"
                                             formControlName="esiEmployerCode" />
-                                        <div class="text-danger"
-                                            *ngIf="statutoryForm.controls['esiEmployerCode'].touched ||
+                                        <div class="text-danger" *ngIf="statutoryForm.controls['esiEmployerCode'].touched ||
                                             statutoryForm.controls['esiEmployerCode'].dirty">
                                             <span
                                                 *ngIf="statutoryForm.controls['esiEmployerCode'].errors?.['required']">This
                                                 is Required</span>
                                         </div>
-
-                                        <label>Dispensary</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>Dispensary</label>
                                         <input type="text" class="form-control mb-2" value=""
                                             formControlName="dispensary">
                                         <div class="text-danger"
@@ -1504,6 +1520,8 @@
                                             <span *ngIf="statutoryForm.controls['dispensary'].errors?.['required']">This
                                                 is Required</span>
                                         </div>
+                                            </div>
+                                            <div class="col-md-6">
 
                                         <label>Local Office</label>
                                         <input type="text" class="form-control mb-2" formControlName="esiLocalOffice">
@@ -1513,38 +1531,47 @@
                                                 *ngIf="statutoryForm.controls['esiLocalOffice'].errors?.['required']">This
                                                 is Required</span>
                                         </div>
-
-
-                                        <label>ESI Nominee for Payment</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>ESI Nominee for Payment</label>
                                         <input type="text" class="form-control mb-2" id="esiNominee" value="">
-
-                                        <label>Particulars of Family</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>Particulars of Family</label>
                                         <input type="text" class="form-control mb-2" id="familyParticulars" value="">
-
-                                        <label>Family member residing with insured
-                                            person</label>
-                                        <input type="text" class="form-control mb-2" id="insuredFamilyMember" value="">
-
-                                        <label>Children Pension</label>
-                                        <input type="number" class="form-control mb-2" formControlName="childrenPension">
-                                        <div class="text-danger"
-                                            *ngIf="statutoryForm.controls['childrenPension'].touched || statutoryForm.controls['childrenPension'].dirty">
-                                            <span
-                                                *ngIf="statutoryForm.controls['childrenPension'].errors?.['required']">This
-                                                is Required</span>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>Family member residing with insured
+                                                    person</label>
+                                                <input type="text" class="form-control mb-2" id="insuredFamilyMember" value="">
+        
+                                                <input type="text" class="form-control mb-2" id="childrenPension" value="">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label>Widow Pension</label>
+                                        <input type="text" class="form-control mb-2" id="widowPension" value="">
+                                            </div>
                                         </div>
+                                       
 
-                                        <label>Widow Pension</label>
-                                        <input type="number" class="form-control mb-2" id="widowPension" value="" formControlName="widowPension">
-                                        <div class="text-danger"
-                                            *ngIf="statutoryForm.controls['widowPension'].touched || statutoryForm.controls['widowPension'].dirty">
-                                            <span
-                                                *ngIf="statutoryForm.controls['widowPension'].errors?.['required']">This
-                                                is Required</span>
-                                        </div>
+                                        
+
+                                        
+
+
+
+                                        
+
+                                        
+
+                                        
+
+                                        
                                     </div>
-                                </div>
-                            </div>
+                                
+
+
+                            
 
                             <!-- Gratuity Section -->
                             <div class="col-md-12 mt-3">
@@ -1575,15 +1602,18 @@
                             </div>
                         </div>
                     </div>
-                </div>
+               
+
+
+
             </div>
         </div>
 
         <div class="mt-3">
             <button type="button" class="btn btn-secondary" (click)="prevStep()"
                 [disabled]="step === 1">Previous</button>
-            <button type="button" class="btn btn-primary" (click)="nextStep()" *ngIf="step < 6">Next</button>
-            <button type="submit" class="btn btn-success" (click)="onSave()" *ngIf="step === 6"
+            <button type="button" class="btn btn-primary mx-2" (click)="nextStep()" *ngIf="step < 6">Next</button>
+            <button type="submit" class="btn btn-success ms-2" (click)="onSave()" *ngIf="step === 6"
                 [disabled]="!employeeForm.valid">Submit</button>
         </div>
     </form>
