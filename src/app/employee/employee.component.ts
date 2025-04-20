@@ -31,8 +31,8 @@ export class EmployeeComponent implements OnInit {
         payCode: ['554546484978', Validators.required],
         aadharNo:['554546484978', [Validators.required,Validators.pattern(/^[2-9]{1}[0-9]{11}$/)]],
         cardNo:['11156516',Validators.required],
-        postAppliedFor:['TAGGING OPERATOR1',Validators.required],
-        designation:['TAGGING OPERATOR2',Validators.required],
+        postAppliedFor:['',Validators.required],
+        designation:['',Validators.required],
         entryDate:[formatDate('2024-12-05','yyyy-MM-dd','en'),Validators.required],
         fullName:['sadf',Validators.required],
         department:['PRODUCTION',Validators.required],
@@ -71,7 +71,9 @@ export class EmployeeComponent implements OnInit {
         cadre:['WORKER',Validators.required],
         company:['GR VALUE CREATIONS',Validators.required],
         location:['PLOT NO.10,SEC-8,IMT',Validators.required],
+        rlBand:['W2 B',Validators.required],
       }),
+
       contactFamily: this.fb.group({ 
         presentAddress:['ASDFDSF',Validators.required],
         permanentAddress:['11',Validators.required],
@@ -155,9 +157,10 @@ export class EmployeeComponent implements OnInit {
         pfSharePercent:['11',Validators.required],
         gratuityNominee:['11',Validators.required],
         gratuitySharePercent:['11',Validators.required],
+        childrenPension:['11',Validators.required],
+        widowPension:['11',Validators.required],
       })
     
-
     }); 
   };
   nextStep() {
