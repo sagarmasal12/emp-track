@@ -152,7 +152,9 @@ export class EmployeeComponent implements OnInit {
         wageCalculationType: ['11',Validators.required],
         paymentType: ['11',Validators.required],
         overtimeEnabled:[false],    
+        ctc: ['11',Validators.required],
         nightRate:['11',Validators.required],
+        otRate:['11',Validators.required],
         foodingEnabled:[false],
         fixedCtc:['11',Validators.required],
         remarks:['11',Validators.required]
@@ -483,7 +485,7 @@ export class EmployeeComponent implements OnInit {
 
   createExperience(): FormGroup {
     return this.fb.group({
-      employer: ['11', Validators.required],
+      employerName: ['11', Validators.required],
       postHeld: ['11', Validators.required],
       fromDate: ['11', Validators.required],
       toDate: ['11', Validators.required],
@@ -493,7 +495,7 @@ export class EmployeeComponent implements OnInit {
 
   patchExperience(data:any): FormGroup {
     return this.fb.group({
-      employer: [data.employer, Validators.required],
+      employerName: [data.employer, Validators.required],
       postHeld: [data.postHeld, Validators.required],
       fromDate: [ formatDate(data.fromDate,'yyyy-MM-dd','en'), Validators.required],
       toDate: [formatDate(data.toDate,'yyyy-MM-dd','en'), Validators.required],

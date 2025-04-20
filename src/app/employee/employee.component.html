@@ -1352,19 +1352,19 @@
                     </div>
                     <div class="col-md-4">
                         <label>CTC Exgratia:</label>
-                        <input type="number" class="form-control" formControlName="ctcExgratia">
+                        <input type="number" class="form-control" formControlName="ctc">
                         <div class="text-danger"
-                            *ngIf="salaryPayrollForm.controls['ctcExgratia'].touched || salaryPayrollForm.controls['ctcExgratia'].dirty">
-                            <span *ngIf="salaryPayrollForm.controls['ctcExgratia'].errors?.['required']">This is
+                            *ngIf="salaryPayrollForm.controls['ctc'].touched || salaryPayrollForm.controls['ctc'].dirty">
+                            <span *ngIf="salaryPayrollForm.controls['ctc'].errors?.['required']">This is
                                 Required</span>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <label>Sub Total:</label>
-                        <input type="number" class="form-control" formControlName="subTotal">
+                        <input type="number" class="form-control" formControlName="subTotalCtc">
                         <div class="text-danger"
-                            *ngIf="salaryPayrollForm.controls['subTotal'].touched || salaryPayrollForm.controls['subTotal'].dirty">
-                            <span *ngIf="salaryPayrollForm.controls['subTotal'].errors?.['required']">This is
+                            *ngIf="salaryPayrollForm.controls['subTotalCtc'].touched || salaryPayrollForm.controls['subTotalCtc'].dirty">
+                            <span *ngIf="salaryPayrollForm.controls['subTotalCtc'].errors?.['required']">This is
                                 Required</span>
                         </div>
                     </div>
