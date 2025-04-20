@@ -163,6 +163,21 @@ export class EmployeeComponent implements OnInit {
     
     }); 
   };
+
+  onStateChange(){
+    if(this.employeeForm &&  this.employeeForm.controls['contactFamily']) {
+      const state =  this.employeeForm.controls['contactFamily'] as FormGroup;
+    
+      if( state.controls['state']) {
+        const stateVal = state.controls['state'].value;
+        return this.masterData['district'].filter((m:any)=>m.parentMasterId == stateVal)
+      } else {
+        return  []
+      }
+      
+    }
+    
+  }
   nextStep() {
     const currentGroup = this.getStepGroup();
     if (currentGroup.valid) {

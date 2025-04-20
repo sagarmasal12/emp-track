@@ -1,5 +1,5 @@
 <div class="container main-card-wrap py-2">
-    
+
 
     <form [formGroup]="employeeForm">
         <div class="my-3">
@@ -639,10 +639,10 @@
                                 }
                             </select>
                             <div class="text-danger"
-                            *ngIf="personalInfoForm.controls['rlBand'].touched || personalInfoForm.controls['rlBand'].dirty">
-                            <span *ngIf="personalInfoForm.controls['rlBand'].errors?.['required']">This is
-                                Required</span>
-                        </div>
+                                *ngIf="personalInfoForm.controls['rlBand'].touched || personalInfoForm.controls['rlBand'].dirty">
+                                <span *ngIf="personalInfoForm.controls['rlBand'].errors?.['required']">This is
+                                    Required</span>
+                            </div>
                         </div>
                     </div>
 
@@ -670,14 +670,6 @@
                                         is Required</span>
                                 </div>
                             </div>
-                            <!-- <div class="form-group mb-2">
-                            <input type="text" class="form-control"
-                                value="MANESAR" placeholder="City">
-                        </div>
-                        <div class="form-group mb-2">
-                            <input type="text" class="form-control"
-                                value="GURUGRAM" placeholder="District">
-                        </div> -->
                         </div>
                         <div class="col-md-6">
                             <div class="form-group mb-2">
@@ -691,26 +683,22 @@
                                         is Required</span>
                                 </div>
                             </div>
-                            <!-- <div class="form-group mb-2">
-                            <input type="text" class="form-control"
-                                value="PO-CHURU"
-                                placeholder="Post Office">
-                                
-                        </div>
-                        <div class="form-group mb-2">
-                            <input type="text" class="form-control"
-                                value="DT-CHURU (Rajasthan)"
-                                placeholder="District">
-                        </div> -->
-
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group mb-2">
-                                <label>State</label>
-                                <input type="text" class="form-control" value="Rajasthan" formControlName="state">
+                                <label class="required">State</label>
+                                <select class="form-select" formControlName="state" required>
+                                    <option value="" disabled selected>Select</option>
+                                    @if (masterData) {
+                                    @for(master of masterData['state']; track $index) {
+                                    <option [value]="master.masterId">{{master.masterName}}</option>
+                                    }
+                                    }
+                                </select>
+
                                 <div class="text-danger"
                                     *ngIf="contactFamilyForm.controls['state'].touched || contactFamilyForm.controls['state'].dirty">
                                     <span *ngIf="contactFamilyForm.controls['state'].errors?.['required']">This is
@@ -718,8 +706,16 @@
                                 </div>
                             </div>
                             <div class="form-group mb-2">
-                                <label>City</label>
-                                <input type="text" class="form-control" value="" placeholder="City">
+                                <label class="required">district</label>
+                                <select class="form-select" formControlName="district" required>
+                                    <option value="" disabled selected>Select</option>
+                                    @if (masterData) {
+                                    @for(master of onStateChange(); track $index) {
+                                    <option [value]="master.masterId">{{master.masterName}}</option>
+                                    }
+                                    }
+                                </select>
+
 
                             </div>
 
@@ -744,16 +740,6 @@
                             </div>
                         </div>
                         <div class="col-6">
-                            <div class="form-group mb-2">
-                                <label>District</label>
-                                <input type="text" class="form-control" value="" placeholder="District"
-                                    formControlName="district">
-                                <div class="text-danger"
-                                    *ngIf="contactFamilyForm.controls['district'].touched || contactFamilyForm.controls['district'].dirty">
-                                    <span *ngIf="contactFamilyForm.controls['district'].errors?.['required']">This is
-                                        Required</span>
-                                </div>
-                            </div>
                             <div class="form-group mb-2">
                                 <label>Phone Number</label>
                                 <input type="number" class="form-control" formControlName="phone1">
@@ -1176,73 +1162,71 @@
 
         <div *ngIf="step === 5" formGroupName="salaryPayroll" class="main-card-wrap1">
             <h4 class="pt-3 m-0">Salary & Payroll</h4>
-          
-                <div class="card-header my-3">Salary & Payroll Details</div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="d-flex">
-                                <label class="ms-2">Transport Facility(Y/N):</label>
+
+            <div class="card-header my-3">Salary & Payroll Details</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="d-flex">
+                            <label class="ms-2">Transport Facility(Y/N):</label>
                             <input type="checkbox" name="transportFacility" formControlName="transportFacility">
-                            </div>
-                            <!-- <input type="radio" formControlName="transportFacility" value="true">  <label for="Yes">Yes</label>
+                        </div>
+                        <!-- <input type="radio" formControlName="transportFacility" value="true">  <label for="Yes">Yes</label>
                         <input type="radio" formControlName="transportFacility" value="false"> <label for="No"> No</label> -->
-                        </div>
+                    </div>
 
-                        <div class="col-md-4">
-                            <label>Route No:</label>
-                            <input type="number" class="form-control" formControlName="routeNo">
-                            <div class="text-danger"
-                                *ngIf="salaryPayrollForm.controls['routeNo'].touched || salaryPayrollForm.controls['routeNo'].dirty">
-                                <span *ngIf="salaryPayrollForm.controls['routeNo'].errors?.['required']">This is
-                                    Required</span>
-                            </div>
+                    <div class="col-md-4">
+                        <label>Route No:</label>
+                        <input type="number" class="form-control" formControlName="routeNo">
+                        <div class="text-danger"
+                            *ngIf="salaryPayrollForm.controls['routeNo'].touched || salaryPayrollForm.controls['routeNo'].dirty">
+                            <span *ngIf="salaryPayrollForm.controls['routeNo'].errors?.['required']">This is
+                                Required</span>
                         </div>
+                    </div>
 
-                        <div class="col-md-4">
-                            <label>Actual CTC:</label>
-                            <input type="number" class="form-control" formControlName="actualCtc">
-                            <div class="text-danger"
-                                *ngIf="salaryPayrollForm.controls['actualCtc'].touched || salaryPayrollForm.controls['actualCtc'].dirty">
-                                <span *ngIf="salaryPayrollForm.controls['actualCtc'].errors?.['required']">This is
-                                    Required</span>
-                            </div>
+                    <div class="col-md-4">
+                        <label>Actual CTC:</label>
+                        <input type="number" class="form-control" formControlName="actualCtc">
+                        <div class="text-danger"
+                            *ngIf="salaryPayrollForm.controls['actualCtc'].touched || salaryPayrollForm.controls['actualCtc'].dirty">
+                            <span *ngIf="salaryPayrollForm.controls['actualCtc'].errors?.['required']">This is
+                                Required</span>
                         </div>
+                    </div>
 
-                        <div class="col-md-4">
-                            <label>Basic Salary:</label>
-                            <input type="number" class="form-control" placeholder="Enter Basic Salary"
-                                formControlName="basicSalary">
-                            <div class="text-danger"
-                                *ngIf="salaryPayrollForm.controls['basicSalary'].touched || salaryPayrollForm.controls['basicSalary'].dirty">
-                                <span *ngIf="salaryPayrollForm.controls['basicSalary'].errors?.['required']">This is
-                                    Required</span>
-                            </div>
+                    <div class="col-md-4">
+                        <label>Basic Salary:</label>
+                        <input type="number" class="form-control" placeholder="Enter Basic Salary"
+                            formControlName="basicSalary">
+                        <div class="text-danger"
+                            *ngIf="salaryPayrollForm.controls['basicSalary'].touched || salaryPayrollForm.controls['basicSalary'].dirty">
+                            <span *ngIf="salaryPayrollForm.controls['basicSalary'].errors?.['required']">This is
+                                Required</span>
                         </div>
-                        <div class="col-md-4">
-                            <label>HRA:</label>
-                            <input type="number" class="form-control" placeholder="Enter HRA Amount"
-                                formControlName="hra">
-                            <div class="text-danger"
-                                *ngIf="salaryPayrollForm.controls['hra'].touched || salaryPayrollForm.controls['hra'].dirty">
-                                <span *ngIf="salaryPayrollForm.controls['hra'].errors?.['required']">This is
-                                    Required</span>
-                            </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label>HRA:</label>
+                        <input type="number" class="form-control" placeholder="Enter HRA Amount" formControlName="hra">
+                        <div class="text-danger"
+                            *ngIf="salaryPayrollForm.controls['hra'].touched || salaryPayrollForm.controls['hra'].dirty">
+                            <span *ngIf="salaryPayrollForm.controls['hra'].errors?.['required']">This is
+                                Required</span>
                         </div>
+                    </div>
 
-                        <div class="col-md-4">
-                            <label>CONV:</label>
-                            <input type="number" class="form-control" formControlName="conveyanceAllowance">
-                            <div class="text-danger"
-                                *ngIf="salaryPayrollForm.controls['conveyanceAllowance'].touched || salaryPayrollForm.controls['conveyanceAllowance'].dirty">
-                                <span
-                                    *ngIf="salaryPayrollForm.controls['conveyanceAllowance'].errors?.['required']">This
-                                    is
-                                    Required</span>
-                            </div>
+                    <div class="col-md-4">
+                        <label>CONV:</label>
+                        <input type="number" class="form-control" formControlName="conveyanceAllowance">
+                        <div class="text-danger"
+                            *ngIf="salaryPayrollForm.controls['conveyanceAllowance'].touched || salaryPayrollForm.controls['conveyanceAllowance'].dirty">
+                            <span *ngIf="salaryPayrollForm.controls['conveyanceAllowance'].errors?.['required']">This
+                                is
+                                Required</span>
                         </div>
+                    </div>
 
-                        <!-- <div class="col-md-3">
+                    <!-- <div class="col-md-3">
                             <label>Others:</label>
                             <input type="text" class="form-control" formControlName="others">
                             <div class="text-danger"
@@ -1252,357 +1236,349 @@
                             </div>
                         </div> -->
 
-                        <div class="col-md-4">
-                            <label>Medical Allowance:</label>
-                            <input type="number" class="form-control" placeholder="Enter Medical Allowance"
-                                formControlName="medicalAllowance">
-                            <div class="text-danger"
-                                *ngIf="salaryPayrollForm.controls['medicalAllowance'].touched || salaryPayrollForm.controls['medicalAllowance'].dirty">
-                                <span *ngIf="salaryPayrollForm.controls['medicalAllowance'].errors?.['required']">This
-                                    is Required</span>
-                            </div>
+                    <div class="col-md-4">
+                        <label>Medical Allowance:</label>
+                        <input type="number" class="form-control" placeholder="Enter Medical Allowance"
+                            formControlName="medicalAllowance">
+                        <div class="text-danger"
+                            *ngIf="salaryPayrollForm.controls['medicalAllowance'].touched || salaryPayrollForm.controls['medicalAllowance'].dirty">
+                            <span *ngIf="salaryPayrollForm.controls['medicalAllowance'].errors?.['required']">This
+                                is Required</span>
                         </div>
-                        <div class="col-md-4">
-                            <label>Attendance Incentive:</label>
-                            <input type="text" class="form-control" placeholder="Enter Incentive"
-                                formControlName="attendanceIncentive">
-                            <div class="text-danger"
-                                *ngIf="salaryPayrollForm.controls['attendanceIncentive'].touched || salaryPayrollForm.controls['attendanceIncentive'].dirty">
-                                <span
-                                    *ngIf="salaryPayrollForm.controls['attendanceIncentive'].errors?.['required']">This
-                                    is Required</span>
-                            </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Attendance Incentive:</label>
+                        <input type="text" class="form-control" placeholder="Enter Incentive"
+                            formControlName="attendanceIncentive">
+                        <div class="text-danger"
+                            *ngIf="salaryPayrollForm.controls['attendanceIncentive'].touched || salaryPayrollForm.controls['attendanceIncentive'].dirty">
+                            <span *ngIf="salaryPayrollForm.controls['attendanceIncentive'].errors?.['required']">This
+                                is Required</span>
                         </div>
+                    </div>
 
-                        <div class="col-md-4">
-                            <label>Gross Salary:</label>
-                            <input type="number" class="form-control" placeholder="Enter Gross Salary"
-                                formControlName="grossSalary">
-                            <div class="text-danger"
-                                *ngIf="salaryPayrollForm.controls['grossSalary'].touched || salaryPayrollForm.controls['grossSalary'].dirty">
-                                <span *ngIf="salaryPayrollForm.controls['grossSalary'].errors?.['required']">This is
-                                    Required</span>
-                            </div>
+                    <div class="col-md-4">
+                        <label>Gross Salary:</label>
+                        <input type="number" class="form-control" placeholder="Enter Gross Salary"
+                            formControlName="grossSalary">
+                        <div class="text-danger"
+                            *ngIf="salaryPayrollForm.controls['grossSalary'].touched || salaryPayrollForm.controls['grossSalary'].dirty">
+                            <span *ngIf="salaryPayrollForm.controls['grossSalary'].errors?.['required']">This is
+                                Required</span>
                         </div>
+                    </div>
 
-                        <div class="col-md-4">
-                            <label>PF Empe:</label>
-                            <input type="number" class="form-control" formControlName="pfEmployee">
-                            <div class="text-danger"
-                                *ngIf="salaryPayrollForm.controls['pfEmployee'].touched || salaryPayrollForm.controls['pfEmployee'].dirty">
-                                <span *ngIf="salaryPayrollForm.controls['pfEmployee'].errors?.['required']">This is
-                                    Required</span>
-                            </div>
+                    <div class="col-md-4">
+                        <label>PF Empe:</label>
+                        <input type="number" class="form-control" formControlName="pfEmployee">
+                        <div class="text-danger"
+                            *ngIf="salaryPayrollForm.controls['pfEmployee'].touched || salaryPayrollForm.controls['pfEmployee'].dirty">
+                            <span *ngIf="salaryPayrollForm.controls['pfEmployee'].errors?.['required']">This is
+                                Required</span>
                         </div>
-                        <div class="col-md-4">
-                            <label>ESI Empe:</label>
-                            <input type="number" class="form-control" formControlName="esiEmployee">
-                            <div class="text-danger"
-                                *ngIf="salaryPayrollForm.controls['esiEmployee'].touched || salaryPayrollForm.controls['esiEmployee'].dirty">
-                                <span *ngIf="salaryPayrollForm.controls['esiEmployee'].errors?.['required']">This is
-                                    Required</span>
-                            </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label>ESI Empe:</label>
+                        <input type="number" class="form-control" formControlName="esiEmployee">
+                        <div class="text-danger"
+                            *ngIf="salaryPayrollForm.controls['esiEmployee'].touched || salaryPayrollForm.controls['esiEmployee'].dirty">
+                            <span *ngIf="salaryPayrollForm.controls['esiEmployee'].errors?.['required']">This is
+                                Required</span>
                         </div>
-                        <div class="col-md-4">
-                            <label>LWF Empe:</label>
-                            <input type="number" class="form-control" placeholder="Enter Incentive"
-                                formControlName="lwfEmployee">
-                            <div class="text-danger"
-                                *ngIf="salaryPayrollForm.controls['lwfEmployee'].touched || salaryPayrollForm.controls['lwfEmployee'].dirty">
-                                <span *ngIf="salaryPayrollForm.controls['lwfEmployee'].errors?.['required']">This is
-                                    Required</span>
-                            </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label>LWF Empe:</label>
+                        <input type="number" class="form-control" placeholder="Enter Incentive"
+                            formControlName="lwfEmployee">
+                        <div class="text-danger"
+                            *ngIf="salaryPayrollForm.controls['lwfEmployee'].touched || salaryPayrollForm.controls['lwfEmployee'].dirty">
+                            <span *ngIf="salaryPayrollForm.controls['lwfEmployee'].errors?.['required']">This is
+                                Required</span>
                         </div>
-                        <div class="col-md-4">
-                            <label>Total Deduction:</label>
-                            <input type="number" class="form-control" formControlName="totalDeduction">
-                            <div class="text-danger"
-                                *ngIf="salaryPayrollForm.controls['totalDeduction'].touched || salaryPayrollForm.controls['totalDeduction'].dirty">
-                                <span *ngIf="salaryPayrollForm.controls['totalDeduction'].errors?.['required']">This is
-                                    Required</span>
-                            </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Total Deduction:</label>
+                        <input type="number" class="form-control" formControlName="totalDeduction">
+                        <div class="text-danger"
+                            *ngIf="salaryPayrollForm.controls['totalDeduction'].touched || salaryPayrollForm.controls['totalDeduction'].dirty">
+                            <span *ngIf="salaryPayrollForm.controls['totalDeduction'].errors?.['required']">This is
+                                Required</span>
                         </div>
-                        <div class="col-md-4">
-                            <label>PF Empr:</label>
-                            <input type="number" class="form-control" formControlName="pfEmployer">
-                            <div class="text-danger"
-                                *ngIf="salaryPayrollForm.controls['pfEmployer'].touched || salaryPayrollForm.controls['pfEmployer'].dirty">
-                                <span *ngIf="salaryPayrollForm.controls['pfEmployer'].errors?.['required']">This is
-                                    Required</span>
-                            </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label>PF Empr:</label>
+                        <input type="number" class="form-control" formControlName="pfEmployer">
+                        <div class="text-danger"
+                            *ngIf="salaryPayrollForm.controls['pfEmployer'].touched || salaryPayrollForm.controls['pfEmployer'].dirty">
+                            <span *ngIf="salaryPayrollForm.controls['pfEmployer'].errors?.['required']">This is
+                                Required</span>
                         </div>
-                        <div class="col-md-4">
-                            <label>ESI Empr:</label>
-                            <input type="number" class="form-control" formControlName="esiEmployer">
-                            <div class="text-danger"
-                                *ngIf="salaryPayrollForm.controls['esiEmployer'].touched || salaryPayrollForm.controls['esiEmployer'].dirty">
-                                <span *ngIf="salaryPayrollForm.controls['esiEmployer'].errors?.['required']">This is
-                                    Required</span>
-                            </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label>ESI Empr:</label>
+                        <input type="number" class="form-control" formControlName="esiEmployer">
+                        <div class="text-danger"
+                            *ngIf="salaryPayrollForm.controls['esiEmployer'].touched || salaryPayrollForm.controls['esiEmployer'].dirty">
+                            <span *ngIf="salaryPayrollForm.controls['esiEmployer'].errors?.['required']">This is
+                                Required</span>
                         </div>
-                        <div class="col-md-4">
-                            <label>LWF Empr:</label>
-                            <input type="number" class="form-control" formControlName="lwfEmployer">
-                            <div class="text-danger"
-                                *ngIf="salaryPayrollForm.controls['lwfEmployer'].touched || salaryPayrollForm.controls['lwfEmployer'].dirty">
-                                <span *ngIf="salaryPayrollForm.controls['lwfEmployer'].errors?.['required']">This is
-                                    Required</span>
-                            </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label>LWF Empr:</label>
+                        <input type="number" class="form-control" formControlName="lwfEmployer">
+                        <div class="text-danger"
+                            *ngIf="salaryPayrollForm.controls['lwfEmployer'].touched || salaryPayrollForm.controls['lwfEmployer'].dirty">
+                            <span *ngIf="salaryPayrollForm.controls['lwfEmployer'].errors?.['required']">This is
+                                Required</span>
                         </div>
-                        <div class="col-md-4">
-                            <label>Bonus:</label>
-                            <input type="number" class="form-control" formControlName="bonus">
-                            <div class="text-danger"
-                                *ngIf="salaryPayrollForm.controls['bonus'].touched || salaryPayrollForm.controls['bonus'].dirty">
-                                <span *ngIf="salaryPayrollForm.controls['bonus'].errors?.['required']">This is
-                                    Required</span>
-                            </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Bonus:</label>
+                        <input type="number" class="form-control" formControlName="bonus">
+                        <div class="text-danger"
+                            *ngIf="salaryPayrollForm.controls['bonus'].touched || salaryPayrollForm.controls['bonus'].dirty">
+                            <span *ngIf="salaryPayrollForm.controls['bonus'].errors?.['required']">This is
+                                Required</span>
                         </div>
-                        <div class="col-md-4">
-                            <label>CTC Exgratia:</label>
-                            <input type="number" class="form-control" formControlName="ctcExgratia">
-                            <div class="text-danger"
-                                *ngIf="salaryPayrollForm.controls['ctcExgratia'].touched || salaryPayrollForm.controls['ctcExgratia'].dirty">
-                                <span *ngIf="salaryPayrollForm.controls['ctcExgratia'].errors?.['required']">This is
-                                    Required</span>
-                            </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label>CTC Exgratia:</label>
+                        <input type="number" class="form-control" formControlName="ctcExgratia">
+                        <div class="text-danger"
+                            *ngIf="salaryPayrollForm.controls['ctcExgratia'].touched || salaryPayrollForm.controls['ctcExgratia'].dirty">
+                            <span *ngIf="salaryPayrollForm.controls['ctcExgratia'].errors?.['required']">This is
+                                Required</span>
                         </div>
-                        <div class="col-md-4">
-                            <label>Sub Total:</label>
-                            <input type="number" class="form-control" formControlName="subTotal">
-                            <div class="text-danger"
-                                *ngIf="salaryPayrollForm.controls['subTotal'].touched || salaryPayrollForm.controls['subTotal'].dirty">
-                                <span *ngIf="salaryPayrollForm.controls['subTotal'].errors?.['required']">This is
-                                    Required</span>
-                            </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Sub Total:</label>
+                        <input type="number" class="form-control" formControlName="subTotal">
+                        <div class="text-danger"
+                            *ngIf="salaryPayrollForm.controls['subTotal'].touched || salaryPayrollForm.controls['subTotal'].dirty">
+                            <span *ngIf="salaryPayrollForm.controls['subTotal'].errors?.['required']">This is
+                                Required</span>
                         </div>
+                    </div>
 
-                        <div class="col-md-4">
-                            <label for="Empr PF">Empr PF:</label>
-                            <input type="number" class="form-control">
+                    <div class="col-md-4">
+                        <label for="Empr PF">Empr PF:</label>
+                        <input type="number" class="form-control">
 
-                        </div>
-                        <div class="col-md-4">
-                            <label for="Empr ESI">Empr ESI:</label>
-                            <input type="number" class="form-control">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="Empr ESI">Empr ESI:</label>
+                        <input type="number" class="form-control">
 
+                    </div>
+                    <div class="col-md-4">
+                        <label for="Fixed CTC">Fixed CTC:</label>
+                        <input type="number" class="form-control" formControlName="fixedCtc">
+                        <div class="text-danger"
+                            *ngIf="salaryPayrollForm.controls['fixedCtc'].touched || salaryPayrollForm.controls['fixedCtc'].dirty">
+                            <span *ngIf="salaryPayrollForm.controls['fixedCtc'].errors?.['required']">This is
+                                Required</span>
                         </div>
-                        <div class="col-md-4">
-                            <label for="Fixed CTC">Fixed CTC:</label>
-                            <input type="number" class="form-control" formControlName="fixedCtc">
-                            <div class="text-danger"
-                                *ngIf="salaryPayrollForm.controls['fixedCtc'].touched || salaryPayrollForm.controls['fixedCtc'].dirty">
-                                <span *ngIf="salaryPayrollForm.controls['fixedCtc'].errors?.['required']">This is
-                                    Required</span>
-                            </div>
-                        </div>
-                       
-                        <!-- <div class="col-md-3">
+                    </div>
+
+                    <!-- <div class="col-md-3">
                         <label>EmprLiability CTC Salary:</label>
                         <input type="text" class="form-control" formControlName="emprLiabilityCtcSalary">
                     </div> -->
-                    </div>
-
-                    <div class="mt-3">
-                        <div class="row mb-2">
-
-                            <div class="form-group mb-2 d-flex col-md-3">
-                                <label for="Employee Type" class="me-2">EmployeeType:</label><br>
-                                <input type="radio" value="permanent" formControlName="employeeType">
-                                <label for="Permanent" class="me-1">Permanent</label>
-                                <input type="radio" value="casual" formControlName="employeeType">
-                                <label for="Casual" class="me-1">Casual</label>
-                            </div>
-
-                            <div class="form-group mb-2 d-flex col-md-3">
-                                <label for="Wages Calculation" class="me-2">Wages Calculation:</label><br>
-                                <input type="radio" formControlName="wageCalculationType" value="monthly"> <label
-                                    for="Fixed" class="me-1">Monthly</label>
-                                <input type="radio" formControlName="wageCalculationType" value="daily">
-                                <label for="Daily" class="me-1">Daily</label>
-                            </div>
-
-                            <div class="form-group mb-2 d-flex col-md-3">
-                                <label for="Payment Type">Payment Type:</label><br>
-                                <input type="radio" formControlName="paymentType" value="bank"> <label for="Bank"
-                                    class="me-1">Bank</label>
-                                <input type="radio" formControlName="paymentType" value="cheque"> <label for="Cheque"
-                                    class="me-1">Cheque</label>
-                                <input type="radio" formControlName="paymentType" value="neft"> <label for="NEFT"
-                                    class="me-1">NEFT</label>
-                            </div>
-
-                            <div class="form-group mb-2 d-flex col-md-3">
-                                <label for="Overtime" class="me-2">Overtime:</label><br>
-                                <input type="checkbox" formControlName="overtimeEnabled"> <label
-                                    for="Enable">Enable</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label>Remarks:</label>
-                            <input type="text" class="form-control" placeholder="Enter Remarks"
-                                formControlName="remarks">
-                            <div class="text-danger"
-                                *ngIf="salaryPayrollForm.controls['remarks'].touched || salaryPayrollForm.controls['remarks'].dirty">
-                                <span *ngIf="salaryPayrollForm.controls['remarks'].errors?.['required']">This is
-                                    Required</span>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label class="me-1">Night Rate:</label>
-                                <input type="text" class="form-control" formControlName="nightRate">
-                                <div class="text-danger"
-                                    *ngIf="salaryPayrollForm.controls['nightRate'].touched || salaryPayrollForm.controls['nightRate'].dirty">
-                                    <span *ngIf="salaryPayrollForm.controls['nightRate'].errors?.['required']">This
-                                        is Required</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group mb-2 ">
-                                <label for="Fooding">Fooding Enabled:</label>
-                                <input type="checkbox" formControlName="foodingEnabled">
-
-                            </div>
-                        </div>
-                        <div class="col-md-3"></div>
-                    </div>
-
-
                 </div>
+
+                <div class="mt-3">
+                    <div class="row mb-2">
+
+                        <div class="form-group mb-2 d-flex col-md-3">
+                            <label for="Employee Type" class="me-2">EmployeeType:</label><br>
+                            <input type="radio" value="permanent" formControlName="employeeType">
+                            <label for="Permanent" class="me-1">Permanent</label>
+                            <input type="radio" value="casual" formControlName="employeeType">
+                            <label for="Casual" class="me-1">Casual</label>
+                        </div>
+
+                        <div class="form-group mb-2 d-flex col-md-3">
+                            <label for="Wages Calculation" class="me-2">Wages Calculation:</label><br>
+                            <input type="radio" formControlName="wageCalculationType" value="monthly"> <label
+                                for="Fixed" class="me-1">Monthly</label>
+                            <input type="radio" formControlName="wageCalculationType" value="daily">
+                            <label for="Daily" class="me-1">Daily</label>
+                        </div>
+
+                        <div class="form-group mb-2 d-flex col-md-3">
+                            <label for="Payment Type">Payment Type:</label><br>
+                            <input type="radio" formControlName="paymentType" value="bank"> <label for="Bank"
+                                class="me-1">Bank</label>
+                            <input type="radio" formControlName="paymentType" value="cheque"> <label for="Cheque"
+                                class="me-1">Cheque</label>
+                            <input type="radio" formControlName="paymentType" value="neft"> <label for="NEFT"
+                                class="me-1">NEFT</label>
+                        </div>
+
+                        <div class="form-group mb-2 d-flex col-md-3">
+                            <label for="Overtime" class="me-2">Overtime:</label><br>
+                            <input type="checkbox" formControlName="overtimeEnabled"> <label for="Enable">Enable</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label>Remarks:</label>
+                        <input type="text" class="form-control" placeholder="Enter Remarks" formControlName="remarks">
+                        <div class="text-danger"
+                            *ngIf="salaryPayrollForm.controls['remarks'].touched || salaryPayrollForm.controls['remarks'].dirty">
+                            <span *ngIf="salaryPayrollForm.controls['remarks'].errors?.['required']">This is
+                                Required</span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="me-1">Night Rate:</label>
+                            <input type="text" class="form-control" formControlName="nightRate">
+                            <div class="text-danger"
+                                *ngIf="salaryPayrollForm.controls['nightRate'].touched || salaryPayrollForm.controls['nightRate'].dirty">
+                                <span *ngIf="salaryPayrollForm.controls['nightRate'].errors?.['required']">This
+                                    is Required</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group mb-2 ">
+                            <label for="Fooding">Fooding Enabled:</label>
+                            <input type="checkbox" formControlName="foodingEnabled">
+
+                        </div>
+                    </div>
+                    <div class="col-md-3"></div>
+                </div>
+
+
+            </div>
         </div>
 
         <div *ngIf="step === 6" formGroupName="statutory" class="main-card-wrap1">
             <h4 class="pt-3 m-0">Statutory Details</h4>
             <div class="col-12">
                 <!-- <div class="form"> -->
-                
-                    <div class="card-header my-3">STATUTORY</div>
-                    <div class="card-body">
-                        <div class="row">
-                            <!-- ESI Section -->
-                       
-                                
-                                    <div class="col-12">
-                                        <h6><strong>FORM 1 - ESI *</strong></h6>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>ESI Insurance No.</label>
-                                                <input type="text" class="form-control mb-2" id="esiInsuranceNo"
-                                                    placeholder="Enter ESI Insurance No." formControlName="esiInsuranceNo">
-                                                <div class="text-danger"
-                                                    *ngIf="statutoryForm.controls['esiInsuranceNo'].touched || statutoryForm.controls['esiInsuranceNo'].dirty">
-                                                    <span
-                                                        *ngIf="statutoryForm.controls['esiInsuranceNo'].errors?.['required']">This
-                                                        is Required</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label>ESI Employer Code</label>
-                                        <input type="text" class="form-control mb-2"
-                                            formControlName="esiEmployerCode" />
-                                        <div class="text-danger" *ngIf="statutoryForm.controls['esiEmployerCode'].touched ||
+
+                <div class="card-header my-3">STATUTORY</div>
+                <div class="card-body">
+                    <div class="row">
+                        <!-- ESI Section -->
+
+
+                        <div class="col-12">
+                            <h6><strong>FORM 1 - ESI *</strong></h6>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>ESI Insurance No.</label>
+                                    <input type="text" class="form-control mb-2" id="esiInsuranceNo"
+                                        placeholder="Enter ESI Insurance No." formControlName="esiInsuranceNo">
+                                    <div class="text-danger"
+                                        *ngIf="statutoryForm.controls['esiInsuranceNo'].touched || statutoryForm.controls['esiInsuranceNo'].dirty">
+                                        <span *ngIf="statutoryForm.controls['esiInsuranceNo'].errors?.['required']">This
+                                            is Required</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>ESI Employer Code</label>
+                                    <input type="text" class="form-control mb-2" formControlName="esiEmployerCode" />
+                                    <div class="text-danger" *ngIf="statutoryForm.controls['esiEmployerCode'].touched ||
                                             statutoryForm.controls['esiEmployerCode'].dirty">
-                                            <span
-                                                *ngIf="statutoryForm.controls['esiEmployerCode'].errors?.['required']">This
-                                                is Required</span>
-                                        </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label>Dispensary</label>
-                                        <input type="text" class="form-control mb-2" value=""
-                                            formControlName="dispensary">
-                                        <div class="text-danger"
-                                            *ngIf="statutoryForm.controls['dispensary'].touched || statutoryForm.controls['dispensary'].dirty">
-                                            <span *ngIf="statutoryForm.controls['dispensary'].errors?.['required']">This
-                                                is Required</span>
-                                        </div>
-                                            </div>
-                                            <div class="col-md-6">
-
-                                        <label>Local Office</label>
-                                        <input type="text" class="form-control mb-2" formControlName="esiLocalOffice">
-                                        <div class="text-danger"
-                                            *ngIf="statutoryForm.controls['esiLocalOffice'].touched || statutoryForm.controls['esiLocalOffice'].dirty">
-                                            <span
-                                                *ngIf="statutoryForm.controls['esiLocalOffice'].errors?.['required']">This
-                                                is Required</span>
-                                        </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label>ESI Nominee for Payment</label>
-                                        <input type="text" class="form-control mb-2" id="esiNominee" value="">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label>Particulars of Family</label>
-                                        <input type="text" class="form-control mb-2" id="familyParticulars" value="">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label>Family member residing with insured
-                                                    person</label>
-                                                <input type="text" class="form-control mb-2" id="insuredFamilyMember" value="">
-        
-                                                <input type="text" class="form-control mb-2" id="childrenPension" value="">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label>Widow Pension</label>
-                                        <input type="text" class="form-control mb-2" id="widowPension" value="">
-                                            </div>
-                                        </div>
-                                       
-
-                                        
-
-                                        
-
-
-
-                                        
-
-                                        
-
-                                        
-
-                                        
+                                        <span
+                                            *ngIf="statutoryForm.controls['esiEmployerCode'].errors?.['required']">This
+                                            is Required</span>
                                     </div>
-                                
-
-
-                            
-
-                            <!-- Gratuity Section -->
-                            <div class="col-md-12 mt-3">
-                                <h6><strong>FORM F - Gratuity</strong></h6>
-                                <div class="row">
-                                    <div class="col-6">
-                                        <label>Nominee's for Gratuity *</label>
-                                        <input type="text" class="form-control mb-2" formControlName="gratuityNominee">
-                                        <div class="text-danger"
-                                            *ngIf="statutoryForm.controls['gratuityNominee'].touched || statutoryForm.controls['gratuityNominee'].dirty">
-                                            <span
-                                                *ngIf="statutoryForm.controls['gratuityNominee'].errors?.['required']">This
-                                                is Required</span>
-                                        </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Dispensary</label>
+                                    <input type="text" class="form-control mb-2" value="" formControlName="dispensary">
+                                    <div class="text-danger"
+                                        *ngIf="statutoryForm.controls['dispensary'].touched || statutoryForm.controls['dispensary'].dirty">
+                                        <span *ngIf="statutoryForm.controls['dispensary'].errors?.['required']">This
+                                            is Required</span>
                                     </div>
-                                    <div class="col-6">
-                                        <label>SHARE %age of nominee</label>
-                                        <input type="text" class="form-control mb-2"
-                                            formControlName="gratuitySharePercent">
-                                        <div class="text-danger"
-                                            *ngIf="statutoryForm.controls['gratuitySharePercent'].touched || statutoryForm.controls['gratuitySharePercent'].dirty">
-                                            <span
-                                                *ngIf="statutoryForm.controls['gratuitySharePercent'].errors?.['required']">This
-                                                is Required</span>
-                                        </div>
+                                </div>
+                                <div class="col-md-6">
+
+                                    <label>Local Office</label>
+                                    <input type="text" class="form-control mb-2" formControlName="esiLocalOffice">
+                                    <div class="text-danger"
+                                        *ngIf="statutoryForm.controls['esiLocalOffice'].touched || statutoryForm.controls['esiLocalOffice'].dirty">
+                                        <span *ngIf="statutoryForm.controls['esiLocalOffice'].errors?.['required']">This
+                                            is Required</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>ESI Nominee for Payment</label>
+                                    <input type="text" class="form-control mb-2" id="esiNominee" value="">
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Particulars of Family</label>
+                                    <input type="text" class="form-control mb-2" id="familyParticulars" value="">
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Family member residing with insured
+                                        person</label>
+                                    <input type="text" class="form-control mb-2" id="insuredFamilyMember" value="">
+
+                                    <input type="text" class="form-control mb-2" id="childrenPension" value="">
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Widow Pension</label>
+                                    <input type="text" class="form-control mb-2" id="widowPension" value="">
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </div>
+
+
+
+
+
+                        <!-- Gratuity Section -->
+                        <div class="col-md-12 mt-3">
+                            <h6><strong>FORM F - Gratuity</strong></h6>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label>Nominee's for Gratuity *</label>
+                                    <input type="text" class="form-control mb-2" formControlName="gratuityNominee">
+                                    <div class="text-danger"
+                                        *ngIf="statutoryForm.controls['gratuityNominee'].touched || statutoryForm.controls['gratuityNominee'].dirty">
+                                        <span
+                                            *ngIf="statutoryForm.controls['gratuityNominee'].errors?.['required']">This
+                                            is Required</span>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <label>SHARE %age of nominee</label>
+                                    <input type="text" class="form-control mb-2" formControlName="gratuitySharePercent">
+                                    <div class="text-danger"
+                                        *ngIf="statutoryForm.controls['gratuitySharePercent'].touched || statutoryForm.controls['gratuitySharePercent'].dirty">
+                                        <span
+                                            *ngIf="statutoryForm.controls['gratuitySharePercent'].errors?.['required']">This
+                                            is Required</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-               
+                </div>
+
 
 
 
