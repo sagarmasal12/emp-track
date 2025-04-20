@@ -609,7 +609,7 @@
                         <div class="form-group">
                             <label>Cost Center</label>
                             <select class="form-select" formControlName="costCentre">
-                                <option selected>select</option>
+                                <option selected disabled>select</option>
                                 @if (masterData) {
                                 @for(master of masterData['costCentre']; track $index) {
                                 <option [value]="master.masterId">{{master.masterName}}</option>
