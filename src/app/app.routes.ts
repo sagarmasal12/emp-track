@@ -5,7 +5,7 @@ import { NewlistComponent } from './newlist/newlist.component';
 export const routes: Routes = [
  
     {
-        path:"employee",
+        path:"employee/:id",
         component:EmployeeComponent
     },
     {

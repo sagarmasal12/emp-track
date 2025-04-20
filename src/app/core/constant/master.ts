@@ -4,7 +4,8 @@ export const constant ={
             CREATE_EMPLOYEE:"register",
             GET_EMPLOYEE:"GetEmployees",
             getDropdownMasters:"getDropdownMasters",
-            GetCompanies:"GetCompanies"
+            GetCompanies:"GetCompanies",
+            getEmpById:"GetEmployeeById?id="
         }
     }
 }

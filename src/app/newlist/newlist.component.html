@@ -11,18 +11,22 @@
             <th>dateOfJoining</th>
             <th>email</th>
             <th>phone1</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
          
           <tr *ngFor="let employee of employeesList">
-            <td>{{employee.id}}</td>
+            <td>{{employee.employeeId}}</td>
             <td>{{ employee.fullName }}</td>
             <td>{{ employee.department }}</td>
             <td>{{ employee.designation }}</td>
             <td>{{ employee.dateOfJoining }}</td>
             <td>{{ employee.email }}</td>
             <td>{{ employee.phone1 }}</td>
+            <td>
+              <button class="btn btn-success"  [routerLink]="'/employee/'+employee.employeeId">Edit</button>
+            </td>
           </tr>
         </tbody>
       

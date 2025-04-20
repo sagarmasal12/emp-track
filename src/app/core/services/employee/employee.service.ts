@@ -21,6 +21,10 @@ export class EmployeeService {
   getEmployee():Observable<any>{
     return this.http.get<any>(environment.API_URL + constant.API_METHOD_NAME.EMPLOYEE.GET_EMPLOYEE);
   }
+
+  getEmployeeById(id: number):Observable<any>{
+    return this.http.get<any>(environment.API_URL + constant.API_METHOD_NAME.EMPLOYEE.getEmpById + id);
+  }
   getMasterData():Observable<any>{
     return this.http.get<any>(environment.API_URL + constant.API_METHOD_NAME.EMPLOYEE.getDropdownMasters);
   }
