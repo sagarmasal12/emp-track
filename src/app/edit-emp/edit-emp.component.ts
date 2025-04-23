@@ -18,163 +18,22 @@ export class EditEmpComponent {
   personalDetail:any[]=[];
   formData:any;
   employeeService=inject(EmployeeService);
-  employeeForm: FormGroup;
+  employeeForm: FormGroup = new FormGroup({});
   step = 1;
   masterData: any;
   companyList: any []= [];
   validationErrors: string[] = [];
   editId:number = 0;
+  isApiSucces: boolean = false;
   
   constructor(private fb: FormBuilder,private activateRoute: ActivatedRoute) {
     this.activateRoute.params.subscribe((res:any)=>{
       this.editId  = res.id;
       if(this.editId !=0) {
         this.getEmpBYId();
-      }
-     
+      } 
     })
-    this.employeeForm = this.fb.nonNullable.group({
-      personalInfo: this.fb.group({
-        payCode: ['554546484978', Validators.required],
-        aadharNo:['554546484978', [Validators.required,Validators.pattern(/^[2-9]{1}[0-9]{11}$/)]],
-        cardNo:['11156516',Validators.required],
-        postAppliedFor:['',Validators.required],
-        designation:['',Validators.required],
-        entryDate:[formatDate('2024-12-05','yyyy-MM-dd','en'),Validators.required],
-        fullName:['sadf',Validators.required],
-        department:['',Validators.required],
-        subDepartment:['',Validators.required],
-        fatherOrHusbandName:['sdf',Validators.required],
-        division:['',Validators.required],
-        category:['',Validators.required],
-        motherName:['hvhj',Validators.required],
-        dateOfBirth:[formatDate('2024-12-05','yyyy-MM-dd','en'),Validators.required],
-        age:['65',Validators.required],
-        maritalStatus:['Unmarried',Validators.required],
-        gender:['Female',Validators.required],
-        nationality:['KJ',Validators.required],
-        religion:['JBJH',Validators.required],
-        caste:['NH',Validators.required],
-        region:['HBHJ',Validators.required],
-        identityMark:['HHBJ',Validators.required],
-        shiftType:['Fixed',Validators.required],
-        shiftOption:['G-09.00-17.30',Validators.required],
-        weight:['51',Validators.required],
-        bloodGroup:['A',Validators.required],
-        employerLiability : [0],
-        reportingDate:[formatDate('2024-12-05','yyyy-MM-dd','en'),Validators.required],
-        transferFrom:['test1',Validators.required],
-        transferTo:['test2',Validators.required],
-        transferDate:[formatDate('2024-12-05','yyyy-MM-dd','en'),Validators.required],
-        appointmentMonths:['2',Validators.required],
-        bankAccountNo:['651161651',Validators.required],
-        bankName:['SDF',Validators.required],
-        bankIfscCode:['SDF65',Validators.required],
-        bankBranch:['DSF',Validators.required],
-        costCentre:['AFFLATUS',Validators.required],
-        panCardNo:['HCFPM2249B',[Validators.required, Validators.pattern(/^[A-Z]{5}[0-9]{4}[A-Z]$/)]],
-        pfUanNo:['51',Validators.required],
-        workerLwfNo:['51',Validators.required],
-        cadre:['WORKER',Validators.required],
-        company:['GR VALUE CREATIONS',Validators.required],
-        location:['PLOT NO.10,SEC-8,IMT',Validators.required],
-        rlBand:[0,Validators.required],
-      }),
-
-      contactFamily: this.fb.group({ 
-        presentAddress:['ASDFDSF',Validators.required],
-        permanentAddress:['11',Validators.required],
-        state:['11',Validators.required],
-        subDivision: ['11',Validators.required],
-        district:['11',Validators.required],
-        phone1:['91',[Validators.required]], // Starts with 6-9 and has exactly 10 digits
-        whatsappNo:['11',Validators.required],
-        pincode:['11',Validators.required],
-        email:['ssm',Validators.required],
-        employeeFamilyMembers:this.fb.array([])
-      }),
-      qualificationExpe: this.fb.group({
-        qualification: ['11', Validators.required],
-        technicalQualification:['11',Validators.required],
-        languagesKnown:['11',Validators.required],
-        totalExperienceYears:['11',Validators.required],
-        employeeExperiences:this.fb.array([]) 
-      }),
-      
-      additionalInfo: this.fb.group({
-        relativeWorkingInCompany: [true, Validators.required],
-        relativeName: ['SDF', Validators.required],
-        relativeRelationship: ['SADF', Validators.required],
-        entryDate: [new Date(), Validators.required],
-        location: ['SADF', Validators.required],
-        interviewDate: [formatDate('2024-12-05','yyyy-MM-dd','en'), Validators.required],
-        interviewedBy: [formatDate('2024-12-05','yyyy-MM-dd','en'), Validators.required],
-        approvedBy: ['DASF', Validators.required],
-        dateOfJoining: [formatDate('2024-12-05','yyyy-MM-dd','en'), Validators.required],
-        salary: ['25000', Validators.required],
-        confirmDate: [formatDate('2024-12-05','yyyy-MM-dd','en'), Validators.required],
-        employmentStatus: ['pass', Validators.required],
-        individualBioData: [false],
-        photoAttached: [false],
-        applicationAttached: [false],
-        certificatesAttached: [false],
-        contractAttached: [false],
-        joiningReportAttached: [false],
-        nominationFormAttached: [false],
-        proofOfAge: [false],
-        proofName: ['DSAF',Validators.required],
-      }),
-      salaryPayroll: this.fb.group({
-        transportFacility: [false],
-        routeNo: ['11', Validators.required],
-        actualCtc: ['11', Validators.required],
-        basicSalary: ['11', Validators.required],
-        hra: ['11', Validators.required],
-        conveyanceAllowance: ['11', Validators.required],
-        otherAllowance: ['11', Validators.required],
-        medicalAllowance: ['11',Validators.required],
-        attendanceIncentive: ['11',Validators.required],
-        grossSalary: ['11',Validators.required],
-        pfEmployee: ['11',Validators.required],
-        esiEmployee: ['11',Validators.required],
-        lwfEmployee: ['11',Validators.required],
-        totalDeduction: ['11',Validators.required],
-        pfEmployer: ['11',Validators.required],
-        esiEmployer: ['11',Validators.required],
-        lwfEmployer: ['11',Validators.required],
-        salaryBonus: ['11',Validators.required],
-        exgratia: ['11',Validators.required],
-        subTotalCtc: ['11',Validators.required],
-        employerLiability: ['11',Validators.required],
-        employeeType: ['casual',Validators.required],
-        wageCalculationType: ['11',Validators.required],
-        paymentType: ['11',Validators.required],
-        overtimeEnabled:[false],    
-        ctc: ['11',Validators.required],
-        nightRate:['11',Validators.required],
-        otRate:['11',Validators.required],
-        foodingEnabled:[false],
-        fixedCtc:['11',Validators.required],
-        remarks:['11',Validators.required]
-      }),
-      statutory: this.fb.group({
-        esiInsuranceNo: ['11',Validators.required],
-        pfAccountNo:['11',Validators.required],
-        esiEmployerCode:['11',Validators.required],
-        esiLocalOffice:['11',Validators.required],
-        dispensary:['11',Validators.required],
-        pfNominee:['11',Validators.required],
-        pfSharePercent:['11',Validators.required],
-        gratuityNominee:['11',Validators.required],
-        gratuitySharePercent:['11',Validators.required],
-        childrenPension:['11',Validators.required],
-        widowPension:['11',Validators.required],
-        perticularOfFamily:['11',Validators.required],
-        esiNomineeForPayment:['11',Validators.required],
-        familyMemberResidingInsuredPerson:['11',Validators.required],
-      })
     
-    }); 
   };
 
   onStateChange(){
@@ -206,6 +65,7 @@ export class EditEmpComponent {
     this.employeeService.getEmployeeById(this.editId).subscribe({
       next: (response) => {
        const EmpData =  response;
+       debugger;
        this.employeeForm = this.fb.nonNullable.group({
         personalInfo: this.fb.group({
           payCode: [EmpData.payCode, Validators.required],
@@ -323,6 +183,7 @@ export class EditEmpComponent {
           wageCalculationType: [EmpData.wageCalculationType,Validators.required],
           paymentType: [EmpData.paymentType,Validators.required],
           overtimeEnabled:[EmpData.overtimeEnabled],    
+          otRate:[EmpData.overtimeEnabled,Validators.required],
           nightRate:[EmpData.nightRate,Validators.required],
           foodingEnabled:[EmpData.foodingEnabled],
           fixedCtc:[EmpData.fixedCtc,Validators.required],
@@ -355,6 +216,9 @@ export class EditEmpComponent {
         const familyGroup = this.createFamilyMember(element);
         this.familyMembers.push(familyGroup); 
       });
+      setTimeout(()=>{
+        this.isApiSucces = true;
+      },1000)
       
       },
       error: (err) => {

@@ -28,7 +28,7 @@ export const routes: Routes = [
         component:NewlistComponent
       },
       {
-        path:"editemp",
+        path:"editemp/:id",
         component:EditEmpComponent
       }
     ]
