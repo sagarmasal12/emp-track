@@ -5,7 +5,7 @@ import { EmployeeFormComponent } from "./employee-form/employee-form.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink],
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
