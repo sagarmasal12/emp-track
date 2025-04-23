@@ -495,7 +495,7 @@ export class EmployeeComponent implements OnInit {
 
   patchExperience(data:any): FormGroup {
     return this.fb.group({
-      employerName: [data.employer, Validators.required],
+      employerName: [data.employerName, Validators.required],
       postHeld: [data.postHeld, Validators.required],
       fromDate: [ formatDate(data.fromDate,'yyyy-MM-dd','en'), Validators.required],
       toDate: [formatDate(data.toDate,'yyyy-MM-dd','en'), Validators.required],

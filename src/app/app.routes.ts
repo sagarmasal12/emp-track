@@ -1,11 +1,12 @@
 import { Routes } from '@angular/router';
 import { EmployeeComponent } from './employee/employee.component';
 import { NewlistComponent } from './newlist/newlist.component';
+import { LoginComponent } from './login/login.component';
 
 export const routes: Routes = [
   {
     path:"",
-    redirectTo:"newlist",
+    redirectTo:"login",
     pathMatch:'full'
   },
     {
@@ -15,5 +16,9 @@ export const routes: Routes = [
     {
         path:"newlist",
         component:NewlistComponent
+    },
+    {
+      path:"login",
+      component:LoginComponent
     }
 ];
