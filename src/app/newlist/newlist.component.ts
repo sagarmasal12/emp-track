@@ -11,7 +11,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
   styleUrl: './newlist.component.css'
 })
 export class NewlistComponent implements OnInit {
-
+  isLoading: boolean = true;
   employeesList: any[] = [];
   // employees: IApIResponce[] = [];
   constructor(private employeeService: EmployeeService,private activateRoute: ActivatedRoute) {
@@ -22,17 +22,21 @@ export class NewlistComponent implements OnInit {
 
   ngOnInit(): void {
     this.getEmployees(); 
+    this.isLoading = true;
     // Call the method when the component loads
   }
 
   getEmployees() {
     this.employeeService.getEmployee().subscribe(
       (response) => {
+        this.isLoading = true;
         this.employeesList = response; // Assign API response to employees array
+        this.isLoading = false;
         console.log('Employees:', this.employeesList);
       },
       (error) => {
         console.error('Error fetching employees:', error);
+        this.isLoading = false;
       }
     );
   }

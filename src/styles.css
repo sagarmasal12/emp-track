@@ -1,18 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
 /* Apply to the whole form */
 body {
-    background-color: #fff; /* Paper color */
-    background-image: 
-      linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px),  /* Faint horizontal lines */
-      linear-gradient(to left, rgba(70, 130, 180, 0.2) 1px, transparent 1px); /* Soft blue margin line */
-    background-size: 100% 28px, 40px 100%; /* Horizontal lines every 28px, margin at 40px */
-    padding: 2rem;
-    font-family: 'Segoe UI', sans-serif;
-    line-height: 1.75;
+  background-image: linear-gradient(180deg, var(--bs-secondary-bg), var(--bs-body-bg) 100px, var(--bs-body-bg));
+  margin: 0;
+  font-family: var(--bs-body-font-family);
+  font-size: var(--bs-body-font-size);
+  font-weight: var(--bs-body-font-weight);
+  line-height: var(--bs-body-line-height);
+  color: var(--bs-body-color);
+  text-align: var(--bs-body-text-align);
+  background-color: var(--bs-body-bg);
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
 }
 
 form {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
     font-size: 14px;
     line-height: 1.5;
     color: #333;

@@ -457,5 +457,16 @@ export class EditEmpComponent {
     this.disablePersonalInfoValidators();
     localStorage.removeItem('formData'); // Clear localStorage if needed
   }
+  print() {
+    const printContents = document.getElementById('print-section')?.innerHTML;
+    const originalContents = document.body.innerHTML;
+
+    if (printContents) {
+      document.body.innerHTML = printContents;
+      window.print();
+      document.body.innerHTML = originalContents;
+      window.location.reload(); // optional: reload to restore state
+    }
+  }
 }
 

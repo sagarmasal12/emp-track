@@ -26,11 +26,15 @@ body {
 }
 
 .card-header {
-    background-color: #007bff;
-    font-weight: bold;
-    text-transform: uppercase;
-    padding: 10px;
-    color: #fff;
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    padding: 10px 20px;
+    background-color: #f8f9fa;
+    border-left: 5px solid #007bff;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid #f4f1f1;
 }
 
 /* Form Styles */
@@ -53,6 +57,25 @@ body {
 
 .btn-primary:hover {
     background-color: #0056b3;
+}
+.custom-progress {
+    background-color: #e9ecef;
+    border-radius: 20px;
+    height: 20px;
+    overflow: hidden;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.custom-progress-bar {
+    background: linear-gradient(90deg, #007bff, #0056b3);
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    transition: width 0.4s ease;
+    height: 100%;
+    font-weight: 500;
+    border-radius: 20px;
+    line-height: 20px;
 }
 
 /* Responsive Styles */
