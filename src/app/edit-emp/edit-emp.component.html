@@ -1,0 +1,1639 @@
+<div class="container main-card-wrap py-2">
+
+
+    <form [formGroup]="employeeForm">
+        <!-- <div class="my-3">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" [style.width]="(step / 6) * 100 + '%'">
+                    Step {{ step }} of 6
+                </div>
+            </div>
+        </div> -->
+        <!-- <div *ngIf="step === 1" formGroupName="personalInfo" class="main-card-wrap1"> -->
+            <h1></h1>
+            <h4 class="pt-3 m-0">Personal Information</h4>
+            <div class="row-wpapper">
+                <!-- First Row -->
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card-header my-3">Personal Details</div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="required">Aadhar No. (12
+                                digits)</label>
+                            <input type="text" class="form-control" formControlName="aadharNo" maxlength="12"
+                                placeholder="Enter Your Aadhar Number"
+                                title="Please enter a valid 12-digit Aadhar number. It should start with a digit between 2 and 9.">
+                            <div class="text-danger"
+                                *ngIf="personalInfoForm.controls['aadharNo'].touched || personalInfoForm.controls['aadharNo'].dirty">
+                                <span *ngIf="personalInfoForm.controls['aadharNo'].errors?.['required']">This is
+                                    Required</span>
+                                <!-- <span *ngIf="personalInfoForm.controls['aadharNo'].errors?.['pattern']">Aadhar Card Not
+                                Valid</span> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Paycode</label>
+                            <input type="number" class="form-control" formControlName="payCode"
+                                placeholder="Enter your Paycode">
+                            <div class="text-danger"
+                                *ngIf="personalInfoForm.controls['payCode'].touched || personalInfoForm.controls['payCode'].dirty">
+                                <span *ngIf="personalInfoForm.controls['payCode'].errors?.['required']">This is
+                                    Required</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Card No.</label>
+                            <input type="number" class="form-control" formControlName="cardNo" 
+                                placeholder="Enter Your Card No.">
+                            <div class="text-danger"
+                                *ngIf="personalInfoForm.controls['cardNo'].touched || personalInfoForm.controls['cardNo'].dirty">
+                                <span *ngIf="personalInfoForm.controls['cardNo'].errors?.['required']">This is
+                                    Required</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Second Row -->
+                <div class="row pt-3">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Entry date</label>
+                            <input type="date" class="form-control" formControlName="entryDate">
+                            <div class="text-danger"
+                                *ngIf="personalInfoForm.controls['entryDate'].touched || personalInfoForm.controls['entryDate'].dirty">
+                                <span *ngIf="personalInfoForm.controls['entryDate'].errors?.['required']">This is
+                                    Required</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="required">Post Applied For</label>
+                            <select class="form-select" formControlName="postAppliedFor" required>
+                                <option  disabled selected>Select</option>
+                                @if (masterData) {
+                                @for(master of masterData['postAppliedFor']; track $index) {
+                                <option [value]="master.masterId">{{master.masterName}}</option>
+                                }
+                                }
+                            </select>
+                            <div class="text-danger"
+                                *ngIf="personalInfoForm.controls['postAppliedFor'].touched && personalInfoForm.controls['postAppliedFor'].errors?.['required']">
+                                This is Required
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Designation</label>
+                            <select class="form-select" formControlName="designation">
+                                <option  disabled>Select</option>
+                                @if (masterData) {
+                                @for(master of masterData['designation']; track $index) {
+                                <option [value]="master.masterId">{{master.masterName}}</option>
+                                }
+                                }
+
+                            </select>
+                            <div class="text-danger"
+                                *ngIf="personalInfoForm.controls['designation'].touched || personalInfoForm.controls['designation'].dirty">
+                                <span *ngIf="personalInfoForm.controls['designation'].errors?.['required']">This is
+                                    Required</span>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+                <!-- Third Row -->
+                <div class="row pt-3">
+                    <!-- <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Name in Capital Letters</label>
+                            <input type="text" class="form-control" placeholder="Name in Capital
+                                                Letters" formControlName="fullName">
+                            <div class="text-danger"
+                                *ngIf="personalInfoForm.controls['fullName'].touched || personalInfoForm.controls['fullName'].dirty">
+                                <span *ngIf="personalInfoForm.controls['fullName'].errors?.['required']">This is
+                                    Required</span>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <!-- need to shift 2 col -->
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Department</label>
+                            <select class="form-select" formControlName="department">
+                                <option  disabled>Select</option>
+                                @if (masterData) {
+                                @for(master of masterData['department']; track $index) {
+                                <option [value]="master.masterId">{{master.masterName}}</option>
+                                }
+                                }
+
+                            </select>
+                            <div class="text-danger"
+                                *ngIf="personalInfoForm.controls['department'].touched || personalInfoForm.controls['department'].dirty">
+                                <span *ngIf="personalInfoForm.controls['department'].errors?.['required']">This is
+                                    Required</span>
+                            </div>
+                        </div>
+                    </div>
+                  
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Sub Dept.</label>
+                            <select class="form-select" formControlName="subDepartment">
+                                <option selected>Select</option>
+                                @if (masterData) {
+                                @for(master of masterData['subDepartment']; track $index) {
+                                <option [value]="master.masterId">{{master.masterName}}</option>
+                                }
+                                }
+                            </select>
+                            <div class="text-danger"
+                                *ngIf="personalInfoForm.controls['subDepartment'].touched || personalInfoForm.controls['subDepartment'].dirty">
+                                <span *ngIf="personalInfoForm.controls['subDepartment'].errors?.['required']">This is
+                                    Required</span>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Division</label>
+                            <select class="form-select" formControlName="division">
+                                <option selected>SESS</option>
+                                @if (masterData) {
+                                @for(master of masterData['division']; track $index) {
+                                <option [value]="master.masterId">{{master.masterName}}</option>
+                                }
+                                }
+                            </select>
+                            <div class="text-danger"
+                                *ngIf="personalInfoForm.controls['division'].touched || personalInfoForm.controls['division'].dirty">
+                                <span *ngIf="personalInfoForm.controls['division'].errors?.['required']">This is
+                                    Required</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select class="form-select" formControlName="category">
+                                <option  disabled>Select</option>
+                                @if (masterData) {
+                                @for(master of masterData['category']; track $index) {
+                                <option [value]="master.masterId">{{master.masterName}}</option>
+                                }
+                                }
+                            </select>
+                            <div class="text-danger"
+                                *ngIf="personalInfoForm.controls['category'].touched || personalInfoForm.controls['category'].dirty">
+                                <span *ngIf="personalInfoForm.controls['category'].errors?.['required']">This is
+                                    Required</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Cadre</label>
+                            <select class="form-select" formControlName="cadre">
+                                <option selected>SELE</option>
+                                @if (masterData) {
+                                @for(master of masterData['cadre']; track $index) {
+                                <option [value]="master.masterId">{{master.masterName}}</option>
+                                }
+                                }
+                            </select>
+                            <div class="text-danger"
+                                *ngIf="personalInfoForm.controls['cadre'].touched || personalInfoForm.controls['cadre'].dirty">
+                                <span *ngIf="personalInfoForm.controls['cadre'].errors?.['required']">This is
+                                    Required</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Company</label>
+                            <select class="form-select" formControlName="company">
+                                <option selected>Select</option>
+                                @for(master of companyList; track $index) {
+                                <option [value]="master.companyId">{{master.companyName}}</option>
+                                }
+                            </select>
+                            <div class="text-danger"
+                                *ngIf="personalInfoForm.controls['company'].touched || personalInfoForm.controls['company'].dirty">
+                                <span *ngIf="personalInfoForm.controls['company'].errors?.['required']">This is
+                                    Required</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Location</label>
+                            <select class="form-select" formControlName="location">
+                                <option selected>PLOT NO.10,SEC-8,IMT</option>
+                            </select>
+                            <div class="text-danger"
+                                *ngIf="personalInfoForm.controls['location'].touched || personalInfoForm.controls['location'].dirty">
+                                <span *ngIf="personalInfoForm.controls['location'].errors?.['required']">This is
+                                    Required</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Cost Center</label>
+                            <select class="form-select" formControlName="costCentre">
+                                <option selected disabled>select</option>
+                                @if (masterData) {
+                                @for(master of masterData['costCentre']; track $index) {
+                                <option [value]="master.masterId">{{master.masterName}}</option>
+                                }
+                                }
+                            </select>
+                            <div class="text-danger"
+                                *ngIf="personalInfoForm.controls['costCentre'].touched || personalInfoForm.controls['costCentre'].dirty">
+                                <span *ngIf="personalInfoForm.controls['costCentre'].errors?.['required']">This is
+                                    Required</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>RL Band</label>
+                            <select class="form-select" formcontrolName="rlBand">
+                                <option selected disabled>Select</option>
+                                @if (masterData) {
+                                @for(master of masterData['rlBand']; track $index) {
+                                <option [value]="master.masterId">{{master.masterName}}</option>
+                                }
+                                }
+                            </select>
+                            <div class="text-danger"
+                                *ngIf="personalInfoForm.controls['rlBand'].touched || personalInfoForm.controls['rlBand'].dirty">
+                                <span *ngIf="personalInfoForm.controls['rlBand'].errors?.['required']">This is
+                                    Required</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Fourth Row -->
+                <div class="row pt-3">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Name in Capital Letters</label>
+                            <input type="text" class="form-control" placeholder="Name in Capital
+                                                Letters" formControlName="fullName">
+                            <div class="text-danger"
+                                *ngIf="personalInfoForm.controls['fullName'].touched || personalInfoForm.controls['fullName'].dirty">
+                                <span *ngIf="personalInfoForm.controls['fullName'].errors?.['required']">This is
+                                    Required</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="required">Father's/Husband's
+                                Name</label>
+                            <input type="text" class="form-control" placeholder="Enter Your Father/Husband Name"
+                                formControlName="fatherOrHusbandName">
+                        </div>
+                        <div class="text-danger"
+                            *ngIf="personalInfoForm.controls['fatherOrHusbandName'].touched || personalInfoForm.controls['fatherOrHusbandName'].dirty">
+                            <span *ngIf="personalInfoForm.controls['fatherOrHusbandName'].errors?.['required']">This is
+                                Required</span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Mother's Name</label>
+                            <input type="text" class="form-control" placeholder="Enter Your Mother Name"
+                                formControlName="motherName">
+                            <div class="text-danger"
+                                *ngIf="personalInfoForm.controls['motherName'].touched || personalInfoForm.controls['motherName'].dirty">
+                                <span *ngIf="personalInfoForm.controls['motherName'].errors?.['required']">This is
+                                    Required</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Date of Birth</label>
+                            <input type="date" class="form-control" formControlName="dateOfBirth">
+                            <div class="text-danger"
+                                *ngIf="personalInfoForm.controls['dateOfBirth'].touched || personalInfoForm.controls['dateOfBirth'].dirty">
+                                <span *ngIf="personalInfoForm.controls['dateOfBirth'].errors?.['required']">This is
+                                    Required</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Age</label>
+                            <input type="number" class="form-control" formControlName="age">
+                            <div class="text-danger"
+                                *ngIf="personalInfoForm.controls['age'].touched || personalInfoForm.controls['age'].dirty">
+                                <span *ngIf="personalInfoForm.controls['age'].errors?.['required']">This is
+                                    Required</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 pt-3">
+                        <div class="form-group d-flex">
+                            <label class="me-2">Gender</label><br>
+                            <input type="radio" id="Female" name="gender" formControlName="gender" value="Female">
+                            <label for="female" class="me-1">Female</label>
+                            <input type="radio" id="male" name="gender" value="Male">
+                            <label for="male" class="me-1">Male</label>
+                            <div class="text-danger"
+                                *ngIf="personalInfoForm.controls['gender'].touched || personalInfoForm.controls['gender'].dirty">
+                                <span *ngIf="personalInfoForm.controls['gender'].errors?.['required']">This is
+                                    Required</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 pt-3">
+                        <div class="form-group d-flex">
+                            <label for="Marital Status" class="me-2">Marital Status</label><br>
+                            <input type="radio" id="Married" name="maritalStatus" value="Married"
+                                formControlName="maritalStatus">
+                            <label for="Married" class="me-1">Married</label>
+                            <input class="ps-2" type="radio" id="Unmarried"  formControlName="maritalStatus" name="maritalStatus" value="Unmarried">
+                            <label for="Unmarried" class="me-2">Unmarried</label>
+                            <div class="text-danger"
+                                *ngIf="personalInfoForm.controls['maritalStatus'].touched || personalInfoForm.controls['maritalStatus'].dirty">
+                                <span *ngIf="personalInfoForm.controls['maritalStatus'].errors?.['required']">This is
+                                    Required</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Religion</label>
+                            <input type="text" class="form-control" formControlName="religion">
+                            <div class="text-danger"
+                                *ngIf="personalInfoForm.controls['religion'].touched || personalInfoForm.controls['religion'].dirty">
+                                <span *ngIf="personalInfoForm.controls['religion'].errors?.['required']">This is
+                                    Required</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Nationality</label>
+                            <input type="text" class="form-control" placeholder="" formControlName="nationality">
+                            <div class="text-danger"
+                                *ngIf="personalInfoForm.controls['nationality'].touched || personalInfoForm.controls['nationality'].dirty">
+                                <span *ngIf="personalInfoForm.controls['nationality'].errors?.['required']">This is
+                                    Required</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Caste</label>
+                            <input type="text" class="form-control" formControlName="caste">
+                            <div class="text-danger"
+                                *ngIf="personalInfoForm.controls['caste'].touched || personalInfoForm.controls['caste'].dirty">
+                                <span *ngIf="personalInfoForm.controls['caste'].errors?.['required']">This is
+                                    Required</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 pt-3">
+                        <div class="form-group">
+                            <label>Blood Group</label>
+                            <input type="text" class="form-control" formControlName="bloodGroup">
+                            <div class="text-danger"
+                                *ngIf="personalInfoForm.controls['bloodGroup'].touched || personalInfoForm.controls['bloodGroup'].dirty">
+                                <span *ngIf="personalInfoForm.controls['bloodGroup'].errors?.['required']">This is
+                                    Required</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 pt-3">
+                        <div class="form-group">
+                            <label>Weight</label>
+                            <input type="number" class="form-control" formControlName="weight">
+                            <div class="text-danger"
+                                *ngIf="personalInfoForm.controls['weight'].touched || personalInfoForm.controls['weight'].dirty">
+                                <span *ngIf="personalInfoForm.controls['weight'].errors?.['required']">This is
+                                    Required</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Region</label>
+                            <input type="text" class="form-control" formControlName="region">
+                            <div class="text-danger"
+                                *ngIf="personalInfoForm.controls['region'].touched || personalInfoForm.controls['region'].dirty">
+                                <span *ngIf="personalInfoForm.controls['region'].errors?.['required']">This is
+                                    Required</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Fifth Row -->
+                <div class="row pt-3 align-items-center">
+                    
+                    
+
+                    <div class="col-md-4 pt-3">
+                        <div class="form-group">
+                            <label>Identity</label>
+                            <input type="text" class="form-control" formControlName="identityMark">
+                            <div class="text-danger"
+                                *ngIf="personalInfoForm.controls['identityMark'].touched || personalInfoForm.controls['identityMark'].dirty">
+                                <span *ngIf="personalInfoForm.controls['identityMark'].errors?.['required']">This is
+                                    Required</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 pt-3">
+                        <div class="form-group d-flex">
+                            <label class="me-2">Shift Type</label><br>
+                            <input type="radio" id="Fixed" name="shiftType" value="Fixed" formControlName="shiftType">
+                            <label for="Fixed" class="me-1">Fixed</label>
+
+                            <input type="radio" id="Rotational" name="shiftType" value="Rotational">
+                            <label for="Rotational" class="me-1">Rotational</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 pt-3">
+                        <div class="form-group">
+                            <label>Shift Option</label>
+                            <select class="form-select" formControlName="shiftOption">
+                                <option  disabled selected>Select
+                                </option>
+                                @if (masterData) {
+                                @for(master of masterData['shiftOption']; track $index) {
+                                <option [value]="master.masterId">{{master.masterName}}</option>
+                                }
+                                }
+                            </select>
+                            <div class="text-danger"
+                                *ngIf="personalInfoForm.controls['shiftOption'].touched || personalInfoForm.controls['shiftOption'].dirty">
+                                <span *ngIf="personalInfoForm.controls['shiftOption'].errors?.['required']">This is
+                                    Required</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 pt-3">
+                        <div class="form-group">
+                            <label>Appointment Mths:</label>
+                            <input type="text" class="form-control"  formControlName="appointmentMonths">
+                            <div class="text-danger"
+                                *ngIf="personalInfoForm.controls['appointmentMonths'].touched || personalInfoForm.controls['appointmentMonths'].dirty">
+                                <span *ngIf="personalInfoForm.controls['appointmentMonths'].errors?.['required']">This
+                                    is
+                                    Required</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 pt-3">
+                        <div class="form-group">
+                            <label>Transfer From</label>
+                            <select class="form-select" formControlName="transferFrom">
+                                <option selected>select</option>
+                                @if (masterData) {
+                                @for(master of masterData['transferFrom']; track $index) {
+                                <option [value]="master.masterId">{{master.masterName}}</option>
+                                }
+                                }
+                            </select>
+                            <div class="text-danger"
+                                *ngIf="personalInfoForm.controls['transferFrom'].touched || personalInfoForm.controls['transferFrom'].dirty">
+                                <span *ngIf="personalInfoForm.controls['transferFrom'].errors?.['required']">This is
+                                    Required</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 pt-3">
+                        <div class="form-group">
+                            <label>Transfer To </label>
+                            <select class="form-select" formControlName="transferTo">
+                                <option selected>select</option>
+                                @if (masterData) {
+                                @for(master of masterData['transferTo']; track $index) {
+                                <option [value]="master.masterId">{{master.masterName}}</option>
+                                }
+                                }
+                            </select>
+                            <div class="text-danger"
+                                *ngIf="personalInfoForm.controls['transferTo'].touched || personalInfoForm.controls['transferTo'].dirty">
+                                <span *ngIf="personalInfoForm.controls['transferTo'].errors?.['required']">This is
+                                    Required</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 pt-3">
+                        <div class="form-group">
+                            <label>Transfer Date</label>
+                            <input type="date" class="form-control" formControlName="transferDate">
+                            <div class="text-danger"
+                                *ngIf="personalInfoForm.controls['transferDate'].touched || personalInfoForm.controls['transferDate'].dirty">
+                                <span *ngIf="personalInfoForm.controls['transferDate'].errors?.['required']">This is
+                                    Required</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 pt-3">
+                        <div class="form-group">
+                            <label>Reporting Date</label>
+                            <input type="date" class="form-control" formControlName="reportingDate">
+                            <div class="text-danger"
+                                *ngIf="personalInfoForm.controls['reportingDate'].touched || personalInfoForm.controls['reportingDate'].dirty">
+                                <span *ngIf="personalInfoForm.controls['reportingDate'].errors?.['required']">This is
+                                    Required</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="col-md-12 mt-3"> -->
+                   
+
+                    <div class="col-md-4 pt-3">
+                        <div class="form-group">
+                            <label>Pan Card No:</label>
+                            <input type="text" class="form-control" placeholder="Enter PAN (e.g., ABCDE1234F)"
+                                title="PAN format: ABCDE1234F" maxlength="10" formControlName="panCardNo">
+                            <div class="text-danger"
+                                *ngIf="personalInfoForm.controls['panCardNo'].touched || personalInfoForm.controls['panCardNo'].dirty">
+                                <span *ngIf="personalInfoForm.controls['panCardNo'].errors?.['required']">This is
+                                    Required</span>
+                                <!-- <span *ngIf="personalInfoForm.controls['panCardNo'].errors?.['pattern']">Pan Card Not
+                                Valid</span> -->
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-4 pt-3">
+                        <div class="form-group">
+                            <label>PF UAN No:</label>
+                            <input type="text" class="form-control" formControlName="pfUanNo">
+                            <div class="text-danger"
+                                *ngIf="personalInfoForm.controls['pfUanNo'].touched || personalInfoForm.controls['pfUanNo'].dirty">
+                                <span *ngIf="personalInfoForm.controls['pfUanNo'].errors?.['required']">This is
+                                    Required</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- </div> -->
+
+                    <div class="col-md-4 pt-3">
+                        <div class="form-group">
+                            <label>Worker No(LWF):</label>
+                            <input type="number" class="form-control" formControlName="workerLwfNo">
+                            <div class="text-danger"
+                                *ngIf="personalInfoForm.controls['workerLwfNo'].touched || personalInfoForm.controls['workerLwfNo'].dirty">
+                                <span *ngIf="personalInfoForm.controls['workerLwfNo'].errors?.['required']">This is
+                                    Required</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 pt-3">
+                        <div class="form-group">
+                            <label>Bank A/c No:</label>
+                            <input type="number" class="form-control" formControlName="bankAccountNo">
+                            <div class="text-danger"
+                                *ngIf="personalInfoForm.controls['bankAccountNo'].touched || personalInfoForm.controls['bankAccountNo'].dirty">
+                                <span *ngIf="personalInfoForm.controls['bankAccountNo'].errors?.['required']">This is
+                                    Required</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 pt-3">
+                        <div class="form-group">
+                            <label>Bank Name:</label>
+                            <input type="text" class="form-control" formControlName="bankName">
+                            <div class="text-danger"
+                                *ngIf="personalInfoForm.controls['bankName'].touched || personalInfoForm.controls['bankName'].dirty">
+                                <span *ngIf="personalInfoForm.controls['bankName'].errors?.['required']">This is
+                                    Required</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 pt-3">
+                        <div class="form-group">
+                            <label>Bank IFSC Code:</label>
+                            <input type="text" class="form-control" formControlName="bankIfscCode">
+                            <div class="text-danger"
+                                *ngIf="personalInfoForm.controls['bankIfscCode'].touched || personalInfoForm.controls['bankIfscCode'].dirty">
+                                <span *ngIf="personalInfoForm.controls['bankIfscCode'].errors?.['required']">This is
+                                    Required</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 pt-3">
+                        <div class="form-group">
+                            <label>Branch:</label>
+                            <input type="text" class="form-control" formControlName="bankBranch">
+                            <div class="text-danger"
+                                *ngIf="personalInfoForm.controls['bankBranch'].touched || personalInfoForm.controls['bankBranch'].dirty">
+                                <span *ngIf="personalInfoForm.controls['bankBranch'].errors?.['required']">This is
+                                    Required</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    
+                   
+
+                </div>
+            </div>
+
+        <!-- </div> -->
+
+        <!-- <div *ngIf="step === 2" formGroupName="contactFamily" class="main-card-wrap1"> -->
+            <h4 class="pt-3 m-0"> Contact & Family</h4>
+            <div class="row pt-3">
+                <div class="col-md-12">
+                    <div class="card-header pt-3">Address</div>
+                </div>
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group mb-2">
+                                <label>Present Address</label>
+                                <input type="text" class="form-control" placeholder="Enter Present Address"
+                                    formControlName="presentAddress">
+                                <div class="text-danger"
+                                    *ngIf="contactFamilyForm.controls['presentAddress'].touched || contactFamilyForm.controls['presentAddress'].dirty">
+                                    <span *ngIf="contactFamilyForm.controls['presentAddress'].errors?.['required']">This
+                                        is Required</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mb-2">
+                                <label>Permanent Address</label>
+                                <input type="text" class="form-control" placeholder="Enter Permanent Address"
+                                    formControlName="permanentAddress">
+                                <div class="text-danger"
+                                    *ngIf="contactFamilyForm.controls['permanentAddress'].touched || contactFamilyForm.controls['permanentAddress'].dirty">
+                                    <span
+                                        *ngIf="contactFamilyForm.controls['permanentAddress'].errors?.['required']">This
+                                        is Required</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group mb-2">
+                                <label class="required">State</label>
+                                <select class="form-select" formControlName="state" required>
+                                    <option  disabled selected>Select</option>
+                                    @if (masterData) {
+                                    @for(master of masterData['state']; track $index) {
+                                    <option [value]="master.masterId">{{master.masterName}}</option>
+                                    }
+                                    }
+                                </select>
+
+                                <div class="text-danger"
+                                    *ngIf="contactFamilyForm.controls['state'].touched || contactFamilyForm.controls['state'].dirty">
+                                    <span *ngIf="contactFamilyForm.controls['state'].errors?.['required']">This is
+                                        Required</span>
+                                </div>
+                            </div>
+                            <div class="form-group mb-2">
+                                <label class="required">district</label>
+                                <select class="form-select" formControlName="district" required>
+                                    <option  disabled selected>Select</option>
+                                    @if (masterData) {
+                                    @for(master of onStateChange(); track $index) {
+                                    <option [value]="master.masterId">{{master.masterName}}</option>
+                                    }
+                                    }
+                                </select>
+
+
+                            </div>
+                            <div class="form-group mb-2">
+                                <label>Sub Division</label>
+                                <input type="text" class="form-control" placeholder="Enter subDivision"
+                                    formControlName="subDivision">
+                                <div class="text-danger"
+                                    *ngIf="contactFamilyForm.controls['subDivision'].touched || contactFamilyForm.controls['subDivision'].dirty">
+                                    <span *ngIf="contactFamilyForm.controls['subDivision'].errors?.['required']">This is
+                                        Required</span>
+                                </div>
+                            </div>
+                            <div class="form-group mb-2">
+                                <label>Pincode</label>
+                                <input type="number" class="form-control" placeholder="Enter Pincode"
+                                    formControlName="pincode">
+                                <div class="text-danger"
+                                    *ngIf="contactFamilyForm.controls['pincode'].touched || contactFamilyForm.controls['pincode'].dirty">
+                                    <span *ngIf="contactFamilyForm.controls['pincode'].errors?.['required']">This is
+                                        Required</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" class="form-control" formControlName="email">
+                                <div class="text-danger"
+                                    *ngIf="contactFamilyForm.controls['email'].touched || contactFamilyForm.controls['email'].dirty">
+                                    <span *ngIf="contactFamilyForm.controls['email'].errors?.['required']">This is
+                                        Required</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group mb-2">
+                                <label>Phone Number</label>
+                                <input type="number" class="form-control" formControlName="phone1">
+                                <div class="text-danger"
+                                    *ngIf="contactFamilyForm.controls['phone1'].touched || contactFamilyForm.controls['phone1'].dirty">
+                                    <span *ngIf="contactFamilyForm.controls['phone1'].errors?.['required']">This is
+                                        Required</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Whatsapp No.</label>
+                                <input type="number" class="form-control" formControlName="whatsappNo">
+                                <div class="text-danger"
+                                    *ngIf="contactFamilyForm.controls['whatsappNo'].touched || contactFamilyForm.controls['whatsappNo'].dirty">
+                                    <span *ngIf="contactFamilyForm.controls['whatsappNo'].errors?.['required']">This is
+                                        Required</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="form-group mb-2">
+                    <label>State</label>
+                    <input type="text" class="form-control">
+                </div> -->
+                    <!-- <div class="form-group mb-2">
+                    <label>Pincode</label>
+                    <input type="text" class="form-control">
+                </div> -->
+                </div>
+            </div>
+            <div class="col-12">
+                <!-- <form action=""> -->
+                <div class="row pt-3">
+                    <div class="col-12">
+                        <div class="col-md-12">
+                            <div class="card-header pt-3">Family Members
+                            </div>
+                        </div>
+
+                        <div class="table-responsive" [formGroup]="employeeForm" formArrayName="employeeFamilyMembers">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>S.No.</th>
+                                        <th>Name</th>
+                                        <th>Year of Birth</th>
+                                        <th>Relation</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let member of familyMembers.controls; let i = index"
+                                        [formGroupName]="i">
+                                        <td>{{i+1}}</td>
+                                        <td>
+                                            <input type="text" class="form-control" formControlName="name"
+                                                placeholder="Enter Name">
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control" formControlName="yearOfBirth"
+                                                placeholder="Enter Year Of Birth">
+
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" formControlName="relation">
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-danger"
+                                                (click)="removeFamilyMember(i)">Remove</button>
+                                        </td>
+                                    </tr>
+
+
+                                </tbody>
+                            </table>
+                            <!-- <button class="btn btn-primary mt-3" (click)="addFamilyMember()">Add Family Member</button> -->
+
+                            <div class="d-flex justify-content-between mt-3">
+                                <button class="btn btn-primary" (click)="addFamilyMember()">Add Family
+                                    Member</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- </form> -->
+            </div>
+        <!-- </div> -->
+
+        <!-- <div *ngIf="step === 3" formGroupName="qualificationExpe" class="main-card-wrap1"> -->
+            <h4 class="pt-3 m-0">Qualification & Experience</h4>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Qualification</label>
+                        <input type="text" class="form-control" formControlName="qualification">
+                        <div class="text-danger"
+                            *ngIf="qualificationExpeForm.controls['qualification'].touched || qualificationExpeForm.controls['qualification'].dirty">
+                            <span *ngIf="qualificationExpeForm.controls['qualification'].errors?.['required']">This is
+                                Required</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Technical Qualification</label>
+                        <input type="text" class="form-control" formControlName="technicalQualification">
+                        <div class="text-danger"
+                            *ngIf="qualificationExpeForm.controls['technicalQualification'].touched || qualificationExpeForm.controls['technicalQualification'].dirty">
+                            <span
+                                *ngIf="qualificationExpeForm.controls['technicalQualification'].errors?.['required']">This
+                                is Required</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Languages Known</label>
+                        <input type="text" class="form-control" formControlName="languagesKnown">
+                        <div class="text-danger"
+                            *ngIf="qualificationExpeForm.controls['languagesKnown'].touched || qualificationExpeForm.controls['languagesKnown'].dirty">
+                            <span *ngIf="qualificationExpeForm.controls['languagesKnown'].errors?.['required']">This is
+                                Required</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row pt-3">
+                <div class="col-12">
+                    <div class="col-md-12">
+                        <div class="card-header pt-3">Experience Details</div>
+                    </div>
+
+                    <div>
+                        <label>Total Experience</label>
+                        <input type="number" class="form-control" formControlName="totalExperienceYears"
+                            placeholder="Enter Total Experience">
+                        <div class="text-danger"
+                            *ngIf="qualificationExpeForm.controls['totalExperienceYears'].touched || qualificationExpeForm.controls['totalExperienceYears'].dirty">
+                            <span
+                                *ngIf="qualificationExpeForm.controls['totalExperienceYears'].errors?.['required']">This
+                                is Required</span>
+                        </div>
+
+
+                        <div class="table-responsive">
+                            <table class="table table-bordered" formArrayName="employeeExperiences">
+                                <thead>
+                                    <tr>
+                                        <th>S.No.</th>
+                                        <th>Name of employer</th>
+                                        <th>Post held</th>
+                                        <th>From</th>
+                                        <th>To</th>
+                                        <th>Reason for Leaving</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let exp of experienceDetails.controls; let i = index"
+                                        [formGroupName]="i">
+                                        <td>{{i+1}}</td>
+                                        <td><input type="text" class="form-control" formControlName="employerName"
+                                                placeholder="Enter Employer">
+
+                                        </td>
+                                        <td><input type="text" class="form-control" formControlName="postHeld"
+                                                placeholder="Enter Post"></td>
+                                        <td><input type="date" class="form-control" formControlName="fromDate"></td>
+                                        <td><input type="date" class="form-control" formControlName="toDate"></td>
+                                        <td><input type="text" class="form-control" formControlName="reasonForLeaving"
+                                                placeholder="Reason"></td>
+                                        <td>
+                                            <button class="btn btn-danger" (click)="removeExperience(i)">Remove</button>
+                                        </td>
+
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" (click)="addExperience()">Add
+                        Experience</button>
+                </div>
+            </div>
+        <!-- </div> -->
+
+        <!-- <div *ngIf="step === 4" formGroupName="additionalInfo" class="main-card-wrap1"> -->
+            <h4 class="pt-3 m-0">Additional Information</h4>
+            <div class="row pt-3">
+                <div class="col-12">
+                    <div class="col-md-12">
+                        <div class="card-header pt-3">Additional Information
+                        </div>
+                    </div>
+
+                    <!-- Relative Information -->
+                    <div class="row pt-3">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Do you have any relative working in
+                                    the company/unit?</label>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox"
+                                        formControlName="relativeWorkingInCompany" id="relativeYes"> 
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row pt-3">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>If yes, give name:</label>
+                                <input type="text" class="form-control" formControlName="relativeName"
+                                    placeholder="Enter Relative Name">
+                                <div class="text-danger"
+                                    *ngIf="additionalInfoForm.controls['relativeName'].touched || additionalInfoForm.controls['relativeName'].dirty">
+                                    <span *ngIf="additionalInfoForm.controls['relativeName'].errors?.['required']">This
+                                        is Required</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Relationship:</label>
+                                <input type="text" class="form-control" formControlName="relativeRelationship"
+                                    placeholder="Enter Relationship">
+                                <div class="text-danger"
+                                    *ngIf="additionalInfoForm.controls['relativeRelationship'].touched || additionalInfoForm.controls['relativeRelationship'].dirty">
+                                    <span
+                                        *ngIf="additionalInfoForm.controls['relativeRelationship'].errors?.['required']">This
+                                        is Required</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Date and Interview Information -->
+            <div class="row pt-3">
+                <div class="col-md-6">
+                    <div class="form-group mb-2">
+                        <label>Date:</label>
+                        <input type="date" class="form-control" formControlName="entryDate">
+                        <div class="text-danger"
+                            *ngIf="additionalInfoForm.controls['entryDate'].touched || additionalInfoForm.controls['entryDate'].dirty">
+                            <span *ngIf="additionalInfoForm.controls['entryDate'].errors?.['required']">This is
+                                Required</span>
+                        </div>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label>Place:</label>
+                        <input type="text" class="form-control" formControlName="location">
+                        <div class="text-danger"
+                            *ngIf="additionalInfoForm.controls['location'].touched || additionalInfoForm.controls['location'].dirty">
+                            <span *ngIf="additionalInfoForm.controls['location'].errors?.['required']">This is
+                                Required</span>
+                        </div>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label>Interview Date:</label>
+                        <input type="date" class="form-control" formControlName="interviewDate">
+                        <div class="text-danger"
+                            *ngIf="additionalInfoForm.controls['interviewDate'].touched || additionalInfoForm.controls['interviewDate'].dirty">
+                            <span *ngIf="additionalInfoForm.controls['interviewDate'].errors?.['required']">This is
+                                Required</span>
+                        </div>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label>Interviewed By:</label>
+                        <input type="text" class="form-control" formControlName="interviewedBy"
+                            placeholder="Enter Interviewer Name">
+                        <div class="text-danger"
+                            *ngIf="additionalInfoForm.controls['interviewedBy'].touched || additionalInfoForm.controls['interviewedBy'].dirty">
+                            <span *ngIf="additionalInfoForm.controls['interviewedBy'].errors?.['required']">This is
+                                Required</span>
+                        </div>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label>Approved By:</label>
+                        <input type="text" class="form-control" formControlName="approvedBy"
+                            placeholder="Enter Approver Name">
+                        <div class="text-danger"
+                            *ngIf="additionalInfoForm.controls['approvedBy'].touched || additionalInfoForm.controls['approvedBy'].dirty">
+                            <span *ngIf="additionalInfoForm.controls['approvedBy'].errors?.['required']">This is
+                                Required</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group mb-2">
+                        <label>Date of Joining:</label>
+                        <input type="date" class="form-control" formControlName="dateOfJoining">
+                        <div class="text-danger"
+                            *ngIf="additionalInfoForm.controls['dateOfJoining'].touched || additionalInfoForm.controls['dateOfJoining'].dirty">
+                            <span *ngIf="additionalInfoForm.controls['dateOfJoining'].errors?.['required']">This is
+                                Required</span>
+                        </div>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label>Salary:</label>
+                        <input type="number" class="form-control" formControlName="salary" placeholder="Enter Salary">
+                        <div class="text-danger"
+                            *ngIf="additionalInfoForm.controls['salary'].touched || additionalInfoForm.controls['salary'].dirty">
+                            <span *ngIf="additionalInfoForm.controls['salary'].errors?.['required']">This is
+                                Required</span>
+                        </div>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label>Confirm Date:</label>
+                        <input type="date" class="form-control" formControlName="confirmDate">
+                        <div class="text-danger"
+                            *ngIf="additionalInfoForm.controls['confirmDate'].touched || additionalInfoForm.controls['confirmDate'].dirty">
+                            <span *ngIf="additionalInfoForm.controls['confirmDate'].errors?.['required']">This is
+                                Required</span>
+                        </div>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label>Status:</label>
+                        <input type="text" class="form-control" formControlName="employmentStatus"
+                            placeholder="Enter Employment Status">
+                        <div class="text-danger"
+                            *ngIf="additionalInfoForm.controls['employmentStatus'].touched || additionalInfoForm.controls['employmentStatus'].dirty">
+                            <span *ngIf="additionalInfoForm.controls['employmentStatus'].errors?.['required']">This is
+                                Required</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Checkbox Fields -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group mb-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" formControlName="individualBioData"
+                                id="bioData">
+
+                            <label class="form-check-label" for="bioData">Individual Bio-Data</label>
+                        </div>
+                    </div>
+                    <div class="form-group mb-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" formControlName="photoAttached" id="photo">
+                            <label class="form-check-label" for="photo">Photo</label>
+                        </div>
+                    </div>
+                    <div class="form-group mb-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" formControlName="applicationAttached"
+                                id="Application">
+                            <label class="form-check-label" for="Application">Application for
+                                Employment</label>
+                        </div>
+                    </div>
+                    <div class="form-group mb-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" formControlName="certificatesAttached"
+                                id="certificates">
+                            <label class="form-check-label" for="certificates">Certificates/Testimonials</label>
+                        </div>
+                    </div>
+                    <div class="form-group mb-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" formControlName="contractAttached"
+                                id="contract">
+                            <label class="form-check-label" for="contract">Contract of
+                                Employment</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group mb-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" formControlName="joiningReportAttached"
+                                id="joiningReport">
+                            <label class="form-check-label" for="joiningReport">Joining Report</label>
+                        </div>
+                    </div>
+                    <div class="form-group mb-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" formControlName="nominationFormAttached"
+                                id="nominationForm">
+                            <label class="form-check-label" for="nominationForm">Nomination Form</label>
+                        </div>
+                    </div>
+                    <div class="form-group mb-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" formControlName="proofOfAge"
+                                id="proofOfAge">
+                            <label class="form-check-label" for="proofOfAge">Proof of Age</label>
+                        </div>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label>Proof Name:</label>
+                        <input type="text" class="form-control" formControlName="proofName"
+                            placeholder="Enter Proof Name">
+                        <div class="text-danger"
+                            *ngIf="additionalInfoForm.controls['proofName'].touched || additionalInfoForm.controls['proofName'].dirty">
+                            <span *ngIf="additionalInfoForm.controls['proofName'].errors?.['required']">This is
+                                Required</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!-- </div> -->
+
+        <!-- <div *ngIf="step === 5" formGroupName="salaryPayroll" class="main-card-wrap1"> -->
+            <h4 class="pt-3 m-0">Salary & Payroll</h4>
+
+            <div class="card-header my-3">Salary & Payroll Details</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="d-flex">
+                            <label class="ms-2">Transport Facility(Y/N):</label>
+                            <input type="checkbox" name="transportFacility" formControlName="transportFacility">
+                        </div>
+                        <!-- <input type="radio" formControlName="transportFacility" value="true">  <label for="Yes">Yes</label>
+                        <input type="radio" formControlName="transportFacility" value="false"> <label for="No"> No</label> -->
+                    </div>
+
+                    <div class="col-md-4">
+                        <label>Route No:</label>
+                        <input type="number" class="form-control" formControlName="routeNo">
+                        <div class="text-danger"
+                            *ngIf="salaryPayrollForm.controls['routeNo'].touched || salaryPayrollForm.controls['routeNo'].dirty">
+                            <span *ngIf="salaryPayrollForm.controls['routeNo'].errors?.['required']">This is
+                                Required</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label>Actual CTC:</label>
+                        <input type="number" class="form-control" formControlName="actualCtc">
+                        <div class="text-danger"
+                            *ngIf="salaryPayrollForm.controls['actualCtc'].touched || salaryPayrollForm.controls['actualCtc'].dirty">
+                            <span *ngIf="salaryPayrollForm.controls['actualCtc'].errors?.['required']">This is
+                                Required</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label>Basic Salary:</label>
+                        <input type="number" class="form-control" placeholder="Enter Basic Salary"
+                            formControlName="basicSalary">
+                        <div class="text-danger"
+                            *ngIf="salaryPayrollForm.controls['basicSalary'].touched || salaryPayrollForm.controls['basicSalary'].dirty">
+                            <span *ngIf="salaryPayrollForm.controls['basicSalary'].errors?.['required']">This is
+                                Required</span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label>HRA:</label>
+                        <input type="number" class="form-control" placeholder="Enter HRA Amount" formControlName="hra">
+                        <div class="text-danger"
+                            *ngIf="salaryPayrollForm.controls['hra'].touched || salaryPayrollForm.controls['hra'].dirty">
+                            <span *ngIf="salaryPayrollForm.controls['hra'].errors?.['required']">This is
+                                Required</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label>CONV:</label>
+                        <input type="number" class="form-control" formControlName="conveyanceAllowance">
+                        <div class="text-danger"
+                            *ngIf="salaryPayrollForm.controls['conveyanceAllowance'].touched || salaryPayrollForm.controls['conveyanceAllowance'].dirty">
+                            <span *ngIf="salaryPayrollForm.controls['conveyanceAllowance'].errors?.['required']">This
+                                is
+                                Required</span>
+                        </div>
+                    </div>
+
+                    <!-- <div class="col-md-3">
+                            <label>Others:</label>
+                            <input type="text" class="form-control" formControlName="others">
+                            <div class="text-danger"
+                                *ngIf="salaryPayrollForm.controls['others'].touched || salaryPayrollForm.controls['others'].dirty">
+                                <span *ngIf="salaryPayrollForm.controls['others'].errors?.['required']">This is
+                                    Required</span>
+                            </div>
+                        </div> -->
+
+                    <div class="col-md-4">
+                        <label>Medical Allowance:</label>
+                        <input type="number" class="form-control" placeholder="Enter Medical Allowance"
+                            formControlName="medicalAllowance">
+                        <div class="text-danger"
+                            *ngIf="salaryPayrollForm.controls['medicalAllowance'].touched || salaryPayrollForm.controls['medicalAllowance'].dirty">
+                            <span *ngIf="salaryPayrollForm.controls['medicalAllowance'].errors?.['required']">This
+                                is Required</span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Attendance Incentive:</label>
+                        <input type="text" class="form-control" placeholder="Enter Incentive"
+                            formControlName="attendanceIncentive">
+                        <div class="text-danger"
+                            *ngIf="salaryPayrollForm.controls['attendanceIncentive'].touched || salaryPayrollForm.controls['attendanceIncentive'].dirty">
+                            <span *ngIf="salaryPayrollForm.controls['attendanceIncentive'].errors?.['required']">This
+                                is Required</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label>Gross Salary:</label>
+                        <input type="number" class="form-control" placeholder="Enter Gross Salary"
+                            formControlName="grossSalary">
+                        <div class="text-danger"
+                            *ngIf="salaryPayrollForm.controls['grossSalary'].touched || salaryPayrollForm.controls['grossSalary'].dirty">
+                            <span *ngIf="salaryPayrollForm.controls['grossSalary'].errors?.['required']">This is
+                                Required</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label>PF Empe:</label>
+                        <input type="number" class="form-control" formControlName="pfEmployee">
+                        <div class="text-danger"
+                            *ngIf="salaryPayrollForm.controls['pfEmployee'].touched || salaryPayrollForm.controls['pfEmployee'].dirty">
+                            <span *ngIf="salaryPayrollForm.controls['pfEmployee'].errors?.['required']">This is
+                                Required</span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label>ESI Empe:</label>
+                        <input type="number" class="form-control" formControlName="esiEmployee">
+                        <div class="text-danger"
+                            *ngIf="salaryPayrollForm.controls['esiEmployee'].touched || salaryPayrollForm.controls['esiEmployee'].dirty">
+                            <span *ngIf="salaryPayrollForm.controls['esiEmployee'].errors?.['required']">This is
+                                Required</span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label>LWF Empe:</label>
+                        <input type="number" class="form-control" placeholder="Enter Incentive"
+                            formControlName="lwfEmployee">
+                        <div class="text-danger"
+                            *ngIf="salaryPayrollForm.controls['lwfEmployee'].touched || salaryPayrollForm.controls['lwfEmployee'].dirty">
+                            <span *ngIf="salaryPayrollForm.controls['lwfEmployee'].errors?.['required']">This is
+                                Required</span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Total Deduction:</label>
+                        <input type="number" class="form-control" formControlName="totalDeduction">
+                        <div class="text-danger"
+                            *ngIf="salaryPayrollForm.controls['totalDeduction'].touched || salaryPayrollForm.controls['totalDeduction'].dirty">
+                            <span *ngIf="salaryPayrollForm.controls['totalDeduction'].errors?.['required']">This is
+                                Required</span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label>PF Empr:</label>
+                        <input type="number" class="form-control" formControlName="pfEmployer">
+                        <div class="text-danger"
+                            *ngIf="salaryPayrollForm.controls['pfEmployer'].touched || salaryPayrollForm.controls['pfEmployer'].dirty">
+                            <span *ngIf="salaryPayrollForm.controls['pfEmployer'].errors?.['required']">This is
+                                Required</span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label>ESI Empr:</label>
+                        <input type="number" class="form-control" formControlName="esiEmployer">
+                        <div class="text-danger"
+                            *ngIf="salaryPayrollForm.controls['esiEmployer'].touched || salaryPayrollForm.controls['esiEmployer'].dirty">
+                            <span *ngIf="salaryPayrollForm.controls['esiEmployer'].errors?.['required']">This is
+                                Required</span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label>LWF Empr:</label>
+                        <input type="number" class="form-control" formControlName="lwfEmployer">
+                        <div class="text-danger"
+                            *ngIf="salaryPayrollForm.controls['lwfEmployer'].touched || salaryPayrollForm.controls['lwfEmployer'].dirty">
+                            <span *ngIf="salaryPayrollForm.controls['lwfEmployer'].errors?.['required']">This is
+                                Required</span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Bonus:</label>
+                        <input type="number" class="form-control" formControlName="salaryBonus">
+                        <div class="text-danger"
+                            *ngIf="salaryPayrollForm.controls['salaryBonus'].touched || salaryPayrollForm.controls['salaryBonus'].dirty">
+                            <span *ngIf="salaryPayrollForm.controls['salaryBonus'].errors?.['required']">This is
+                                Required</span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label>CTC Exgratia:</label>
+                        <input type="number" class="form-control" formControlName="ctc">
+                        <div class="text-danger"
+                            *ngIf="salaryPayrollForm.controls['ctc'].touched || salaryPayrollForm.controls['ctc'].dirty">
+                            <span *ngIf="salaryPayrollForm.controls['ctc'].errors?.['required']">This is
+                                Required</span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Sub Total:</label>
+                        <input type="number" class="form-control" formControlName="subTotalCtc">
+                        <div class="text-danger"
+                            *ngIf="salaryPayrollForm.controls['subTotalCtc'].touched || salaryPayrollForm.controls['subTotalCtc'].dirty">
+                            <span *ngIf="salaryPayrollForm.controls['subTotalCtc'].errors?.['required']">This is
+                                Required</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="Empr PF">Empr PF:</label>
+                        <input type="number" class="form-control">
+
+                    </div>
+                    <div class="col-md-4">
+                        <label for="Empr ESI">Empr ESI:</label>
+                        <input type="number" class="form-control">
+
+                    </div>
+                    <div class="col-md-4">
+                        <label for="Fixed CTC">Fixed CTC:</label>
+                        <input type="number" class="form-control" formControlName="fixedCtc">
+                        <div class="text-danger"
+                            *ngIf="salaryPayrollForm.controls['fixedCtc'].touched || salaryPayrollForm.controls['fixedCtc'].dirty">
+                            <span *ngIf="salaryPayrollForm.controls['fixedCtc'].errors?.['required']">This is
+                                Required</span>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="me-1">Night Rate:</label>
+                            <input type="number" class="form-control" formControlName="nightRate">
+                            <div class="text-danger"
+                                *ngIf="salaryPayrollForm.controls['nightRate'].touched || salaryPayrollForm.controls['nightRate'].dirty">
+                                <span *ngIf="salaryPayrollForm.controls['nightRate'].errors?.['required']">This
+                                    is Required</span>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="me-1">OT Rate:</label>
+                        <input type="number" class="form-control" formControlName="otRate">
+                        <div class="text-danger"
+                            *ngIf="salaryPayrollForm.controls['otRate'].touched || salaryPayrollForm.controls['otRate'].dirty">
+                            <span *ngIf="salaryPayrollForm.controls['otRate'].errors?.['required']">This
+                                is Required</span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Remarks:</label>
+                        <input type="text" class="form-control" placeholder="Enter Remarks" formControlName="remarks">
+                        <div class="text-danger"
+                            *ngIf="salaryPayrollForm.controls['remarks'].touched || salaryPayrollForm.controls['remarks'].dirty">
+                            <span *ngIf="salaryPayrollForm.controls['remarks'].errors?.['required']">This is
+                                Required</span>
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-3">
+                        <label>EmprLiability CTC Salary:</label>
+                        <input type="text" class="form-control" formControlName="emprLiabilityCtcSalary">
+                    </div> -->
+                </div>
+
+                <div class="mt-3">
+                    <div class="row mb-2">
+
+                        <div class="form-group mb-2 d-flex col-md-3">
+                            <label for="Employee Type" class="me-2">Employee Type:</label><br>
+                            <input type="radio" value="permanent" formControlName="employeeType">
+                            <label for="Permanent" class="me-1">Permanent</label>
+                            <input type="radio" value="casual" formControlName="employeeType">
+                            <label for="Casual" class="me-1">Casual</label>
+                        </div>
+
+                        <div class="form-group mb-2 d-flex col-md-3">
+                            <label for="Wages Calculation" class="me-2">Wages Calculation:</label><br>
+                            <input type="radio" formControlName="wageCalculationType" value="monthly"> <label
+                                for="Fixed" class="me-1">Monthly</label>
+                            <input type="radio" formControlName="wageCalculationType" value="daily">
+                            <label for="Daily" class="me-1">Daily</label>
+                        </div>
+
+                        <div class="form-group mb-2 d-flex col-md-3">
+                            <label for="Payment Type">Payment Type:</label><br>
+                            <input type="radio" formControlName="paymentType" value="bank"> <label for="Bank"
+                                class="me-1">Bank</label>
+                            <input type="radio" formControlName="paymentType" value="cheque"> <label for="Cheque"
+                                class="me-1">Cheque</label>
+                            <input type="radio" formControlName="paymentType" value="neft"> <label for="NEFT"
+                                class="me-1">NEFT</label>
+                        </div>
+
+                        <div class="form-group mb-2 d-flex col-md-3">
+                            <label for="Overtime" class="me-2">Overtime:</label><br>
+                            <input type="checkbox" formControlName="overtimeEnabled"> <label for="Enable">Enable</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    
+                    <div class="col-md-3">
+                        <div class="form-group mb-2 ">
+                            <label for="Fooding">Fooding:</label>
+                           <div class="d-flex">
+                            <div class="dis-dev"> 
+                              <input type="checkbox" formControlName="foodingEnabled">
+                            </div> 
+                           </div>
+                        </div>
+                    </div>
+                  
+                </div>
+
+
+            </div>
+        <!-- </div> -->
+
+        <!-- <div *ngIf="step === 6" formGroupName="statutory" class="main-card-wrap1"> -->
+            <h4 class="pt-3 m-0">Statutory Details</h4>
+            <div class="col-12">
+                <!-- <div class="form"> -->
+
+                <div class="card-header my-3">STATUTORY</div>
+                <div class="card-body">
+                    <div class="row">
+                        <!-- ESI Section -->
+
+
+                        <div class="col-12">
+                            <h6><strong>FORM 1 - ESI *</strong></h6>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>ESI Insurance No.</label>
+                                    <input type="text" class="form-control mb-2" id="esiInsuranceNo"
+                                        placeholder="Enter ESI Insurance No." formControlName="esiInsuranceNo">
+                                    <div class="text-danger"
+                                        *ngIf="statutoryForm.controls['esiInsuranceNo'].touched || statutoryForm.controls['esiInsuranceNo'].dirty">
+                                        <span *ngIf="statutoryForm.controls['esiInsuranceNo'].errors?.['required']">This
+                                            is Required</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>ESI Employer Code</label>
+                                    <input type="text" class="form-control mb-2" formControlName="esiEmployerCode" />
+                                    <div class="text-danger" *ngIf="statutoryForm.controls['esiEmployerCode'].touched ||
+                                            statutoryForm.controls['esiEmployerCode'].dirty">
+                                        <span
+                                            *ngIf="statutoryForm.controls['esiEmployerCode'].errors?.['required']">This
+                                            is Required</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Dispensary</label>
+                                    <input type="text" class="form-control mb-2"  formControlName="dispensary">
+                                    <div class="text-danger"
+                                        *ngIf="statutoryForm.controls['dispensary'].touched || statutoryForm.controls['dispensary'].dirty">
+                                        <span *ngIf="statutoryForm.controls['dispensary'].errors?.['required']">This
+                                            is Required</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+
+                                    <label>Local Office</label>
+                                    <input type="text" class="form-control mb-2" formControlName="esiLocalOffice">
+                                    <div class="text-danger"
+                                        *ngIf="statutoryForm.controls['esiLocalOffice'].touched || statutoryForm.controls['esiLocalOffice'].dirty">
+                                        <span *ngIf="statutoryForm.controls['esiLocalOffice'].errors?.['required']">This
+                                            is Required</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>ESI Nominee for Payment</label>
+                                    <input type="text" formControlName="esiNomineeForPayment" class="form-control mb-2" id="esiNominee" >
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Particulars of Family</label>
+                                    <input type="text" class="form-control mb-2" formControlName="perticularOfFamily" id="familyParticulars" >
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Family member residing with insured
+                                        person</label>
+                                    <input type="text" class="form-control mb-2" formControlName="familyMemberResidingInsuredPerson" id="insuredFamilyMember" >
+ 
+                                </div> 
+                                <hr/>
+                                <div class="col-md-6">
+                                    <label>pf AccountNo</label>
+                                    <input type="text" class="form-control mb-2" formControlName="pfAccountNo" id="widowPension" >
+                                </div>
+                                <div class="col-md-6">
+                                    <label>pfNominee</label>
+                                    <input type="text" class="form-control mb-2" formControlName="pfNominee" id="widowPension" >
+                                </div>
+                                <div class="col-md-6">
+                                    <label>pfSharePercent</label>
+                                    <input type="text" class="form-control mb-2" formControlName="pfSharePercent" id="widowPension" >
+                                </div>
+                                <div class="col-md-6">
+                                    <label>pfNominee</label>
+                                    <input type="text" class="form-control mb-2" formControlName="pfNominee" id="widowPension" >
+                                </div>
+                                <div class="col-md-6">
+                                    <label>childrenPension</label>
+                                    <input type="text" class="form-control mb-2" formControlName="childrenPension" id="widowPension" >
+                                </div>
+                                <div class="col-md-6">
+                                    <label>widowPension</label>
+                                    <input type="text" class="form-control mb-2" formControlName="widowPension" id="widowPension" >
+                                </div>
+                            </div> 
+                        </div> 
+                        <!-- Gratuity Section -->
+                        <div class="col-md-12 mt-3">
+                            <h6><strong>FORM F - Gratuity</strong></h6>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label>Nominee's for Gratuity *</label>
+                                    <input type="text" class="form-control mb-2" formControlName="gratuityNominee">
+                                    <div class="text-danger"
+                                        *ngIf="statutoryForm.controls['gratuityNominee'].touched || statutoryForm.controls['gratuityNominee'].dirty">
+                                        <span
+                                            *ngIf="statutoryForm.controls['gratuityNominee'].errors?.['required']">This
+                                            is Required</span>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <label>SHARE %age of nominee</label>
+                                    <input type="text" class="form-control mb-2" formControlName="gratuitySharePercent">
+                                    <div class="text-danger"
+                                        *ngIf="statutoryForm.controls['gratuitySharePercent'].touched || statutoryForm.controls['gratuitySharePercent'].dirty">
+                                        <span
+                                            *ngIf="statutoryForm.controls['gratuitySharePercent'].errors?.['required']">This
+                                            is Required</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        <!-- </div> -->
+
+        <div class="mt-3">
+            <!-- <button type="button" class="btn btn-secondary" (click)="prevStep()"
+                [disabled]="step === 1">Previous</button>
+            <button type="button" class="btn btn-primary mx-2" (click)="nextStep()" *ngIf="step < 6">Next</button> -->
+            <button type="submit" class="btn btn-success ms-2" (click)="onSave()" 
+                [disabled]="!employeeForm.valid">Submit</button>
+        </div>
+    </form>
+</div>
+<div *ngIf="validationErrors.length > 0" class="alert alert-danger">
+    <ul>
+        <li *ngFor="let error of validationErrors">{{ error }}</li>
+    </ul>
+</div>
