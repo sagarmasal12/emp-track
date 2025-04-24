@@ -38,15 +38,15 @@
                                 *ngIf="personalInfoForm.controls['aadharNo'].touched || personalInfoForm.controls['aadharNo'].dirty">
                                 <span *ngIf="personalInfoForm.controls['aadharNo'].errors?.['required']">This is
                                     Required</span>
-                                <!-- <span *ngIf="personalInfoForm.controls['aadharNo'].errors?.['pattern']">Aadhar Card Not
-                                Valid</span> -->
+                                <span *ngIf="personalInfoForm.controls['aadharNo'].errors?.['pattern']">Aadhar Card Not
+                                Valid</span>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>Paycode</label>
-                            <input type="number" class="form-control" formControlName="payCode"
+                            <input type="text" class="form-control" formControlName="payCode"
                                 placeholder="Enter your Paycode">
                             <div class="text-danger"
                                 *ngIf="personalInfoForm.controls['payCode'].touched || personalInfoForm.controls['payCode'].dirty">
@@ -58,7 +58,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>Card No.</label>
-                            <input type="number" class="form-control" formControlName="cardNo" 
+                            <input type="text" class="form-control" formControlName="cardNo" 
                                 placeholder="Enter Your Card No.">
                             <div class="text-danger"
                                 *ngIf="personalInfoForm.controls['cardNo'].touched || personalInfoForm.controls['cardNo'].dirty">
@@ -438,7 +438,7 @@
                     <div class="col-md-4 pt-3">
                         <div class="form-group">
                             <label>Weight</label>
-                            <input type="number" class="form-control" formControlName="weight">
+                            <input type="text" class="form-control" formControlName="weight">
                             <div class="text-danger"
                                 *ngIf="personalInfoForm.controls['weight'].touched || personalInfoForm.controls['weight'].dirty">
                                 <span *ngIf="personalInfoForm.controls['weight'].errors?.['required']">This is
@@ -586,13 +586,13 @@
                         <div class="form-group">
                             <label>Pan Card No:</label>
                             <input type="text" class="form-control" placeholder="Enter PAN (e.g., ABCDE1234F)"
-                                title="PAN format: ABCDE1234F" maxlength="10" formControlName="panCardNo">
+                                title="PAN format: ABCDE1234F" formControlName="panCardNo">
                             <div class="text-danger"
                                 *ngIf="personalInfoForm.controls['panCardNo'].touched || personalInfoForm.controls['panCardNo'].dirty">
                                 <span *ngIf="personalInfoForm.controls['panCardNo'].errors?.['required']">This is
                                     Required</span>
-                                <!-- <span *ngIf="personalInfoForm.controls['panCardNo'].errors?.['pattern']">Pan Card Not
-                                Valid</span> -->
+                                <span *ngIf="personalInfoForm.controls['panCardNo'].errors?.['pattern']">Pan Card Not
+                                Valid</span>
                             </div>
                         </div>
                     </div>
@@ -626,7 +626,7 @@
                     <div class="col-md-4 pt-3">
                         <div class="form-group">
                             <label>Bank A/c No:</label>
-                            <input type="number" class="form-control" formControlName="bankAccountNo">
+                            <input type="text" class="form-control" formControlName="bankAccountNo">
                             <div class="text-danger"
                                 *ngIf="personalInfoForm.controls['bankAccountNo'].touched || personalInfoForm.controls['bankAccountNo'].dirty">
                                 <span *ngIf="personalInfoForm.controls['bankAccountNo'].errors?.['required']">This is
@@ -1279,6 +1279,16 @@
                         </div>
                     </div>
                     <div class="col-md-4">
+                        <label>Other Allowance:</label>
+                        <input type="number" class="form-control" placeholder="Enter other Allowance"
+                            formControlName="otherAllowance">
+                        <div class="text-danger"
+                            *ngIf="salaryPayrollForm.controls['otherAllowance'].touched || salaryPayrollForm.controls['otherAllowance'].dirty">
+                            <span *ngIf="salaryPayrollForm.controls['otherAllowance'].errors?.['required']">This
+                                is Required</span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
                         <label>Attendance Incentive:</label>
                         <input type="text" class="form-control" placeholder="Enter Incentive"
                             formControlName="attendanceIncentive">
@@ -1375,10 +1385,10 @@
                     </div>
                     <div class="col-md-4">
                         <label>CTC Exgratia:</label>
-                        <input type="number" class="form-control" formControlName="fixedCtc">
+                        <input type="number" class="form-control" formControlName="exgratia">
                         <div class="text-danger"
-                            *ngIf="salaryPayrollForm.controls['fixedCtc'].touched || salaryPayrollForm.controls['fixedCtc'].dirty">
-                            <span *ngIf="salaryPayrollForm.controls['fixedCtc'].errors?.['required']">This is
+                            *ngIf="salaryPayrollForm.controls['exgratia'].touched || salaryPayrollForm.controls['exgratia'].dirty">
+                            <span *ngIf="salaryPayrollForm.controls['exgratia'].errors?.['required']">This is
                                 Required</span>
                         </div>
                     </div>
