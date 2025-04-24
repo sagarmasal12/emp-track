@@ -347,11 +347,11 @@ export class EditEmpComponent {
 
   createExperience(): FormGroup {
     return this.fb.group({
-      employerName: ['11', Validators.required],
-      postHeld: ['11', Validators.required],
-      fromDate: ['11', Validators.required],
-      toDate: ['11', Validators.required],
-      reasonForLeaving: ['11', Validators.required]
+      employerName: ['', Validators.required],
+      postHeld: ['', Validators.required],
+      fromDate: ['', Validators.required],
+      toDate: ['', Validators.required],
+      reasonForLeaving: ['', Validators.required]
     });
   }
 

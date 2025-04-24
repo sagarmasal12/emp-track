@@ -74,7 +74,7 @@ Loading
                         <div class="form-group">
                             <label class="required">Post Applied For</label>
                             <select class="form-select" formControlName="postAppliedFor" required>
-                                <option disabled selected>Select</option>
+                                <option disabled>Select</option>
                                 @if (masterData) {
                                 @for(master of masterData['postAppliedFor']; track $index) {
                                 <option [value]="master.masterId">{{master.masterName}}</option>
@@ -148,7 +148,7 @@ Loading
                         <div class="form-group">
                             <label>Sub Dept.</label>
                             <select class="form-select" formControlName="subDepartment">
-                                <option selected>Select</option>
+                                <option disabled>Select</option>
                                 @if (masterData) {
                                 @for(master of masterData['subDepartment']; track $index) {
                                 <option [value]="master.masterId">{{master.masterName}}</option>
@@ -167,7 +167,7 @@ Loading
                         <div class="form-group">
                             <label>Division</label>
                             <select class="form-select" formControlName="division">
-                                <option selected>SESS</option>
+                                <option disabled>select</option>
                                 @if (masterData) {
                                 @for(master of masterData['division']; track $index) {
                                 <option [value]="master.masterId">{{master.masterName}}</option>
@@ -203,7 +203,7 @@ Loading
                         <div class="form-group">
                             <label>Cadre</label>
                             <select class="form-select" formControlName="cadre">
-                                <option selected>SELE</option>
+                                <option  disabled>select</option>
                                 @if (masterData) {
                                 @for(master of masterData['cadre']; track $index) {
                                 <option [value]="master.masterId">{{master.masterName}}</option>
@@ -221,7 +221,7 @@ Loading
                         <div class="form-group">
                             <label>Company</label>
                             <select class="form-select" formControlName="company">
-                                <option selected>Select</option>
+                                <option  disabled>Select</option>
                                 @for(master of companyList; track $index) {
                                 <option [value]="master.companyId">{{master.companyName}}</option>
                                 }
@@ -251,7 +251,7 @@ Loading
                         <div class="form-group">
                             <label>Cost Center</label>
                             <select class="form-select" formControlName="costCentre">
-                                <option selected disabled>select</option>
+                                <option  disabled>select</option>
                                 @if (masterData) {
                                 @for(master of masterData['costCentre']; track $index) {
                                 <option [value]="master.masterId">{{master.masterName}}</option>
@@ -269,7 +269,7 @@ Loading
                         <div class="form-group">
                             <label>RL Band</label>
                             <select class="form-select" formcontrolName="rlBand">
-                                <option selected disabled>Select</option>
+                                <option  disabled>Select</option>
                                 @if (masterData) {
                                 @for(master of masterData['rlBand']; track $index) {
                                 <option [value]="master.masterId">{{master.masterName}}</option>
@@ -480,7 +480,7 @@ Loading
                         <div class="form-group">
                             <label>Shift Option</label>
                             <select class="form-select" formControlName="shiftOption">
-                                <option disabled selected>Select
+                                <option disabled>Select
                                 </option>
                                 @if (masterData) {
                                 @for(master of masterData['shiftOption']; track $index) {
@@ -512,7 +512,7 @@ Loading
                         <div class="form-group">
                             <label>Transfer From</label>
                             <select class="form-select" formControlName="transferFrom">
-                                <option selected>select</option>
+                                <option disabled>select</option>
                                 @if (masterData) {
                                 @for(master of masterData['transferFrom']; track $index) {
                                 <option [value]="master.masterId">{{master.masterName}}</option>
@@ -531,7 +531,7 @@ Loading
                         <div class="form-group">
                             <label>Transfer To </label>
                             <select class="form-select" formControlName="transferTo">
-                                <option selected>select</option>
+                                <option disabled>select</option>
                                 @if (masterData) {
                                 @for(master of masterData['transferTo']; track $index) {
                                 <option [value]="master.masterId">{{master.masterName}}</option>

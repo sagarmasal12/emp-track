@@ -85,7 +85,7 @@
                         <div class="form-group">
                             <label class="required">Post Applied For</label>
                             <select class="form-select" formControlName="postAppliedFor" required>
-                                <option  disabled selected>Select</option>
+                                <option  disabled >Select</option>
                                 @if (masterData) {
                                 @for(master of masterData['postAppliedFor']; track $index) {
                                 <option [value]="master.masterId">{{master.masterName}}</option>
@@ -159,7 +159,7 @@
                         <div class="form-group">
                             <label>Sub Dept.</label>
                             <select class="form-select" formControlName="subDepartment">
-                                <option selected>Select</option>
+                                <option disabled>Select</option>
                                 @if (masterData) {
                                 @for(master of masterData['subDepartment']; track $index) {
                                 <option [value]="master.masterId">{{master.masterName}}</option>
@@ -214,7 +214,7 @@
                         <div class="form-group">
                             <label>Cadre</label>
                             <select class="form-select" formControlName="cadre">
-                                <option selected>SELE</option>
+                                <option disabled>select</option>
                                 @if (masterData) {
                                 @for(master of masterData['cadre']; track $index) {
                                 <option [value]="master.masterId">{{master.masterName}}</option>
@@ -232,7 +232,7 @@
                         <div class="form-group">
                             <label>Company</label>
                             <select class="form-select" formControlName="company">
-                                <option selected>Select</option>
+                                <option disabled>Select</option>
                                 @for(master of companyList; track $index) {
                                 <option [value]="master.companyId">{{master.companyName}}</option>
                                 }
@@ -262,7 +262,7 @@
                         <div class="form-group">
                             <label>Cost Center</label>
                             <select class="form-select" formControlName="costCentre">
-                                <option selected disabled>select</option>
+                                <option  disabled>select</option>
                                 @if (masterData) {
                                 @for(master of masterData['costCentre']; track $index) {
                                 <option [value]="master.masterId">{{master.masterName}}</option>
@@ -363,7 +363,7 @@
                             <label class="me-2">Gender</label><br>
                             <input type="radio" id="Female" name="gender" formControlName="gender" value="Female">
                             <label for="female" class="me-1">Female</label>
-                            <input type="radio" id="male" name="gender" value="Male">
+                            <input type="radio" id="male" name="gender" formControlName="gender" value="Male">
                             <label for="male" class="me-1">Male</label>
                             <div class="text-danger"
                                 *ngIf="personalInfoForm.controls['gender'].touched || personalInfoForm.controls['gender'].dirty">
@@ -481,7 +481,7 @@
                             <input type="radio" id="Fixed" name="shiftType" value="Fixed" formControlName="shiftType">
                             <label for="Fixed" class="me-1">Fixed</label>
 
-                            <input type="radio" id="Rotational" name="shiftType" value="Rotational">
+                            <input type="radio" id="Rotational" name="shiftType" formControlName="shiftType" value="Rotational">
                             <label for="Rotational" class="me-1">Rotational</label>
                         </div>
                     </div>
@@ -490,7 +490,7 @@
                         <div class="form-group">
                             <label>Shift Option</label>
                             <select class="form-select" formControlName="shiftOption">
-                                <option  disabled selected>Select
+                                <option  disabled>Select
                                 </option>
                                 @if (masterData) {
                                 @for(master of masterData['shiftOption']; track $index) {
@@ -522,7 +522,7 @@
                         <div class="form-group">
                             <label>Transfer From</label>
                             <select class="form-select" formControlName="transferFrom">
-                                <option selected>select</option>
+                                <option disabled>select</option>
                                 @if (masterData) {
                                 @for(master of masterData['transferFrom']; track $index) {
                                 <option [value]="master.masterId">{{master.masterName}}</option>
@@ -541,7 +541,7 @@
                         <div class="form-group">
                             <label>Transfer To </label>
                             <select class="form-select" formControlName="transferTo">
-                                <option selected>select</option>
+                                <option disabled>select</option>
                                 @if (masterData) {
                                 @for(master of masterData['transferTo']; track $index) {
                                 <option [value]="master.masterId">{{master.masterName}}</option>
@@ -681,10 +681,10 @@
         </div>
 
         <div *ngIf="step === 2" formGroupName="contactFamily" class="main-card-wrap1">
-            <h4 class="pt-3 m-0"> Contact & Family</h4>
+            <!-- <h4 class="pt-3 m-0"> Contact & Family</h4> -->
             <div class="row pt-3">
                 <div class="col-md-12">
-                    <div class="card-header pt-3">Address</div>
+                    <div class="card-header pt-3">Address and Family Members</div>
                 </div>
                 <div class="col-md-12">
                     <div class="row">
@@ -720,7 +720,7 @@
                             <div class="form-group mb-2">
                                 <label class="required">State</label>
                                 <select class="form-select" formControlName="state" required>
-                                    <option  disabled selected>Select</option>
+                                    <option  disabled >Select</option>
                                     @if (masterData) {
                                     @for(master of masterData['state']; track $index) {
                                     <option [value]="master.masterId">{{master.masterName}}</option>
@@ -737,7 +737,7 @@
                             <div class="form-group mb-2">
                                 <label class="required">district</label>
                                 <select class="form-select" formControlName="district" required>
-                                    <option  disabled selected>Select</option>
+                                    <option  disabled >Select</option>
                                     @if (masterData) {
                                     @for(master of onStateChange(); track $index) {
                                     <option [value]="master.masterId">{{master.masterName}}</option>
@@ -969,7 +969,7 @@
         </div>
 
         <div *ngIf="step === 4" formGroupName="additionalInfo" class="main-card-wrap1">
-            <h4 class="pt-3 m-0">Additional Information</h4>
+            <!-- <h4 class="pt-3 m-0">Additional Information</h4> -->
             <div class="row pt-3">
                 <div class="col-12">
                     <div class="col-md-12">
@@ -1193,7 +1193,7 @@
         </div>
 
         <div *ngIf="step === 5" formGroupName="salaryPayroll" class="main-card-wrap1">
-            <h4 class="pt-3 m-0">Salary & Payroll</h4>
+            <!-- <h4 class="pt-3 m-0">Salary & Payroll</h4> -->
 
             <div class="card-header my-3">Salary & Payroll Details</div>
             <div class="card-body">
@@ -1497,7 +1497,6 @@
                     </div>
                   
                 </div>
-
 
             </div>
         </div>
