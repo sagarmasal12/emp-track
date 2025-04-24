@@ -124,7 +124,7 @@ export class EmployeeComponent implements OnInit {
         joiningReportAttached: [false],
         nominationFormAttached: [false],
         proofOfAge: [false],
-        proofName: ['',Validators.required],
+        proofName: ['abc',Validators.required],
       }),
       salaryPayroll: this.fb.group({
         transportFacility: [false],
@@ -152,7 +152,7 @@ export class EmployeeComponent implements OnInit {
         wageCalculationType: ['',Validators.required],
         paymentType: ['',Validators.required],
         overtimeEnabled:[false],    
-        ctc: [''],
+        ctc: ['',Validators.required],
         nightRate:['',Validators.required],
         otRate:['',Validators.required],
         foodingEnabled:[false],
@@ -169,10 +169,10 @@ export class EmployeeComponent implements OnInit {
         pfSharePercent:['',Validators.required],
         gratuityNominee:['',Validators.required],
         gratuitySharePercent:['',Validators.required],
-        childrenPension:['',Validators.required],
-        widowPension:['',Validators.required],
-        perticularOfFamily:['',Validators.required],
-        esiNomineeForPayment:['',Validators.required],
+        childrenPension:['abc',Validators.required],
+        widowPension:['abc',Validators.required],
+        perticularOfFamily:['abc',Validators.required],
+        esiNomineeForPayment:['abc',Validators.required],
         familyMemberResidingInsuredPerson:['',Validators.required],
       })
     
