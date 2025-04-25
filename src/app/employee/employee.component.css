@@ -38,10 +38,10 @@ body {
 }
 
 /* Form Styles */
-.form-control {
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
+/*.form-control {*/
+/*    border-radius: 5px;*/
+/*    border: 1px solid #ccc;*/
+/*}*/
 
 /* Radio & Checkbox Styles */
 .form-check-label {
@@ -78,9 +78,15 @@ body {
     line-height: 20px;
 }
 
+.text-danger {
+    min-height: 1.25rem !important;
+}
+.form-control-sm {
+    padding: .10rem .5rem !important;
+}
 /* Responsive Styles */
 @media (max-width: 768px) {
     .card {
-        margin-bottom: 15px;
+        margin-bottom: 15px;
     }
 }

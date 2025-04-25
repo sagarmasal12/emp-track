@@ -1,50 +1,39 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-12">
-      <header>
-        <div class="px-3 py-2 text-bg-dark border-bottom">
-          <div class="container-fluid">
-            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-              <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom shadow-sm">
+  <div class="container-fluid">
+    <!-- Logo and Title -->
+    <a class="navbar-brand d-flex align-items-center" routerLink="/">
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+        class="bi bi-person-plus-fill me-2" viewBox="0 0 16 16">
+        <path
+          d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1Zm5-6a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" />
+        <path fill-rule="evenodd"
+          d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5Z" />
+      </svg>
+      <span class="fs-5 fw-semibold">Employee Management System</span>
+    </a>
 
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
-                  class="bi bi-person-plus" viewBox="0 0 16 16">
-                  <path
-                    d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z" />
-                  <path fill-rule="evenodd"
-                    d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5" />
-                </svg>
-                <span class="ps-3">Employee Management System</span>
-              </a>
+    <!-- Toggle button for mobile -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+      aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-              <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
-                <li>
-                  <a href="#" class="nav-link text-white" routerLink="employee/0">
-                    <!-- <a class="nav-link" routerLink="employee/0"><b>New Employee </b></a> -->
-                    <svg class="bi d-block mx-auto mb-1" width="24" height="24" aria-hidden="true">
-                      <use xlink:href="#home" />
-                    </svg>
-                    New Employee
-                  </a>
-                </li>
-                <li>
-
-                  <a href="#" class="nav-link text-white" routerLink="newlist">
-                    <svg class="bi d-block mx-auto mb-1" width="24" height="24" aria-hidden="true">
-                      <use xlink:href="#speedometer2" />
-                    </svg>
-                    List
-                  </a>
-                </li>
-
-              </ul>
-            </div>
-          </div>
-        </div>
-
-      </header>
+    <!-- Navbar links -->
+    <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
+      <ul class="navbar-nav mb-2 mb-lg-0 gap-2">
+        <li class="nav-item">
+          <a class="nav-link text-white" routerLink="/dashboard/employee/0" routerLinkActive="active">
+            <i class="bi bi-person-plus me-1"></i> New Employee
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" routerLink="/dashboard/newlist" routerLinkActive="active">
+            <i class="bi bi-card-list me-1"></i> List
+          </a>
+        </li>
+      </ul>
     </div>
   </div>
-</div>
+</nav>
 
 <router-outlet></router-outlet>
