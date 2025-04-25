@@ -28,13 +28,7 @@ export class EmployeeComponent implements OnInit {
   editId:number = 0;
   
   constructor(private fb: FormBuilder,private activateRoute: ActivatedRoute) {
-    this.activateRoute.params.subscribe((res:any)=>{
-      this.editId  = res.id;
-      if(this.editId !=0) {
-        this.getEmpBYId();
-      }
-     
-    })
+    
     this.employeeForm = this.fb.nonNullable.group({
       personalInfo: this.fb.group({
         payCode: ['', Validators.required],

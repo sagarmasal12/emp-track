@@ -20,7 +20,7 @@ export const routes: Routes = [
     component:LayoutComponent,
     children:[
       {
-        path:"employee/:id",
+        path:"employee",
         component:EmployeeComponent
       },
       {
