@@ -178,7 +178,7 @@ export class EditEmpComponent {
           salaryBonus: [EmpData.salaryBonus,Validators.required],
           exgratia: [EmpData.exgratia,Validators.required],
           subTotalCtc: [EmpData.subTotalCtc,Validators.required],
-          ctc: [''],
+          ctc: [0],
           employerLiability: [EmpData.employerLiability],
           employeeType: [EmpData.employeeType,Validators.required],
           wageCalculationType: [EmpData.wageCalculationType,Validators.required],

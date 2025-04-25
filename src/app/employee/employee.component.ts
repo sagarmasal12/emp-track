@@ -152,7 +152,7 @@ export class EmployeeComponent implements OnInit {
         wageCalculationType: ['',Validators.required],
         paymentType: ['',Validators.required],
         overtimeEnabled:[false],    
-        ctc: ['',Validators.required],
+        ctc: [0],
         nightRate:['',Validators.required],
         otRate:['',Validators.required],
         foodingEnabled:[false],

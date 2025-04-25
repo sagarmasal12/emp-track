@@ -482,6 +482,11 @@
 
                             <input type="radio" id="Rotational" name="shiftType" formControlName="shiftType" value="Rotational">
                             <label for="Rotational" class="me-1">Rotational</label>
+                            <div class="text-danger"
+                                *ngIf="personalInfoForm.controls['shiftType'].touched || personalInfoForm.controls['shiftType'].dirty">
+                                <span *ngIf="personalInfoForm.controls['shiftType'].errors?.['required']">This is
+                                    Required</span>
+                            </div>
                         </div>
                     </div>
 
