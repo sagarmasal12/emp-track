@@ -16,7 +16,9 @@
         <div class="col-md-3">
           <div class="form-group">
             <label class="form-label required">Aadhar No. (12 digits)</label>
-            <input type="text" [ngClass]="(personalInfoForm.controls['aadharNo'].touched || personalInfoForm.controls['aadharNo'].dirty) && (personalInfoForm.controls['aadharNo'].errors) ? 'border-danger':''" class="form-control form-control-sm rounded-1" formControlName="aadharNo" maxlength="12"
+            <input type="text"
+              [ngClass]="(personalInfoForm.controls['aadharNo'].touched || personalInfoForm.controls['aadharNo'].dirty) && (personalInfoForm.controls['aadharNo'].errors) ? 'border-danger':''"
+              class="form-control form-control-sm rounded-1" formControlName="aadharNo" maxlength="12"
               placeholder="Enter Your Aadhar Number"
               title="Please enter a valid 12-digit Aadhar number. It should start with a digit between 2 and 9.">
             <div class="text-danger"
@@ -79,9 +81,9 @@
             <select class="form-select form-select-sm rounded-1" formControlName="postAppliedFor" required>
               <option disabled>Select</option>
               @if (masterData) {
-                @for (master of masterData['postAppliedFor']; track $index) {
-                <option [value]="master.masterId">{{ master.masterName }}</option>
-                }
+              @for (master of masterData['postAppliedFor']; track $index) {
+              <option [value]="master.masterId">{{ master.masterName }}</option>
+              }
               }
             </select>
             <div class="text-danger"
@@ -672,9 +674,9 @@
 
     <div *ngIf="step === 2" formGroupName="contactFamily" class="main-card-wrap1">
       <!-- <h4 class="pt-3 m-0"> Contact & Family</h4> -->
-      <div class="row pt-3">
+      <div class="row">
         <div class="col-md-12">
-          <div class="card-header pt-3">Address and Family Members</div>
+          <div class="card-header py-1">Address and Family Members</div>
         </div>
       </div>
       <div class="row">
@@ -683,7 +685,7 @@
             <label class="form-label">Present Address</label>
             <textarea class="form-control form-control-sm rounded-1" placeholder="Enter Present Address"
               formControlName="presentAddress"></textarea>
-    
+
             <div class="text-danger"
               *ngIf="contactFamilyForm.controls['presentAddress'].touched || contactFamilyForm.controls['presentAddress'].dirty">
               <span *ngIf="contactFamilyForm.controls['presentAddress'].errors?.['required']">This
@@ -704,7 +706,7 @@
           </div>
         </div>
       </div>
-    
+
       <div class="row">
         <div class="col-3">
           <div class="form-group mb-2">
@@ -735,8 +737,8 @@
               }
               }
             </select>
-    
-    
+
+
           </div>
         </div>
         <div class="col-3">
@@ -802,11 +804,11 @@
           <!-- <form action=""> -->
           <div class="row pt-3">
             <div class="col-12">
-              <div class="col-md-12">
+              <!-- <div class="col-md-12">
                 <div class="card-header pt-3">Family Members
                 </div>
-              </div>
-    
+              </div> -->
+
               <div class="table-responsive" [formGroup]="employeeForm" formArrayName="employeeFamilyMembers">
                 <table class="table table-bordered">
                   <thead>
@@ -828,7 +830,7 @@
                       <td>
                         <input type="text" class="form-control form-control-sm rounded-1" formControlName="yearOfBirth"
                           placeholder="Enter Year Of Birth">
-    
+
                       </td>
                       <td>
                         <input type="text" class="form-control form-control-sm rounded-1" formControlName="relation">
@@ -838,12 +840,12 @@
                         </button>
                       </td>
                     </tr>
-    
-    
+
+
                   </tbody>
                 </table>
                 <!-- <button class="btn btn-primary mt-3" (click)="addFamilyMember()">Add Family Member</button> -->
-    
+
                 <div class="d-flex justify-content-between mt-3">
                   <button class="btn btn-primary" (click)="addFamilyMember()">Add Family
                     Member
@@ -852,16 +854,16 @@
               </div>
             </div>
           </div>
-    
-    
+
+
           <!-- </form> -->
         </div>
       </div>
-    </div> 
+    </div>
     <div *ngIf="step === 3" formGroupName="qualificationExpe" class="main-card-wrap1">
-      <h4 class="pt-3 m-0">Qualification & Experience</h4>
-      <div class="row">
-        <div class="col-md-4">
+      <h4 class="card-header m-0">Qualification & Experience</h4>
+      <div class="row pt-3">
+        <div class="col-md-3">
           <div class="form-group">
             <label class="form-label">Qualification</label>
             <input type="text" class="form-control form-control-sm rounded-1" formControlName="qualification">
@@ -872,7 +874,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
           <div class="form-group">
             <label class="form-label">Technical Qualification</label>
             <input type="text" class="form-control form-control-sm rounded-1" formControlName="technicalQualification">
@@ -883,7 +885,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
           <div class="form-group">
             <label class="form-label">Languages Known</label>
             <input type="text" class="form-control form-control-sm rounded-1" formControlName="languagesKnown">
@@ -894,23 +896,26 @@
             </div>
           </div>
         </div>
+        <div class="col-md-3">
+          <label class="form-label">Total Experience</label>
+          <input type="number" class="form-control form-control-sm rounded-1" formControlName="totalExperienceYears"
+            placeholder="Enter Total Experience">
+          <div class="text-danger"
+            *ngIf="qualificationExpeForm.controls['totalExperienceYears'].touched || qualificationExpeForm.controls['totalExperienceYears'].dirty">
+            <span *ngIf="qualificationExpeForm.controls['totalExperienceYears'].errors?.['required']">This
+              is Required</span>
+          </div>
+        </div>
 
       </div>
       <div class="row pt-3">
         <div class="col-12">
-          <div class="col-md-12">
+          <!-- <div class="col-md-12">
             <div class="card-header pt-3">Experience Details</div>
-          </div>
+          </div> -->
 
           <div>
-            <label class="form-label">Total Experience</label>
-            <input type="number" class="form-control form-control-sm rounded-1" formControlName="totalExperienceYears"
-              placeholder="Enter Total Experience">
-            <div class="text-danger"
-              *ngIf="qualificationExpeForm.controls['totalExperienceYears'].touched || qualificationExpeForm.controls['totalExperienceYears'].dirty">
-              <span *ngIf="qualificationExpeForm.controls['totalExperienceYears'].errors?.['required']">This
-                is Required</span>
-            </div>
+
 
 
             <div class="table-responsive">
@@ -959,16 +964,16 @@
 
     <div *ngIf="step === 4" formGroupName="additionalInfo" class="main-card-wrap1">
       <!-- <h4 class="pt-3 m-0">Additional Information</h4> -->
-      <div class="row pt-3">
+      <div class="row pt-1">
         <div class="col-12">
           <div class="col-md-12">
-            <div class="card-header pt-3">Additional Information
+            <div class="card-header">Additional Information
             </div>
           </div>
 
           <!-- Relative Information -->
           <div class="row pt-3">
-            <div class="col-md-4">
+            <div class="col-md-3">
               <div class="form-group">
                 <label class="form-label">Do you have any relative working in
                   the company/unit?</label>
@@ -1002,7 +1007,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
               <div class="form-group mb-1">
                 <label class="form-label">Date:</label>
                 <input type="date" class="form-control form-control-sm rounded-1" formControlName="entryDate">
@@ -1015,9 +1020,9 @@
             </div>
           </div>
 
-          <div class="row pt-3">
-            
-            
+          <div class="row pt-2">
+
+
             <div class="col-md-3">
               <div class="form-group mb-1">
                 <label class="form-label">Interview Date:</label>
@@ -1068,7 +1073,7 @@
         </div>
 
         <!-- Date and Interview Information -->
-        <div class="row">
+        <div class="row pt-2">
 
           <div class="col-md-3">
             <div class="form-group mb-1">
@@ -1136,6 +1141,11 @@
               <label class="form-check-label" for="photo">Photo</label>
             </div>
           </div>
+
+
+        </div>
+
+        <div class="col-md-3">
           <div class="form-group mb-1">
             <div class="form-check">
               <input class="form-check-input" type="checkbox" formControlName="applicationAttached" id="Application">
@@ -1143,23 +1153,7 @@
                 Employment</label>
             </div>
           </div>
-          <div class="form-group mb-1">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" formControlName="certificatesAttached" id="certificates">
-              <label class="form-check-label" for="certificates">Certificates/Testimonials</label>
-            </div>
-          </div>
-         
-        </div>
 
-        <div class="col-md-3">
-          <div class="form-group mb-1">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" formControlName="joiningReportAttached"
-                id="joiningReport">
-              <label class="form-check-label" for="joiningReport">Joining Report</label>
-            </div>
-          </div>
           <div class="form-group mb-1">
             <div class="form-check">
               <input class="form-check-input" type="checkbox" formControlName="nominationFormAttached"
@@ -1167,6 +1161,10 @@
               <label class="form-check-label" for="nominationForm">Nomination Form</label>
             </div>
           </div>
+
+
+        </div>
+        <div class="col-md-3">
           <div class="form-group mb-1">
             <div class="form-check">
               <input class="form-check-input" type="checkbox" formControlName="proofOfAge" id="proofOfAge">
@@ -1180,9 +1178,23 @@
                 Employment</label>
             </div>
           </div>
-         
         </div>
-        
+        <div class="col-md-3">
+          <div class="form-group mb-1">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" formControlName="certificatesAttached" id="certificates">
+              <label class="form-check-label" for="certificates">Certificates/Testimonials</label>
+            </div>
+          </div>
+          <div class="form-group mb-1">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" formControlName="joiningReportAttached"
+                id="joiningReport">
+              <label class="form-check-label" for="joiningReport">Joining Report</label>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -1191,8 +1203,8 @@
 
       <div class="card-header my-3">Salary & Payroll Details</div>
       <div class="card-body">
-        <div class="row">
-          <div class="col-md-4">
+        <div class="row pt-1">
+          <div class="col-md-3">
             <div class="d-flex">
               <label class="ms-2">Transport Facility(Y/N):</label>
               <input type="checkbox" name="transportFacility" formControlName="transportFacility">
@@ -1201,7 +1213,7 @@
             <input type="radio" formControlName="transportFacility" value="false"> <label for="No"> No</label> -->
           </div>
 
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label class="form-label">Route No:</label>
             <input type="text" class="form-control form-control-sm rounded-1" formControlName="routeNo">
             <div class="text-danger"
@@ -1211,7 +1223,7 @@
             </div>
           </div>
 
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label class="form-label">Actual CTC:</label>
             <input type="number" class="form-control form-control-sm rounded-1" formControlName="actualCtc">
             <div class="text-danger"
@@ -1221,7 +1233,7 @@
             </div>
           </div>
 
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label class="form-label">Basic Salary:</label>
             <input type="number" class="form-control form-control-sm rounded-1" placeholder="Enter Basic Salary"
               formControlName="basicSalary">
@@ -1231,7 +1243,7 @@
                 Required</span>
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label class="form-label">HRA:</label>
             <input type="number" class="form-control form-control-sm rounded-1" placeholder="Enter HRA Amount"
               formControlName="hra">
@@ -1242,7 +1254,7 @@
             </div>
           </div>
 
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label class="form-label">CONV:</label>
             <input type="number" class="form-control form-control-sm rounded-1" formControlName="conveyanceAllowance">
             <div class="text-danger"
@@ -1263,7 +1275,7 @@
                   </div>
               </div> -->
 
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label class="form-label">Medical Allowance:</label>
             <input type="number" class="form-control form-control-sm rounded-1" placeholder="Enter Medical Allowance"
               formControlName="medicalAllowance">
@@ -1273,7 +1285,7 @@
                 is Required</span>
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label class="form-label">Other Allowance:</label>
             <input type="number" class="form-control form-control-sm rounded-1" placeholder="Enter other Allowance"
               formControlName="otherAllowance">
@@ -1283,7 +1295,7 @@
                 is Required</span>
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label class="form-label">Attendance Incentive:</label>
             <input type="number" class="form-control form-control-sm rounded-1" placeholder="Enter Incentive"
               formControlName="attendanceIncentive">
@@ -1294,7 +1306,7 @@
             </div>
           </div>
 
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label class="form-label">Gross Salary:</label>
             <input type="number" class="form-control form-control-sm rounded-1" placeholder="Enter Gross Salary"
               formControlName="grossSalary">
@@ -1305,7 +1317,7 @@
             </div>
           </div>
 
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label class="form-label">PF Empe:</label>
             <input type="number" class="form-control form-control-sm rounded-1" formControlName="pfEmployee">
             <div class="text-danger"
@@ -1314,7 +1326,7 @@
                 Required</span>
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label class="form-label">ESI Empe:</label>
             <input type="number" class="form-control form-control-sm rounded-1" formControlName="esiEmployee">
             <div class="text-danger"
@@ -1323,7 +1335,7 @@
                 Required</span>
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label class="form-label">LWF Empe:</label>
             <input type="number" class="form-control form-control-sm rounded-1" placeholder="Enter Incentive"
               formControlName="lwfEmployee">
@@ -1333,7 +1345,7 @@
                 Required</span>
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label class="form-label">Total Deduction:</label>
             <input type="number" class="form-control form-control-sm rounded-1" formControlName="totalDeduction">
             <div class="text-danger"
@@ -1342,7 +1354,7 @@
                 Required</span>
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label class="form-label">PF Empr:</label>
             <input type="number" class="form-control form-control-sm rounded-1" formControlName="pfEmployer">
             <div class="text-danger"
@@ -1351,7 +1363,7 @@
                 Required</span>
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label class="form-label">ESI Empr:</label>
             <input type="number" class="form-control form-control-sm rounded-1" formControlName="esiEmployer">
             <div class="text-danger"
@@ -1360,7 +1372,7 @@
                 Required</span>
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label class="form-label">LWF Empr:</label>
             <input type="number" class="form-control form-control-sm rounded-1" formControlName="lwfEmployer">
             <div class="text-danger"
@@ -1369,7 +1381,7 @@
                 Required</span>
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label class="form-label">Bonus:</label>
             <input type="number" class="form-control form-control-sm rounded-1" formControlName="salaryBonus">
             <div class="text-danger"
@@ -1378,7 +1390,7 @@
                 Required</span>
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label class="form-label">CTC Exgratia:</label>
             <input type="number" class="form-control form-control-sm rounded-1" formControlName="exgratia">
             <div class="text-danger"
@@ -1387,7 +1399,7 @@
                 Required</span>
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label class="form-label">Sub Total:</label>
             <input type="number" class="form-control form-control-sm rounded-1" formControlName="subTotalCtc">
             <div class="text-danger"
@@ -1397,17 +1409,17 @@
             </div>
           </div>
 
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label for="Empr PF">Empr PF:</label>
             <input type="number" class="form-control form-control-sm rounded-1">
 
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label for="Empr ESI">Empr ESI:</label>
             <input type="number" class="form-control form-control-sm rounded-1">
 
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label for="Fixed CTC">Fixed CTC:</label>
             <input type="number" class="form-control form-control-sm rounded-1" formControlName="fixedCtc">
             <div class="text-danger"
@@ -1417,7 +1429,7 @@
             </div>
           </div>
 
-          <div class="col-md-4">
+          <div class="col-md-3">
             <div class="form-group">
               <label class="me-1">Night Rate:</label>
               <input type="number" class="form-control form-control-sm rounded-1" formControlName="nightRate">
@@ -1429,7 +1441,7 @@
             </div>
 
           </div>
-          <div class="form-group col-md-4">
+          <div class="form-group col-md-3">
             <label class="me-1">OT Rate:</label>
             <input type="number" class="form-control form-control-sm rounded-1" formControlName="otRate">
             <div class="text-danger"
@@ -1438,7 +1450,7 @@
                 is Required</span>
             </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <label class="form-label">Remarks:</label>
             <input type="text" class="form-control form-control-sm rounded-1" placeholder="Enter Remarks"
               formControlName="remarks">
@@ -1466,7 +1478,7 @@
             </div>
 
             <div class="form-group mb-2 d-flex col-md-3">
-              <label for="Wages Calculation" class="me-2">Wages Calculation:</label><br>
+              <label for="Wages Calculation">Wages Calculation:</label><br>
               <input type="radio" formControlName="wageCalculationType" value="monthly"> <label for="Fixed"
                 class="me-1">Monthly</label>
               <input type="radio" formControlName="wageCalculationType" value="daily">
@@ -1476,31 +1488,32 @@
             <div class="form-group mb-2 d-flex col-md-3">
               <label for="Payment Type">Payment Type:</label><br>
               <input type="radio" formControlName="paymentType" value="bank"> <label for="Bank"
-                class="me-1">Bank</label>
+                class="me-1"> Bank</label>
               <input type="radio" formControlName="paymentType" value="cheque"> <label for="Cheque"
                 class="me-1">Cheque</label>
               <input type="radio" formControlName="paymentType" value="neft"> <label for="NEFT"
                 class="me-1">NEFT</label>
             </div>
 
-            <div class="form-group mb-2 d-flex col-md-3">
+            <div class="form-group mb-2 d-flex col-md-2">
               <label for="Overtime" class="me-2">Overtime:</label><br>
               <input type="checkbox" formControlName="overtimeEnabled"> <label for="Enable">Enable</label>
             </div>
+            <!-- <div class="col-md-2"> -->
+              <div class="form-group mb-2 d-flex col-md-3">
+                <label for="Fooding">Fooding: </label> <br>
+                <!-- <div class="d-flex"> -->
+                  <!-- <div class="dis-dev"> -->
+                    <input type="checkbox" formControlName="foodingEnabled"> <label for="Enable">Enable</label>
+                  <!-- </div> -->
+                <!-- </div> -->
+              </div>
+            <!-- </div> -->
           </div>
         </div>
         <div class="row">
 
-          <div class="col-md-3">
-            <div class="form-group mb-2 ">
-              <label for="Fooding">Fooding:</label>
-              <div class="d-flex">
-                <div class="dis-dev">
-                  <input type="checkbox" formControlName="foodingEnabled">
-                </div>
-              </div>
-            </div>
-          </div>
+          
 
         </div>
 
@@ -1508,129 +1521,124 @@
     </div>
 
     <div *ngIf="step === 6" formGroupName="statutory" class="main-card-wrap1">
-      <h4 class="pt-3 m-0">Statutory Details</h4>
-      <div class="col-12">
-        <!-- <div class="form"> -->
 
-        <div class="card-header my-3">STATUTORY</div>
-        <div class="card-body">
-          <div class="row">
-            <!-- ESI Section -->
+      <div class="card-header my-3">Statutory Details</div>
+      <div class="card-body">
+        <div class="row">
+          <!-- ESI Section -->
 
 
-            <div class="col-12">
-              <h6><strong>FORM 1 - ESI *</strong></h6>
-              <div class="row">
-                <div class="col-md-6">
-                  <label class="form-label">ESI Insurance No.</label>
-                  <input type="text" class="form-control mb-2" id="esiInsuranceNo" placeholder="Enter ESI Insurance No."
-                    formControlName="esiInsuranceNo">
-                  <div class="text-danger"
-                    *ngIf="statutoryForm.controls['esiInsuranceNo'].touched || statutoryForm.controls['esiInsuranceNo'].dirty">
-                    <span *ngIf="statutoryForm.controls['esiInsuranceNo'].errors?.['required']">This
-                      is Required</span>
-                  </div>
+          <div class="col-12">
+            <h6><strong>FORM 1 - ESI *</strong></h6>
+            <div class="row">
+              <div class="col-md-3">
+                <label class="form-label">ESI Insurance No.</label>
+                <input type="text" class="form-control mb-2" id="esiInsuranceNo" placeholder="Enter ESI Insurance No."
+                  formControlName="esiInsuranceNo">
+                <div class="text-danger"
+                  *ngIf="statutoryForm.controls['esiInsuranceNo'].touched || statutoryForm.controls['esiInsuranceNo'].dirty">
+                  <span *ngIf="statutoryForm.controls['esiInsuranceNo'].errors?.['required']">This
+                    is Required</span>
                 </div>
-                <div class="col-md-6">
-                  <label class="form-label">ESI Employer Code</label>
-                  <input type="text" class="form-control mb-2" formControlName="esiEmployerCode" />
-                  <div class="text-danger" *ngIf="statutoryForm.controls['esiEmployerCode'].touched ||
+              </div>
+              <div class="col-md-3">
+                <label class="form-label">ESI Employer Code</label>
+                <input type="text" class="form-control mb-2" formControlName="esiEmployerCode" />
+                <div class="text-danger" *ngIf="statutoryForm.controls['esiEmployerCode'].touched ||
                                             statutoryForm.controls['esiEmployerCode'].dirty">
-                    <span *ngIf="statutoryForm.controls['esiEmployerCode'].errors?.['required']">This
-                      is Required</span>
-                  </div>
+                  <span *ngIf="statutoryForm.controls['esiEmployerCode'].errors?.['required']">This
+                    is Required</span>
                 </div>
-                <div class="col-md-6">
-                  <label class="form-label">Dispensary</label>
-                  <input type="text" class="form-control mb-2" formControlName="dispensary">
-                  <div class="text-danger"
-                    *ngIf="statutoryForm.controls['dispensary'].touched || statutoryForm.controls['dispensary'].dirty">
-                    <span *ngIf="statutoryForm.controls['dispensary'].errors?.['required']">This
-                      is Required</span>
-                  </div>
+              </div>
+              <div class="col-md-3">
+                <label class="form-label">Dispensary</label>
+                <input type="text" class="form-control mb-2" formControlName="dispensary">
+                <div class="text-danger"
+                  *ngIf="statutoryForm.controls['dispensary'].touched || statutoryForm.controls['dispensary'].dirty">
+                  <span *ngIf="statutoryForm.controls['dispensary'].errors?.['required']">This
+                    is Required</span>
                 </div>
-                <div class="col-md-6">
+              </div>
+              <div class="col-md-3">
 
-                  <label class="form-label">Local Office</label>
-                  <input type="text" class="form-control mb-2" formControlName="esiLocalOffice">
-                  <div class="text-danger"
-                    *ngIf="statutoryForm.controls['esiLocalOffice'].touched || statutoryForm.controls['esiLocalOffice'].dirty">
-                    <span *ngIf="statutoryForm.controls['esiLocalOffice'].errors?.['required']">This
-                      is Required</span>
-                  </div>
+                <label class="form-label">Local Office</label>
+                <input type="text" class="form-control mb-2" formControlName="esiLocalOffice">
+                <div class="text-danger"
+                  *ngIf="statutoryForm.controls['esiLocalOffice'].touched || statutoryForm.controls['esiLocalOffice'].dirty">
+                  <span *ngIf="statutoryForm.controls['esiLocalOffice'].errors?.['required']">This
+                    is Required</span>
                 </div>
-                <div class="col-md-6">
-                  <label class="form-label">ESI Nominee for Payment</label>
-                  <input type="text" formControlName="esiNomineeForPayment" class="form-control mb-2" id="esiNominee">
-                </div>
-                <div class="col-md-6">
-                  <label class="form-label">Particulars of Family</label>
-                  <input type="text" class="form-control mb-2" formControlName="perticularOfFamily"
-                    id="familyParticulars">
-                </div>
-                <div class="col-md-6">
-                  <label class="form-label">Family member residing with insured
-                    person</label>
-                  <input type="text" class="form-control mb-2" formControlName="familyMemberResidingInsuredPerson"
-                    id="insuredFamilyMember">
-
-                </div>
-                <hr />
-                <div class="col-md-6">
-                  <label class="form-label">pf AccountNo</label>
-                  <input type="text" class="form-control mb-2" formControlName="pfAccountNo">
-                </div>
-                <div class="col-md-6">
-                  <label class="form-label">pfNominee</label>
-                  <input type="text" class="form-control mb-2" formControlName="pfNominee">
-                </div>
-                <div class="col-md-6">
-                  <label>pfSharePercent</label>
-                  <input type="number" class="form-control mb-2" formControlName="pfSharePercent">
-                </div>
-                <!-- <div class="col-md-6">
+              </div>
+              <div class="col-md-3">
+                <label class="form-label">ESI Nominee for Payment</label>
+                <input type="text" formControlName="esiNomineeForPayment" class="form-control mb-2" id="esiNominee">
+              </div>
+              <div class="col-md-3">
+                <label class="form-label">Particulars of Family</label>
+                <input type="text" class="form-control mb-2" formControlName="perticularOfFamily"
+                  id="familyParticulars">
+              </div>
+              <div class="col-md-3">
+                <label class="form-label">Family member residing with insured
+                  person</label>
+                <input type="text" class="form-control mb-2" formControlName="familyMemberResidingInsuredPerson"
+                  id="insuredFamilyMember">
+              </div>
+              <div class="col-md-3">
+                <label class="form-label">pf AccountNo</label>
+                <input type="text" class="form-control mb-2" formControlName="pfAccountNo">
+              </div>
+              <div class="col-md-3">
+                <label class="form-label">pfNominee</label>
+                <input type="text" class="form-control mb-2" formControlName="pfNominee">
+              </div>
+              <div class="col-md-3">
+                <label>pfSharePercent</label>
+                <input type="number" class="form-control mb-2" formControlName="pfSharePercent">
+              </div>
+              <!-- <div class="col-md-6">
                     <label>pfNominee</label>
                     <input type="text" class="form-control mb-2" formControlName="pfNominee" id="widowPension" >
                 </div> -->
-                <div class="col-md-6">
-                  <label>childrenPension</label>
-                  <input type="text" class="form-control mb-2" formControlName="childrenPension">
-                </div>
-                <div class="col-md-6">
-                  <label>widowPension</label>
-                  <input type="text" class="form-control mb-2" formControlName="widowPension" id="widowPension">
-                </div>
+              <div class="col-md-3">
+                <label>childrenPension</label>
+                <input type="text" class="form-control mb-2" formControlName="childrenPension">
+              </div>
+              <div class="col-md-3">
+                <label>widowPension</label>
+                <input type="text" class="form-control mb-2" formControlName="widowPension" id="widowPension">
               </div>
             </div>
-            <!-- Gratuity Section -->
-            <div class="col-md-12 mt-3">
-              <h6><strong>FORM F - Gratuity</strong></h6>
-              <div class="row">
-                <div class="col-6">
-                  <label>Nominee's for Gratuity *</label>
-                  <input type="text" class="form-control mb-2" formControlName="gratuityNominee">
-                  <div class="text-danger"
-                    *ngIf="statutoryForm.controls['gratuityNominee'].touched || statutoryForm.controls['gratuityNominee'].dirty">
-                    <span *ngIf="statutoryForm.controls['gratuityNominee'].errors?.['required']">This
-                      is Required</span>
-                  </div>
+          </div>
+          <!-- Gratuity Section -->
+          <div class="col-md-12 mt-3">
+            <h6><strong>FORM F - Gratuity</strong></h6>
+            <div class="row">
+              <div class="col-3">
+                <label>Nominee's for Gratuity *</label>
+                <input type="text" class="form-control mb-2" formControlName="gratuityNominee">
+                <div class="text-danger"
+                  *ngIf="statutoryForm.controls['gratuityNominee'].touched || statutoryForm.controls['gratuityNominee'].dirty">
+                  <span *ngIf="statutoryForm.controls['gratuityNominee'].errors?.['required']">This
+                    is Required</span>
                 </div>
-                <div class="col-6">
-                  <label>SHARE %age of nominee</label>
-                  <input type="number" class="form-control mb-2" formControlName="gratuitySharePercent">
-                  <div class="text-danger"
-                    *ngIf="statutoryForm.controls['gratuitySharePercent'].touched || statutoryForm.controls['gratuitySharePercent'].dirty">
-                    <span *ngIf="statutoryForm.controls['gratuitySharePercent'].errors?.['required']">This
-                      is Required</span>
-                  </div>
+              </div>
+              <div class="col-3">
+                <label>SHARE %age of nominee</label>
+                <input type="number" class="form-control mb-2" formControlName="gratuitySharePercent">
+                <div class="text-danger"
+                  *ngIf="statutoryForm.controls['gratuitySharePercent'].touched || statutoryForm.controls['gratuitySharePercent'].dirty">
+                  <span *ngIf="statutoryForm.controls['gratuitySharePercent'].errors?.['required']">This
+                    is Required</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
-
       </div>
+
+
+
     </div>
 
     <div class="mt-3">
