@@ -8,10 +8,11 @@ import { EmployeeService } from '../core/services/employee/employee.service';
 import { CommonModule } from '@angular/common'; 
 import { AutoErrorDirective } from '../directives/auto-error.directive';
 import { ActivatedRoute } from '@angular/router';
+import { DatePickerModule } from 'primeng/datepicker';
 @Component({
   selector: 'app-employee',
   standalone:true,
-  imports: [ButtonModule,StepperModule,ReactiveFormsModule,CommonModule],
+  imports: [ButtonModule,StepperModule,ReactiveFormsModule,CommonModule,DatePickerModule],
   templateUrl: './employee.component.html',
   styleUrl: './employee.component.css'
 })
@@ -26,9 +27,17 @@ export class EmployeeComponent implements OnInit {
   companyList: any []= [];
   validationErrors: string[] = [];
   editId:number = 0;
+  minDate: Date | undefined;
   
   constructor(private fb: FormBuilder,private activateRoute: ActivatedRoute) {
-    
+    let today = new Date();
+    let month = today.getMonth();
+    let year = today.getFullYear();
+    let prevMonth = (month === 0) ? 11 : month -1;
+    let prevYear = (prevMonth === 11) ? year - 1 : year;
+    this.minDate = new Date();
+    this.minDate.setMonth(prevMonth);
+    this.minDate.setFullYear(prevYear);
     this.employeeForm = this.fb.nonNullable.group({
       personalInfo: this.fb.group({
         payCode: ['', Validators.required],

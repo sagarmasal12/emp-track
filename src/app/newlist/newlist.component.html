@@ -1,40 +1,64 @@
 <div class="container-fluid" >
   <div class="row">
     <div class="col-12">
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>fullName</th>
-            <th>department</th>
-            <th>designation</th>
-            <th>dateOfJoining</th>
-            <th>email</th>
-            <th>phone1</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-         
-          <tr *ngFor="let employee of employeesList">
-            <td>{{employee.employeeId}}</td>
-            <td>{{ employee.fullName }}</td>
-            <td>{{ employee.department }}</td>
-            <td>{{ employee.designation }}</td>
-            <td>{{ employee.dateOfJoining | date}}</td>
-            <td>{{ employee.email }}</td>
-            <td>{{ employee.phone1 }}</td>
-            <td>
-              <button class="btn btn-success"  [routerLink]="'/editemp/'+employee.employeeId">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
-                </svg></button>
-            </td>
-          </tr>
-        </tbody>
-      
-    </table>
+
+      <p-table #dt [value]="employeesList" [paginator]="true" [rows]="5"  [rowsPerPageOptions]="[5, 10, 20,50]"
+      [globalFilterFields]="['fullName', 'department', 'designation', 'email','phone1']"
+      [tableStyle]="{ 'min-width': '50rem' }">
+      <ng-template #caption>
+        <div class="row">
+          <div class="col-3 offset-9">
+            <p-iconfield iconPosition="left" class="ml-auto">
+              <p-inputicon>
+                  <i class="pi pi-search"></i>
+              </p-inputicon>
+              <input
+                  pInputText
+                  type="text"
+                  (input)="applyFilterGlobal($event, 'contains')" 
+                  placeholder="Search keyword"
+              />
+          </p-iconfield>
+          </div>
+            
+        </div>
+    </ng-template>
+        <ng-template #header>
+            <tr>
+              <th>ID</th>
+              <th pSortableColumn="fullName" style="width:20%">
+                Full Name <p-sortIcon field="name" />
+              </th>
+              <th pSortableColumn="department" style="width:20%">
+                Department <p-sortIcon field="name" />
+              </th> 
+              <th>designation</th>
+              <th>dateOfJoining</th>
+              <th>email</th>
+              <th>phone1</th>
+              <th>Action</th>
+            </tr>
+        </ng-template>
+        <ng-template #body let-employee>
+            <tr>
+              <td>{{employee.employeeId}}</td>
+              <td>{{ employee.fullName }}</td>
+              <td>{{ employee.department }}</td>
+              <td>{{ employee.designation }}</td>
+              <td>{{ employee.dateOfJoining | date}}</td>
+              <td>{{ employee.email }}</td>
+              <td>{{ employee.phone1 }}</td>
+              <td>
+                <button class="btn btn-success"  [routerLink]="'/editemp/'+employee.employeeId">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                  </svg></button>
+              </td>
+            </tr>
+        </ng-template>
+    </p-table>
+     
     </div>
   </div>
 </div>

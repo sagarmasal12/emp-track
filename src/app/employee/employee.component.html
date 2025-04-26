@@ -16,7 +16,7 @@
         <div class="col-md-3">
           <div class="form-group">
             <label class="form-label required">Aadhar No. (12 digits)</label>
-            <input type="text" class="form-control form-control-sm rounded-1" formControlName="aadharNo" maxlength="12"
+            <input type="text" [ngClass]="(personalInfoForm.controls['aadharNo'].touched || personalInfoForm.controls['aadharNo'].dirty) && (personalInfoForm.controls['aadharNo'].errors) ? 'border-danger':''" class="form-control form-control-sm rounded-1" formControlName="aadharNo" maxlength="12"
               placeholder="Enter Your Aadhar Number"
               title="Please enter a valid 12-digit Aadhar number. It should start with a digit between 2 and 9.">
             <div class="text-danger"
@@ -58,7 +58,8 @@
           <div class="form-group">
             <div class="mb-1">
               <label class="form-label">Entry date</label>
-              <input type="date" class="form-control form-control-sm rounded-1" formControlName="entryDate">
+              <p-datepicker [minDate]="minDate" formControlName="entryDate" />
+              <!-- <input type="date" class="form-control form-control-sm rounded-1" formControlName="entryDate"> -->
               <div class="text-danger"
                 *ngIf="personalInfoForm.controls['entryDate'].touched || personalInfoForm.controls['entryDate'].dirty">
                 <span *ngIf="personalInfoForm.controls['entryDate'].errors?.['required']">This is
@@ -78,9 +79,9 @@
             <select class="form-select form-select-sm rounded-1" formControlName="postAppliedFor" required>
               <option disabled>Select</option>
               @if (masterData) {
-              @for (master of masterData['postAppliedFor']; track $index) {
-              <option [value]="master.masterId">{{ master.masterName }}</option>
-              }
+                @for (master of masterData['postAppliedFor']; track $index) {
+                <option [value]="master.masterId">{{ master.masterName }}</option>
+                }
               }
             </select>
             <div class="text-danger"
@@ -675,187 +676,188 @@
         <div class="col-md-12">
           <div class="card-header pt-3">Address and Family Members</div>
         </div>
-        <div class="col-md-12">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group mb-2">
-                <label class="form-label">Present Address</label>
-                <input type="text" class="form-control form-control-sm rounded-1" placeholder="Enter Present Address"
-                  formControlName="presentAddress">
-                <div class="text-danger"
-                  *ngIf="contactFamilyForm.controls['presentAddress'].touched || contactFamilyForm.controls['presentAddress'].dirty">
-                  <span *ngIf="contactFamilyForm.controls['presentAddress'].errors?.['required']">This
-                    is Required</span>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group mb-2">
-                <label class="form-label">Permanent Address</label>
-                <input type="text" class="form-control form-control-sm rounded-1" placeholder="Enter Permanent Address"
-                  formControlName="permanentAddress">
-                <div class="text-danger"
-                  *ngIf="contactFamilyForm.controls['permanentAddress'].touched || contactFamilyForm.controls['permanentAddress'].dirty">
-                  <span *ngIf="contactFamilyForm.controls['permanentAddress'].errors?.['required']">This
-                    is Required</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-6">
-              <div class="form-group mb-2">
-                <label class="required">State</label>
-                <select class="form-select form-select-sm" formControlName="state" required>
-                  <option disabled>Select</option>
-                  @if (masterData) {
-                  @for (master of masterData['state']; track $index) {
-                  <option [value]="master.masterId">{{ master.masterName }}</option>
-                  }
-                  }
-                </select>
-
-                <div class="text-danger"
-                  *ngIf="contactFamilyForm.controls['state'].touched || contactFamilyForm.controls['state'].dirty">
-                  <span *ngIf="contactFamilyForm.controls['state'].errors?.['required']">This is
-                    Required</span>
-                </div>
-              </div>
-              <div class="form-group mb-2">
-                <label class="required">district</label>
-                <select class="form-select form-select-sm" formControlName="district" required>
-                  <option disabled>Select</option>
-                  @if (masterData) {
-                  @for (master of onStateChange(); track $index) {
-                  <option [value]="master.masterId">{{ master.masterName }}</option>
-                  }
-                  }
-                </select>
-
-
-              </div>
-              <div class="form-group mb-2">
-                <label class="form-label">Sub Division</label>
-                <input type="text" class="form-control form-control-sm rounded-1" placeholder="Enter subDivision"
-                  formControlName="subDivision">
-                <div class="text-danger"
-                  *ngIf="contactFamilyForm.controls['subDivision'].touched || contactFamilyForm.controls['subDivision'].dirty">
-                  <span *ngIf="contactFamilyForm.controls['subDivision'].errors?.['required']">This is
-                    Required</span>
-                </div>
-              </div>
-              <div class="form-group mb-2">
-                <label class="form-label">Pincode</label>
-                <input type="text" class="form-control form-control-sm rounded-1" placeholder="Enter Pincode"
-                  formControlName="pincode">
-                <div class="text-danger"
-                  *ngIf="contactFamilyForm.controls['pincode'].touched || contactFamilyForm.controls['pincode'].dirty">
-                  <span *ngIf="contactFamilyForm.controls['pincode'].errors?.['required']">This is
-                    Required</span>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Email</label>
-                <input type="text" class="form-control form-control-sm rounded-1" formControlName="email">
-                <div class="text-danger"
-                  *ngIf="contactFamilyForm.controls['email'].touched || contactFamilyForm.controls['email'].dirty">
-                  <span *ngIf="contactFamilyForm.controls['email'].errors?.['required']">This is
-                    Required</span>
-                </div>
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="form-group mb-2">
-                <label class="form-label">Phone Number</label>
-                <input type="text" class="form-control form-control-sm rounded-1" formControlName="phone1">
-                <div class="text-danger"
-                  *ngIf="contactFamilyForm.controls['phone1'].touched || contactFamilyForm.controls['phone1'].dirty">
-                  <span *ngIf="contactFamilyForm.controls['phone1'].errors?.['required']">This is
-                    Required</span>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Whatsapp No.</label>
-                <input type="text" class="form-control form-control-sm rounded-1" formControlName="whatsappNo">
-                <div class="text-danger"
-                  *ngIf="contactFamilyForm.controls['whatsappNo'].touched || contactFamilyForm.controls['whatsappNo'].dirty">
-                  <span *ngIf="contactFamilyForm.controls['whatsappNo'].errors?.['required']">This is
-                    Required</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- <div class="form-group mb-2">
-          <label class="form-label">State</label>
-          <input type="text" class="form-control form-control-sm rounded-1">
-      </div> -->
-          <!-- <div class="form-group mb-2">
-          <label class="form-label">Pincode</label>
-          <input type="text" class="form-control form-control-sm rounded-1">
-      </div> -->
-        </div>
       </div>
-      <div class="col-12">
-        <!-- <form action=""> -->
-        <div class="row pt-3">
-          <div class="col-12">
-            <div class="col-md-12">
-              <div class="card-header pt-3">Family Members
-              </div>
-            </div>
-
-            <div class="table-responsive" [formGroup]="employeeForm" formArrayName="employeeFamilyMembers">
-              <table class="table table-bordered">
-                <thead>
-                  <tr>
-                    <th>S.No.</th>
-                    <th>Name</th>
-                    <th>Year of Birth</th>
-                    <th>Relation</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let member of familyMembers.controls; let i = index" [formGroupName]="i">
-                    <td>{{ i + 1 }}</td>
-                    <td>
-                      <input type="text" class="form-control form-control-sm rounded-1" formControlName="name"
-                        placeholder="Enter Name">
-                    </td>
-                    <td>
-                      <input type="text" class="form-control form-control-sm rounded-1" formControlName="yearOfBirth"
-                        placeholder="Enter Year Of Birth">
-
-                    </td>
-                    <td>
-                      <input type="text" class="form-control form-control-sm rounded-1" formControlName="relation">
-                    </td>
-                    <td>
-                      <button class="btn btn-danger" (click)="removeFamilyMember(i)">Remove
-                      </button>
-                    </td>
-                  </tr>
-
-
-                </tbody>
-              </table>
-              <!-- <button class="btn btn-primary mt-3" (click)="addFamilyMember()">Add Family Member</button> -->
-
-              <div class="d-flex justify-content-between mt-3">
-                <button class="btn btn-primary" (click)="addFamilyMember()">Add Family
-                  Member
-                </button>
-              </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group mb-2">
+            <label class="form-label">Present Address</label>
+            <textarea class="form-control form-control-sm rounded-1" placeholder="Enter Present Address"
+              formControlName="presentAddress"></textarea>
+    
+            <div class="text-danger"
+              *ngIf="contactFamilyForm.controls['presentAddress'].touched || contactFamilyForm.controls['presentAddress'].dirty">
+              <span *ngIf="contactFamilyForm.controls['presentAddress'].errors?.['required']">This
+                is Required</span>
             </div>
           </div>
         </div>
-
-
-        <!-- </form> -->
+        <div class="col-md-6">
+          <div class="form-group mb-2">
+            <label class="form-label">Permanent Address</label>
+            <textarea class="form-control form-control-sm rounded-1" placeholder="Enter Permanent Address"
+              formControlName="permanentAddress"></textarea>
+            <div class="text-danger"
+              *ngIf="contactFamilyForm.controls['permanentAddress'].touched || contactFamilyForm.controls['permanentAddress'].dirty">
+              <span *ngIf="contactFamilyForm.controls['permanentAddress'].errors?.['required']">This
+                is Required</span>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-
+    
+      <div class="row">
+        <div class="col-3">
+          <div class="form-group mb-2">
+            <label class="required">State</label>
+            <select class="form-select form-select-sm" formControlName="state" required>
+              <option disabled>Select</option>
+              @if (masterData) {
+              @for (master of masterData['state']; track $index) {
+              <option [value]="master.masterId">{{ master.masterName }}</option>
+              }
+              }
+            </select>
+            <div class="text-danger"
+              *ngIf="contactFamilyForm.controls['state'].touched || contactFamilyForm.controls['state'].dirty">
+              <span *ngIf="contactFamilyForm.controls['state'].errors?.['required']">This is
+                Required</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="form-group mb-2">
+            <label class="required">district</label>
+            <select class="form-select form-select-sm" formControlName="district" required>
+              <option disabled>Select</option>
+              @if (masterData) {
+              @for (master of onStateChange(); track $index) {
+              <option [value]="master.masterId">{{ master.masterName }}</option>
+              }
+              }
+            </select>
+    
+    
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="form-group mb-2">
+            <label class="form-label">Sub Division</label>
+            <input type="text" class="form-control form-control-sm rounded-1" placeholder="Enter subDivision"
+              formControlName="subDivision">
+            <div class="text-danger"
+              *ngIf="contactFamilyForm.controls['subDivision'].touched || contactFamilyForm.controls['subDivision'].dirty">
+              <span *ngIf="contactFamilyForm.controls['subDivision'].errors?.['required']">This is
+                Required</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="form-group mb-2">
+            <label class="form-label">Pincode</label>
+            <input type="text" class="form-control form-control-sm rounded-1" placeholder="Enter Pincode"
+              formControlName="pincode">
+            <div class="text-danger"
+              *ngIf="contactFamilyForm.controls['pincode'].touched || contactFamilyForm.controls['pincode'].dirty">
+              <span *ngIf="contactFamilyForm.controls['pincode'].errors?.['required']">This is
+                Required</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input type="text" class="form-control form-control-sm rounded-1" formControlName="email">
+            <div class="text-danger"
+              *ngIf="contactFamilyForm.controls['email'].touched || contactFamilyForm.controls['email'].dirty">
+              <span *ngIf="contactFamilyForm.controls['email'].errors?.['required']">This is
+                Required</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="form-group mb-2">
+            <label class="form-label">Phone Number</label>
+            <input type="text" class="form-control form-control-sm rounded-1" formControlName="phone1">
+            <div class="text-danger"
+              *ngIf="contactFamilyForm.controls['phone1'].touched || contactFamilyForm.controls['phone1'].dirty">
+              <span *ngIf="contactFamilyForm.controls['phone1'].errors?.['required']">This is
+                Required</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="form-group">
+            <label class="form-label">Whatsapp No.</label>
+            <input type="text" class="form-control form-control-sm rounded-1" formControlName="whatsappNo">
+            <div class="text-danger"
+              *ngIf="contactFamilyForm.controls['whatsappNo'].touched || contactFamilyForm.controls['whatsappNo'].dirty">
+              <span *ngIf="contactFamilyForm.controls['whatsappNo'].errors?.['required']">This is
+                Required</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <!-- <form action=""> -->
+          <div class="row pt-3">
+            <div class="col-12">
+              <div class="col-md-12">
+                <div class="card-header pt-3">Family Members
+                </div>
+              </div>
+    
+              <div class="table-responsive" [formGroup]="employeeForm" formArrayName="employeeFamilyMembers">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>S.No.</th>
+                      <th>Name</th>
+                      <th>Year of Birth</th>
+                      <th>Relation</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let member of familyMembers.controls; let i = index" [formGroupName]="i">
+                      <td>{{ i + 1 }}</td>
+                      <td>
+                        <input type="text" class="form-control form-control-sm rounded-1" formControlName="name"
+                          placeholder="Enter Name">
+                      </td>
+                      <td>
+                        <input type="text" class="form-control form-control-sm rounded-1" formControlName="yearOfBirth"
+                          placeholder="Enter Year Of Birth">
+    
+                      </td>
+                      <td>
+                        <input type="text" class="form-control form-control-sm rounded-1" formControlName="relation">
+                      </td>
+                      <td>
+                        <button class="btn btn-danger" (click)="removeFamilyMember(i)">Remove
+                        </button>
+                      </td>
+                    </tr>
+    
+    
+                  </tbody>
+                </table>
+                <!-- <button class="btn btn-primary mt-3" (click)="addFamilyMember()">Add Family Member</button> -->
+    
+                <div class="d-flex justify-content-between mt-3">
+                  <button class="btn btn-primary" (click)="addFamilyMember()">Add Family
+                    Member
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+    
+    
+          <!-- </form> -->
+        </div>
+      </div>
+    </div> 
     <div *ngIf="step === 3" formGroupName="qualificationExpe" class="main-card-wrap1">
       <h4 class="pt-3 m-0">Qualification & Experience</h4>
       <div class="row">
