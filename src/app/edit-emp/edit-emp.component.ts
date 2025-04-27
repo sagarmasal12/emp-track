@@ -141,7 +141,7 @@ export class EditEmpComponent {
           entryDate: [formatDate(EmpData.entryDate,'yyyy-MM-dd','en'), Validators.required],
           location: [EmpData.location, Validators.required],
           interviewDate: [formatDate(EmpData.interviewDate,'yyyy-MM-dd','en'), Validators.required],
-          interviewedBy: [formatDate(EmpData.interviewedBy,'yyyy-MM-dd','en'), Validators.required],
+          interviewedBy: [ EmpData.interviewedBy, Validators.required],
           approvedBy: [EmpData.approvedBy, Validators.required],
           dateOfJoining: [formatDate(EmpData.dateOfJoining,'yyyy-MM-dd','en'), Validators.required],
           salary: [EmpData.salary, Validators.required],
@@ -184,7 +184,7 @@ export class EditEmpComponent {
           wageCalculationType: [EmpData.wageCalculationType,Validators.required],
           paymentType: [EmpData.paymentType,Validators.required],
           overtimeEnabled:[EmpData.overtimeEnabled],    
-          otRate:[EmpData.overtimeEnabled,Validators.required],
+          otRate:[EmpData.otRate,Validators.required],
           nightRate:[EmpData.nightRate,Validators.required],
           foodingEnabled:[EmpData.foodingEnabled],
           fixedCtc:[EmpData.fixedCtc,Validators.required],
@@ -217,6 +217,7 @@ export class EditEmpComponent {
         const familyGroup = this.createFamilyMember(element);
         this.familyMembers.push(familyGroup); 
       });
+      debugger;
       setTimeout(()=>{
         this.isApiSucces = true;
       },1000)
@@ -326,6 +327,7 @@ export class EditEmpComponent {
  
  // Method to create a new FormGroup for family member
   createFamilyMember(familyMember: any = null): FormGroup {
+    debugger;
    return this.fb.group({
      familyMemberId: [familyMember?.familyMemberId || 0],
      employeeId: [familyMember?.employeeId || 0],
@@ -358,6 +360,8 @@ export class EditEmpComponent {
 
   patchExperience(data:any): FormGroup {
     return this.fb.group({
+      experienceId: [data.experienceId],
+      employeeId: [data.employeeId],
       employerName: [data.employerName, Validators.required],
       postHeld: [data.postHeld, Validators.required],
       fromDate: [ formatDate(data.fromDate,'yyyy-MM-dd','en'), Validators.required],
@@ -414,24 +418,25 @@ export class EditEmpComponent {
     // }
     const formData = this.employeeForm.value;
     const payload = {
-      employeeId: 0,  // Default or fetch from DB if updating
+       
       ...formData.personalInfo,
       ...formData.contactFamily,
       ...formData.qualificationExpe,
       ...formData.additionalInfo,
       ...formData.salaryPayroll,
+      ...formData.statutory,
   
       employeeFamilyMembers: formData.contactFamily.employeeFamilyMembers.map((member: any) => ({
-        familyMemberId: 0, // Default for new records
-        employeeId: 0, // Fetch if needed
+        familyMemberId: member.familyMemberId, // Default for new records
+        employeeId: member.employeeId, // Fetch if needed
         name: member.name,
         yearOfBirth: member.yearOfBirth,
         relation: member.relation,
       })),
   
       employeeExperiences: formData.qualificationExpe.employeeExperiences.map((exp: any) => ({
-        experienceId: 0, // Default
-        employeeId: 0, // Fetch if needed
+        experienceId: exp.experienceId, // Default
+        employeeId: exp.employeeId, // Fetch if needed
         employerName: exp.employerName,
         postHeld: exp.postHeld,
         fromDate: exp.fromDate,
@@ -441,11 +446,11 @@ export class EditEmpComponent {
     };
   
     console.log('Prepared Payload:', payload);
-  
-    this.employeeService.createEmployee(payload).subscribe({
+    payload.employeeId = this.editId;
+    this.employeeService.updateEmployee(payload).subscribe({
       next: (response) => {
         console.log('Success:', response);
-        alert("Employee Create Success")
+        alert("Employee Update Success")
       },
       error: (err) => {
         alert(JSON.stringify(err.error))

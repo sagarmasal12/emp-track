@@ -33,9 +33,9 @@ export class NewlistComponent implements OnInit {
   }
 
   getEmployees() {
+    this.isLoading = true;
     this.employeeService.getEmployee().subscribe(
-      (response) => {
-        this.isLoading = true;
+      (response) => { 
         this.employeesList = response; // Assign API response to employees array
         this.isLoading = false;
         console.log('Employees:', this.employeesList);

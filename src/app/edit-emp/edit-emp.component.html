@@ -416,7 +416,7 @@ Loading
                     <div class="col-md-3">
                         <div class="form-group">
                             <label>Weight</label>
-                            <input type="number" class="form-control" formControlName="weight">
+                            <input type="text" class="form-control" formControlName="weight">
                             <div class="text-danger"
                                 *ngIf="personalInfoForm.controls['weight'].touched || personalInfoForm.controls['weight'].dirty">
                                 <span *ngIf="personalInfoForm.controls['weight'].errors?.['required']">This is
@@ -582,7 +582,7 @@ Loading
                     <div class="col-md-3">
                         <div class="form-group">
                             <label>Worker No(LWF):</label>
-                            <input type="number" class="form-control" formControlName="workerLwfNo">
+                            <input type="text" class="form-control" formControlName="workerLwfNo">
                             <div class="text-danger"
                                 *ngIf="personalInfoForm.controls['workerLwfNo'].touched || personalInfoForm.controls['workerLwfNo'].dirty">
                                 <span *ngIf="personalInfoForm.controls['workerLwfNo'].errors?.['required']">This is
@@ -594,7 +594,7 @@ Loading
                     <div class="col-md-3">
                         <div class="form-group">
                             <label>Bank A/c No:</label>
-                            <input type="number" class="form-control" formControlName="bankAccountNo">
+                            <input type="text" class="form-control" formControlName="bankAccountNo">
                             <div class="text-danger"
                                 *ngIf="personalInfoForm.controls['bankAccountNo'].touched || personalInfoForm.controls['bankAccountNo'].dirty">
                                 <span *ngIf="personalInfoForm.controls['bankAccountNo'].errors?.['required']">This is
@@ -692,7 +692,7 @@ Loading
                         <div class="col-md-3">
                             <div class="form-group mb-2">
                                 <label>Phone Number</label>
-                                <input type="number" class="form-control" formControlName="phone1">
+                                <input type="text" class="form-control" formControlName="phone1">
                                 <div class="text-danger"
                                     *ngIf="contactFamilyForm.controls['phone1'].touched || contactFamilyForm.controls['phone1'].dirty">
                                     <span *ngIf="contactFamilyForm.controls['phone1'].errors?.['required']">This is
@@ -703,7 +703,7 @@ Loading
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Whatsapp No.</label>
-                                <input type="number" class="form-control" formControlName="whatsappNo">
+                                <input type="text" class="form-control" formControlName="whatsappNo">
                                 <div class="text-danger"
                                     *ngIf="contactFamilyForm.controls['whatsappNo'].touched || contactFamilyForm.controls['whatsappNo'].dirty">
                                     <span *ngIf="contactFamilyForm.controls['whatsappNo'].errors?.['required']">This is
@@ -1364,12 +1364,12 @@ Loading
 
                     <div class="col-md-3">
                         <label for="Empr PF">Empr PF:</label>
-                        <input type="number" class="form-control">
+                        <input type="number" formControlName="pfEmployer" class="form-control">
 
                     </div>
                     <div class="col-md-3">
                         <label for="Empr ESI">Empr ESI:</label>
-                        <input type="number" class="form-control">
+                        <input type="number" formControlName="esiEmployer" class="form-control">
 
                     </div>
                     <div class="col-md-3">
@@ -1555,14 +1555,9 @@ Loading
                                 </div>
                                 <div class="col-md-6">
                                     <label>pfSharePercent</label>
-                                    <input type="text" class="form-control mb-2" formControlName="pfSharePercent"
+                                    <input type="number" class="form-control mb-2" formControlName="pfSharePercent"
                                         id="widowPension">
-                                </div>
-                                <div class="col-md-6">
-                                    <label>pfNominee</label>
-                                    <input type="text" class="form-control mb-2" formControlName="pfNominee"
-                                        id="widowPension">
-                                </div>
+                                </div> 
                                 <div class="col-md-6">
                                     <label>childrenPension</label>
                                     <input type="text" class="form-control mb-2" formControlName="childrenPension"

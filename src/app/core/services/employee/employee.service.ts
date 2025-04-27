@@ -18,6 +18,10 @@ export class EmployeeService {
   createEmployee(employeeObj:any):Observable<IApiResponse>{
     return this.http.post<IApiResponse>(environment.API_URL + constant.API_METHOD_NAME.EMPLOYEE.CREATE_EMPLOYEE,employeeObj);
   }
+
+  updateEmployee(employeeObj:any):Observable<IApiResponse>{
+    return this.http.put<IApiResponse>(environment.API_URL + constant.API_METHOD_NAME.EMPLOYEE.UPDATE_EMPLOYEE,employeeObj);
+  }
   getEmployee():Observable<any>{
     return this.http.get<any>(environment.API_URL + constant.API_METHOD_NAME.EMPLOYEE.GET_EMPLOYEE);
   }
