@@ -16,7 +16,7 @@ Loading
                     <div class="col-md-12">
                         <div class="card-header my-3">Personal Details</div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label class="required">Aadhar No. (12
                                 digits)</label>
@@ -32,7 +32,7 @@ Loading
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>Paycode</label>
                             <input type="number" class="form-control" formControlName="payCode"
@@ -44,7 +44,7 @@ Loading
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>Card No.</label>
                             <input type="number" class="form-control" formControlName="cardNo"
@@ -56,10 +56,7 @@ Loading
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- Second Row -->
-                <div class="row pt-3">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>Entry date</label>
                             <input type="date" class="form-control" formControlName="entryDate">
@@ -70,7 +67,11 @@ Loading
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                </div>
+                <!-- Second Row -->
+                <div class="row pt-3">
+
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label class="required">Post Applied For</label>
                             <select class="form-select" formControlName="postAppliedFor" required>
@@ -87,7 +88,7 @@ Loading
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>Designation</label>
                             <select class="form-select" formControlName="designation">
@@ -106,25 +107,7 @@ Loading
                             </div>
                         </div>
                     </div>
-
-                </div>
-                <!-- Third Row -->
-                <div class="row pt-3">
-                    <!-- <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Name in Capital Letters</label>
-                                <input type="text" class="form-control" placeholder="Name in Capital
-                                                    Letters" formControlName="fullName">
-                                <div class="text-danger"
-                                    *ngIf="personalInfoForm.controls['fullName'].touched || personalInfoForm.controls['fullName'].dirty">
-                                    <span *ngIf="personalInfoForm.controls['fullName'].errors?.['required']">This is
-                                        Required</span>
-                                </div>
-                            </div>
-                        </div> -->
-
-                    <!-- need to shift 2 col -->
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>Department</label>
                             <select class="form-select" formControlName="department">
@@ -143,8 +126,7 @@ Loading
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>Sub Dept.</label>
                             <select class="form-select" formControlName="subDepartment">
@@ -163,7 +145,13 @@ Loading
 
                         </div>
                     </div>
-                    <div class="col-md-4">
+
+                </div>
+                <!-- Third Row -->
+                <div class="row pt-3">
+
+
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>Division</label>
                             <select class="form-select" formControlName="division">
@@ -181,7 +169,7 @@ Loading
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>Category</label>
                             <select class="form-select" formControlName="category">
@@ -199,11 +187,11 @@ Loading
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>Cadre</label>
                             <select class="form-select" formControlName="cadre">
-                                <option  disabled>select</option>
+                                <option disabled>select</option>
                                 @if (masterData) {
                                 @for(master of masterData['cadre']; track $index) {
                                 <option [value]="master.masterId">{{master.masterName}}</option>
@@ -217,11 +205,11 @@ Loading
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>Company</label>
                             <select class="form-select" formControlName="company">
-                                <option  disabled>Select</option>
+                                <option disabled>Select</option>
                                 @for(master of companyList; track $index) {
                                 <option [value]="master.companyId">{{master.companyName}}</option>
                                 }
@@ -233,7 +221,7 @@ Loading
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>Location</label>
                             <select class="form-select" formControlName="location">
@@ -247,11 +235,11 @@ Loading
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>Cost Center</label>
                             <select class="form-select" formControlName="costCentre">
-                                <option  disabled>select</option>
+                                <option disabled>select</option>
                                 @if (masterData) {
                                 @for(master of masterData['costCentre']; track $index) {
                                 <option [value]="master.masterId">{{master.masterName}}</option>
@@ -265,11 +253,11 @@ Loading
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>RL Band</label>
                             <select class="form-select" formcontrolName="rlBand">
-                                <option  disabled>Select</option>
+                                <option disabled>Select</option>
                                 @if (masterData) {
                                 @for(master of masterData['rlBand']; track $index) {
                                 <option [value]="master.masterId">{{master.masterName}}</option>
@@ -286,7 +274,7 @@ Loading
                 </div>
                 <!-- Fourth Row -->
                 <div class="row pt-3">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>Name in Capital Letters</label>
                             <input type="text" class="form-control" placeholder="Name in Capital
@@ -298,7 +286,7 @@ Loading
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label class="required">Father's/Husband's
                                 Name</label>
@@ -311,7 +299,7 @@ Loading
                                 Required</span>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>Mother's Name</label>
                             <input type="text" class="form-control" placeholder="Enter Your Mother Name"
@@ -324,7 +312,7 @@ Loading
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>Date of Birth</label>
                             <input type="date" class="form-control" formControlName="dateOfBirth">
@@ -335,7 +323,7 @@ Loading
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>Age</label>
                             <input type="number" class="form-control" formControlName="age">
@@ -347,7 +335,7 @@ Loading
                         </div>
                     </div>
 
-                    <div class="col-md-4 pt-3">
+                    <div class="col-md-3 pt-3">
                         <div class="form-group d-flex">
                             <label class="me-2">Gender</label><br>
                             <input type="radio" id="Female" name="gender" formControlName="gender" value="Female">
@@ -362,7 +350,7 @@ Loading
                         </div>
                     </div>
 
-                    <div class="col-md-4 pt-3">
+                    <div class="col-md-3 pt-3">
                         <div class="form-group d-flex">
                             <label for="Marital Status" class="me-2">Marital Status</label><br>
                             <input type="radio" id="Married" name="maritalStatus" value="Married"
@@ -379,7 +367,7 @@ Loading
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>Religion</label>
                             <input type="text" class="form-control" formControlName="religion">
@@ -391,7 +379,7 @@ Loading
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>Nationality</label>
                             <input type="text" class="form-control" placeholder="" formControlName="nationality">
@@ -403,7 +391,7 @@ Loading
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>Caste</label>
                             <input type="text" class="form-control" formControlName="caste">
@@ -414,7 +402,7 @@ Loading
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 pt-3">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>Blood Group</label>
                             <input type="text" class="form-control" formControlName="bloodGroup">
@@ -425,7 +413,7 @@ Loading
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 pt-3">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>Weight</label>
                             <input type="number" class="form-control" formControlName="weight">
@@ -436,24 +424,14 @@ Loading
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label>Region</label>
-                            <input type="text" class="form-control" formControlName="region">
-                            <div class="text-danger"
-                                *ngIf="personalInfoForm.controls['region'].touched || personalInfoForm.controls['region'].dirty">
-                                <span *ngIf="personalInfoForm.controls['region'].errors?.['required']">This is
-                                    Required</span>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
                 <!-- Fifth Row -->
                 <div class="row pt-3 align-items-center">
 
 
 
-                    <div class="col-md-4 pt-3">
+                    <div class="col-md-3 ">
                         <div class="form-group">
                             <label>Identity</label>
                             <input type="text" class="form-control" formControlName="identityMark">
@@ -465,7 +443,7 @@ Loading
                         </div>
                     </div>
 
-                    <div class="col-md-4 pt-3">
+                    <div class="col-md-3">
                         <div class="form-group d-flex">
                             <label class="me-2">Shift Type</label><br>
                             <input type="radio" id="Fixed" name="shiftType" value="Fixed" formControlName="shiftType">
@@ -476,7 +454,7 @@ Loading
                         </div>
                     </div>
 
-                    <div class="col-md-4 pt-3">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>Shift Option</label>
                             <select class="form-select" formControlName="shiftOption">
@@ -495,7 +473,7 @@ Loading
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 pt-3">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>Appointment Mths:</label>
                             <input type="text" class="form-control" formControlName="appointmentMonths">
@@ -508,7 +486,7 @@ Loading
                         </div>
                     </div>
 
-                    <div class="col-md-4 pt-3">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>Transfer From</label>
                             <select class="form-select" formControlName="transferFrom">
@@ -527,7 +505,7 @@ Loading
                         </div>
                     </div>
 
-                    <div class="col-md-4 pt-3">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>Transfer To </label>
                             <select class="form-select" formControlName="transferTo">
@@ -546,7 +524,7 @@ Loading
                         </div>
                     </div>
 
-                    <div class="col-md-4 pt-3">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>Transfer Date</label>
                             <input type="date" class="form-control" formControlName="transferDate">
@@ -557,7 +535,7 @@ Loading
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 pt-3">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>Reporting Date</label>
                             <input type="date" class="form-control" formControlName="reportingDate">
@@ -572,7 +550,7 @@ Loading
                     <!-- <div class="col-md-12 mt-3"> -->
 
 
-                    <div class="col-md-4 pt-3">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>Pan Card No:</label>
                             <input type="text" class="form-control" placeholder="Enter PAN (e.g., ABCDE1234F)"
@@ -588,7 +566,7 @@ Loading
                     </div>
 
 
-                    <div class="col-md-4 pt-3">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>PF UAN No:</label>
                             <input type="text" class="form-control" formControlName="pfUanNo">
@@ -601,7 +579,7 @@ Loading
                     </div>
                     <!-- </div> -->
 
-                    <div class="col-md-4 pt-3">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>Worker No(LWF):</label>
                             <input type="number" class="form-control" formControlName="workerLwfNo">
@@ -613,7 +591,7 @@ Loading
                         </div>
                     </div>
 
-                    <div class="col-md-4 pt-3">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>Bank A/c No:</label>
                             <input type="number" class="form-control" formControlName="bankAccountNo">
@@ -625,7 +603,7 @@ Loading
                         </div>
                     </div>
 
-                    <div class="col-md-4 pt-3">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>Bank Name:</label>
                             <input type="text" class="form-control" formControlName="bankName">
@@ -637,7 +615,7 @@ Loading
                         </div>
                     </div>
 
-                    <div class="col-md-4 pt-3">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>Bank IFSC Code:</label>
                             <input type="text" class="form-control" formControlName="bankIfscCode">
@@ -649,13 +627,24 @@ Loading
                         </div>
                     </div>
 
-                    <div class="col-md-4 pt-3">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>Branch:</label>
                             <input type="text" class="form-control" formControlName="bankBranch">
                             <div class="text-danger"
                                 *ngIf="personalInfoForm.controls['bankBranch'].touched || personalInfoForm.controls['bankBranch'].dirty">
                                 <span *ngIf="personalInfoForm.controls['bankBranch'].errors?.['required']">This is
+                                    Required</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Region</label>
+                            <input type="text" class="form-control" formControlName="region">
+                            <div class="text-danger"
+                                *ngIf="personalInfoForm.controls['region'].touched || personalInfoForm.controls['region'].dirty">
+                                <span *ngIf="personalInfoForm.controls['region'].errors?.['required']">This is
                                     Required</span>
                             </div>
                         </div>
@@ -674,11 +663,8 @@ Loading
             <h4 class="m-0  form-section-title"> Contact & Family</h4>
             <div class="row pt-3">
                 <div class="col-md-12">
-                    <div class="card-header pt-3">Address</div>
-                </div>
-                <div class="col-md-12">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="form-group mb-2">
                                 <label>Present Address</label>
                                 <input type="text" class="form-control" placeholder="Enter Present Address"
@@ -690,7 +676,7 @@ Loading
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="form-group mb-2">
                                 <label>Permanent Address</label>
                                 <input type="text" class="form-control" placeholder="Enter Permanent Address"
@@ -703,11 +689,33 @@ Loading
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-3">
+                            <div class="form-group mb-2">
+                                <label>Phone Number</label>
+                                <input type="number" class="form-control" formControlName="phone1">
+                                <div class="text-danger"
+                                    *ngIf="contactFamilyForm.controls['phone1'].touched || contactFamilyForm.controls['phone1'].dirty">
+                                    <span *ngIf="contactFamilyForm.controls['phone1'].errors?.['required']">This is
+                                        Required</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Whatsapp No.</label>
+                                <input type="number" class="form-control" formControlName="whatsappNo">
+                                <div class="text-danger"
+                                    *ngIf="contactFamilyForm.controls['whatsappNo'].touched || contactFamilyForm.controls['whatsappNo'].dirty">
+                                    <span *ngIf="contactFamilyForm.controls['whatsappNo'].errors?.['required']">This is
+                                        Required</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-6">
-                            <div class="form-group mb-2">
+                        <div class="col-md-3">
+                            <div class="form-group">
                                 <label class="required">State</label>
                                 <select class="form-select" formControlName="state" required>
                                     <option disabled selected>Select</option>
@@ -724,7 +732,9 @@ Loading
                                         Required</span>
                                 </div>
                             </div>
-                            <div class="form-group mb-2">
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
                                 <label class="required">district</label>
                                 <select class="form-select" formControlName="district" required>
                                     <option disabled selected>Select</option>
@@ -734,10 +744,10 @@ Loading
                                     }
                                     }
                                 </select>
-
-
                             </div>
-                            <div class="form-group mb-2">
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
                                 <label>Sub Division</label>
                                 <input type="text" class="form-control" placeholder="Enter subDivision"
                                     formControlName="subDivision">
@@ -747,7 +757,9 @@ Loading
                                         Required</span>
                                 </div>
                             </div>
-                            <div class="form-group mb-2">
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
                                 <label>Pincode</label>
                                 <input type="number" class="form-control" placeholder="Enter Pincode"
                                     formControlName="pincode">
@@ -757,6 +769,8 @@ Loading
                                         Required</span>
                                 </div>
                             </div>
+                        </div>
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label>Email</label>
                                 <input type="email" class="form-control" formControlName="email">
@@ -767,35 +781,7 @@ Loading
                                 </div>
                             </div>
                         </div>
-                        <div class="col-6">
-                            <div class="form-group mb-2">
-                                <label>Phone Number</label>
-                                <input type="number" class="form-control" formControlName="phone1">
-                                <div class="text-danger"
-                                    *ngIf="contactFamilyForm.controls['phone1'].touched || contactFamilyForm.controls['phone1'].dirty">
-                                    <span *ngIf="contactFamilyForm.controls['phone1'].errors?.['required']">This is
-                                        Required</span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label>Whatsapp No.</label>
-                                <input type="number" class="form-control" formControlName="whatsappNo">
-                                <div class="text-danger"
-                                    *ngIf="contactFamilyForm.controls['whatsappNo'].touched || contactFamilyForm.controls['whatsappNo'].dirty">
-                                    <span *ngIf="contactFamilyForm.controls['whatsappNo'].errors?.['required']">This is
-                                        Required</span>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-                    <!-- <div class="form-group mb-2">
-                        <label>State</label>
-                        <input type="text" class="form-control">
-                    </div> -->
-                    <!-- <div class="form-group mb-2">
-                        <label>Pincode</label>
-                        <input type="text" class="form-control">
-                    </div> -->
                 </div>
             </div>
             <div class="col-12">
@@ -860,8 +846,8 @@ Loading
 
         <div formGroupName="qualificationExpe" class="my-3 p-3 border ">
             <h4 class="pt-3 m-0 form-section-title">Qualification & Experience</h4>
-            <div class="row">
-                <div class="col-md-4">
+            <div class="row pt-2">
+                <div class="col-md-3">
                     <div class="form-group">
                         <label>Qualification</label>
                         <input type="text" class="form-control" formControlName="qualification">
@@ -872,7 +858,7 @@ Loading
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="form-group">
                         <label>Technical Qualification</label>
                         <input type="text" class="form-control" formControlName="technicalQualification">
@@ -884,7 +870,7 @@ Loading
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="form-group">
                         <label>Languages Known</label>
                         <input type="text" class="form-control" formControlName="languagesKnown">
@@ -895,26 +881,23 @@ Loading
                         </div>
                     </div>
                 </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Total Experience</label>
+                        <input type="number" class="form-control" formControlName="totalExperienceYears" placeholder="Enter Total Experience">
+                        <div class="text-danger"
+                            *ngIf="qualificationExpeForm.controls['totalExperienceYears'].touched || qualificationExpeForm.controls['totalExperienceYears'].dirty">
+                            <span *ngIf="qualificationExpeForm.controls['totalExperienceYears'].errors?.['required']">This
+                                is Required</span>
+                        </div>
+                    </div>
+                   
+                </div>
 
             </div>
             <div class="row pt-3">
                 <div class="col-12">
-                    <div class="col-md-12">
-                        <div class="card-header pt-3 form-section-title">Experience Details</div>
-                    </div>
-
                     <div>
-                        <label>Total Experience</label>
-                        <input type="number" class="form-control" formControlName="totalExperienceYears"
-                            placeholder="Enter Total Experience">
-                        <div class="text-danger"
-                            *ngIf="qualificationExpeForm.controls['totalExperienceYears'].touched || qualificationExpeForm.controls['totalExperienceYears'].dirty">
-                            <span
-                                *ngIf="qualificationExpeForm.controls['totalExperienceYears'].errors?.['required']">This
-                                is Required</span>
-                        </div>
-
-
                         <div class="table-responsive">
                             <table class="table table-bordered" formArrayName="employeeExperiences">
                                 <thead>
@@ -929,12 +912,11 @@ Loading
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let exp of experienceDetails.controls; let i = index"
-                                        [formGroupName]="i">
+                                    <tr *ngFor="let exp of experienceDetails.controls; let i = index" [formGroupName]="i">
                                         <td>{{i+1}}</td>
                                         <td><input type="text" class="form-control" formControlName="employerName"
                                                 placeholder="Enter Employer">
-
+            
                                         </td>
                                         <td><input type="text" class="form-control" formControlName="postHeld"
                                                 placeholder="Enter Post"></td>
@@ -945,9 +927,9 @@ Loading
                                         <td>
                                             <button class="btn btn-danger" (click)="removeExperience(i)">Remove</button>
                                         </td>
-
+            
                                     </tr>
-
+            
                                 </tbody>
                             </table>
                         </div>
@@ -962,14 +944,10 @@ Loading
             <h4 class="pt-3 m-0 form-section-title">Additional Information</h4>
             <div class="row pt-3">
                 <div class="col-12">
-                    <div class="col-md-12">
-                        <div class="card-header pt-3">Additional Information
-                        </div>
-                    </div>
-
+                   
                     <!-- Relative Information -->
                     <div class="row pt-3">
-                        <div class="col-md-12">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label>Do you have any relative working in
                                     the company/unit?</label>
@@ -979,22 +957,20 @@ Loading
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="row pt-3">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>If yes, give name:</label>
-                                <input type="text" class="form-control" formControlName="relativeName"
-                                    placeholder="Enter Relative Name">
-                                <div class="text-danger"
-                                    *ngIf="additionalInfoForm.controls['relativeName'].touched || additionalInfoForm.controls['relativeName'].dirty">
-                                    <span *ngIf="additionalInfoForm.controls['relativeName'].errors?.['required']">This
-                                        is Required</span>
+                        <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>If yes, give name:</label>
+                                    <input type="text" class="form-control" formControlName="relativeName"
+                                        placeholder="Enter Relative Name">
+                                    <div class="text-danger"
+                                        *ngIf="additionalInfoForm.controls['relativeName'].touched || additionalInfoForm.controls['relativeName'].dirty">
+                                        <span *ngIf="additionalInfoForm.controls['relativeName'].errors?.['required']">This
+                                            is Required</span>
+                                    </div>
                                 </div>
-                            </div>
+                                
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label>Relationship:</label>
                                 <input type="text" class="form-control" formControlName="relativeRelationship"
@@ -1008,12 +984,16 @@ Loading
                             </div>
                         </div>
                     </div>
+
+                    <div class="row pt-3">
+                        
+                    </div>
                 </div>
             </div>
 
             <!-- Date and Interview Information -->
             <div class="row pt-3">
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <div class="form-group mb-2">
                         <label>Date:</label>
                         <input type="date" class="form-control" formControlName="entryDate">
@@ -1188,7 +1168,7 @@ Loading
             <div class="card-header my-3">Salary & Payroll Details</div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="d-flex">
                             <label class="ms-2">Transport Facility(Y/N):</label>
                             <input type="checkbox" name="transportFacility" formControlName="transportFacility">
@@ -1197,7 +1177,7 @@ Loading
                             <input type="radio" formControlName="transportFacility" value="false"> <label for="No"> No</label> -->
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label>Route No:</label>
                         <input type="number" class="form-control" formControlName="routeNo">
                         <div class="text-danger"
@@ -1207,7 +1187,7 @@ Loading
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label>Actual CTC:</label>
                         <input type="number" class="form-control" formControlName="actualCtc">
                         <div class="text-danger"
@@ -1217,7 +1197,7 @@ Loading
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label>Basic Salary:</label>
                         <input type="number" class="form-control" placeholder="Enter Basic Salary"
                             formControlName="basicSalary">
@@ -1227,7 +1207,7 @@ Loading
                                 Required</span>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label>HRA:</label>
                         <input type="number" class="form-control" placeholder="Enter HRA Amount" formControlName="hra">
                         <div class="text-danger"
@@ -1237,7 +1217,7 @@ Loading
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label>CONV:</label>
                         <input type="number" class="form-control" formControlName="conveyanceAllowance">
                         <div class="text-danger"
@@ -1258,7 +1238,7 @@ Loading
                                 </div>
                             </div> -->
 
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label>Medical Allowance:</label>
                         <input type="number" class="form-control" placeholder="Enter Medical Allowance"
                             formControlName="medicalAllowance">
@@ -1268,7 +1248,7 @@ Loading
                                 is Required</span>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label>Attendance Incentive:</label>
                         <input type="text" class="form-control" placeholder="Enter Incentive"
                             formControlName="attendanceIncentive">
@@ -1279,7 +1259,7 @@ Loading
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label>Gross Salary:</label>
                         <input type="number" class="form-control" placeholder="Enter Gross Salary"
                             formControlName="grossSalary">
@@ -1290,7 +1270,7 @@ Loading
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label>PF Empe:</label>
                         <input type="number" class="form-control" formControlName="pfEmployee">
                         <div class="text-danger"
@@ -1299,7 +1279,7 @@ Loading
                                 Required</span>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label>ESI Empe:</label>
                         <input type="number" class="form-control" formControlName="esiEmployee">
                         <div class="text-danger"
@@ -1308,7 +1288,7 @@ Loading
                                 Required</span>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label>LWF Empe:</label>
                         <input type="number" class="form-control" placeholder="Enter Incentive"
                             formControlName="lwfEmployee">
@@ -1318,7 +1298,7 @@ Loading
                                 Required</span>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label>Total Deduction:</label>
                         <input type="number" class="form-control" formControlName="totalDeduction">
                         <div class="text-danger"
@@ -1327,7 +1307,7 @@ Loading
                                 Required</span>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label>PF Empr:</label>
                         <input type="number" class="form-control" formControlName="pfEmployer">
                         <div class="text-danger"
@@ -1336,7 +1316,7 @@ Loading
                                 Required</span>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label>ESI Empr:</label>
                         <input type="number" class="form-control" formControlName="esiEmployer">
                         <div class="text-danger"
@@ -1345,7 +1325,7 @@ Loading
                                 Required</span>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label>LWF Empr:</label>
                         <input type="number" class="form-control" formControlName="lwfEmployer">
                         <div class="text-danger"
@@ -1354,7 +1334,7 @@ Loading
                                 Required</span>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label>Bonus:</label>
                         <input type="number" class="form-control" formControlName="salaryBonus">
                         <div class="text-danger"
@@ -1363,7 +1343,7 @@ Loading
                                 Required</span>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label>CTC Exgratia:</label>
                         <input type="number" class="form-control" formControlName="fixedCtc">
                         <div class="text-danger"
@@ -1372,7 +1352,7 @@ Loading
                                 Required</span>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label>Sub Total:</label>
                         <input type="number" class="form-control" formControlName="subTotalCtc">
                         <div class="text-danger"
@@ -1382,17 +1362,17 @@ Loading
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label for="Empr PF">Empr PF:</label>
                         <input type="number" class="form-control">
 
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label for="Empr ESI">Empr ESI:</label>
                         <input type="number" class="form-control">
 
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label for="Fixed CTC">Fixed CTC:</label>
                         <input type="number" class="form-control" formControlName="fixedCtc">
                         <div class="text-danger"
@@ -1402,7 +1382,7 @@ Loading
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label class="me-1">Night Rate:</label>
                             <input type="number" class="form-control" formControlName="nightRate">
@@ -1414,7 +1394,7 @@ Loading
                         </div>
 
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-3">
                         <label class="me-1">OT Rate:</label>
                         <input type="number" class="form-control" formControlName="otRate">
                         <div class="text-danger"
@@ -1423,7 +1403,7 @@ Loading
                                 is Required</span>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label>Remarks:</label>
                         <input type="text" class="form-control" placeholder="Enter Remarks" formControlName="remarks">
                         <div class="text-danger"
