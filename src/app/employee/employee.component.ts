@@ -1,6 +1,6 @@
 
 import { Component, inject, OnInit } from '@angular/core';
-import { formatDate } from '@angular/common';
+import { formatDate, UpperCasePipe } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { StepperModule } from 'primeng/stepper';
 import {AbstractControl, FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
@@ -22,7 +22,7 @@ export class EmployeeComponent implements OnInit {
   formData:any;
   employeeService=inject(EmployeeService);
   employeeForm: FormGroup;
-  step = 1;
+  step = 5;
   masterData: any;
   companyList: any []= [];
   validationErrors: string[] = [];
@@ -40,28 +40,28 @@ export class EmployeeComponent implements OnInit {
     this.minDate.setFullYear(prevYear);
     this.employeeForm = this.fb.nonNullable.group({
       personalInfo: this.fb.group({
-        payCode: ['', Validators.required],
+        payCode: [''],
         aadharNo:['', [Validators.required,Validators.pattern(/^[2-9]{1}[0-9]{11}$/)]],
-        cardNo:['',Validators.required],
+        cardNo:[''],
         postAppliedFor:['',Validators.required],
         designation:['',Validators.required],
-        entryDate:['',Validators.required],
+        entryDate:[''],
         fullName:['',Validators.required],
         department:['',Validators.required],
         subDepartment:['',Validators.required],
         fatherOrHusbandName:['',Validators.required],
         division:['',Validators.required],
         category:['',Validators.required],
-        motherName:['',Validators.required],
-        dateOfBirth:['',Validators.required],
+        motherName:[''],
+        dateOfBirth:[''],
         age:['',Validators.required],
         maritalStatus:['',Validators.required],
         gender:['',Validators.required],
         nationality:['',Validators.required],
-        religion:['',Validators.required],
-        caste:['',Validators.required],
-        region:['',Validators.required],
-        identityMark:['',Validators.required],
+        religion:[''],
+        caste:[''],
+        region:[''],
+        identityMark:[''],
         shiftType:['',Validators.required],
         shiftOption:['',Validators.required],
         weight:['',Validators.required],
@@ -71,14 +71,14 @@ export class EmployeeComponent implements OnInit {
         transferFrom:[''],
         transferTo:[''],
         transferDate:[''],
-        appointmentMonths:['',Validators.required],
-        bankAccountNo:['',Validators.required],
-        bankName:['',Validators.required],
-        bankIfscCode:['',Validators.required],
-        bankBranch:['',Validators.required],
+        appointmentMonths:[''],
+        bankAccountNo:[''],
+        bankName:[''],
+        bankIfscCode:[''],
+        bankBranch:[''],
         costCentre:['',Validators.required],
         panCardNo:['',[Validators.required, Validators.pattern(/^[A-Z]{5}[0-9]{4}[A-Z]$/)]],
-        pfUanNo:['',Validators.required],
+        pfUanNo:[''],
         workerLwfNo:[''],
         cadre:['',Validators.required],
         company:['',Validators.required],
@@ -89,20 +89,20 @@ export class EmployeeComponent implements OnInit {
       contactFamily: this.fb.group({ 
         presentAddress:['',Validators.required],
         permanentAddress:['',Validators.required],
-        state:['',Validators.required],
-        subDivision: ['',Validators.required],
-        district:['',Validators.required],
-        phone1:['',[Validators.required]], // Starts with 6-9 and has exactly 10 digits
-        whatsappNo:['',Validators.required],
-        pincode:['',Validators.required],
-        email:['',Validators.required],
+        state:[''],
+        subDivision: [''],
+        district:[''],
+        phone1:[''], // Starts with 6-9 and has exactly 10 digits
+        whatsappNo:[''],
+        pincode:[''],
+        email:[''],
         employeeFamilyMembers:this.fb.array([])
       }),
       qualificationExpe: this.fb.group({
-        qualification: ['', Validators.required],
-        technicalQualification:['',Validators.required],
-        languagesKnown:['',Validators.required],
-        totalExperienceYears:['',Validators.required],
+        qualification: [''],
+        technicalQualification:[''],
+        languagesKnown:[''],
+        totalExperienceYears:[''],
         employeeExperiences:this.fb.array([]) 
       }),
       
@@ -112,13 +112,13 @@ export class EmployeeComponent implements OnInit {
         relativeRelationship: [''],
         entryDate: [new Date(), Validators.required],
        
-        interviewDate: [''],
+        interviewDate: ['',Validators.required],
         interviewedBy: [''],
         approvedBy: [''],
         dateOfJoining: ['', Validators.required],
-        salary: ['', Validators.required],
-        confirmDate: ['', Validators.required],
-        employmentStatus: ['', Validators.required],
+        salary: [''],
+        confirmDate: [''],
+        employmentStatus: [''],
         individualBioData: [false],
         photoAttached: [false],
         applicationAttached: [false],
@@ -127,39 +127,39 @@ export class EmployeeComponent implements OnInit {
         joiningReportAttached: [false],
         nominationFormAttached: [false],
         proofOfAge: [false],
-        proofName: ['abc',Validators.required],
+        proofName: [''],
       }),
       salaryPayroll: this.fb.group({
         transportFacility: [false],
         routeNo: [''],
         actualCtc: [''],
         basicSalary: [''],
-        hra: ['', Validators.required],
+        hra: [''],
         conveyanceAllowance: [''],
         otherAllowance: [''],
         medicalAllowance: [''],
         attendanceIncentive: [''],
-        grossSalary: ['',Validators.required],
-        pfEmployee: ['',Validators.required],
-        esiEmployee: ['',Validators.required],
+        grossSalary: [''],
+        pfEmployee: [''],
+        esiEmployee: [''],
         lwfEmployee: [''],
-        totalDeduction: ['',Validators.required],
-        pfEmployer: ['',Validators.required],
-        esiEmployer: ['',Validators.required],
+        totalDeduction: [''],
+        pfEmployer: [''],
+        esiEmployer: [''],
         lwfEmployer: [''],
         salaryBonus: [''],
-        exgratia: ['',Validators.required],
-        subTotalCtc: ['',Validators.required],
+        exgratia: [''],
+        subTotalCtc: [''],
         employerLiability: [0],
         employeeType: ['',Validators.required],
-        wageCalculationType: [''],
-        paymentType: [''],
-        overtimeEnabled:[false],    
+        wageCalculationType: ['',Validators.required],
+        paymentType: ['',Validators.required],
+        overtimeEnabled:[false,Validators.required],    
         ctc: [0],
         nightRate:[''],
         otRate:[''],
-        foodingEnabled:[false],
-        fixedCtc:['',Validators.required],
+        foodingEnabled:[false,Validators.required],
+        fixedCtc:[''],
         remarks:['']
       }),
       statutory: this.fb.group({

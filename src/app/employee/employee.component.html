@@ -15,7 +15,7 @@
       <div class="row g-3">
         <div class="col-md-3">
           <div class="form-group">
-            <label class="form-label required">Aadhar No. (12 digits)</label>
+            <label class="form-label required">Aadhar No. (12 digits)<span style="color: red;">*</span></label>
             <input type="text"
               [ngClass]="(personalInfoForm.controls['aadharNo'].touched || personalInfoForm.controls['aadharNo'].dirty) && (personalInfoForm.controls['aadharNo'].errors) ? 'border-danger':''"
               class="form-control rounded-1" formControlName="aadharNo" maxlength="12"
@@ -60,7 +60,7 @@
           <div class="form-group">
             <div class="mb-1">
               <label class="form-label">Entry date</label>
-              <p-datepicker [minDate]="minDate" formControlName="entryDate" /> 
+              <p-datepicker [minDate]="minDate" formControlName="entryDate" />
               <div class="text-danger"
                 *ngIf="personalInfoForm.controls['entryDate'].touched || personalInfoForm.controls['entryDate'].dirty">
                 <span *ngIf="personalInfoForm.controls['entryDate'].errors?.['required']">This is
@@ -76,7 +76,7 @@
         <!-- Post Applied For -->
         <div class="col-md-3">
           <div class="form-group">
-            <label class="form-label required">Post Applied For</label>
+            <label class="form-label required">Post Applied For<span style="color: red;">*</span></label>
             <select class="form-select form-select rounded-1" formControlName="postAppliedFor" required>
               <option disabled>Select</option>
               @if (masterData) {
@@ -94,7 +94,7 @@
         <!-- Designation -->
         <div class="col-md-3">
           <div class="form-group">
-            <label class="form-label">Designation</label>
+            <label class="form-label">Designation<span style="color: red;">*</span></label>
             <select class="form-select form-select rounded-1" formControlName="designation">
               <option disabled>Select</option>
               @if (masterData) {
@@ -112,7 +112,7 @@
         <!-- Department -->
         <div class="col-md-3">
           <div class="form-group">
-            <label class="form-label">Department</label>
+            <label class="form-label">Department<span style="color: red;">*</span></label>
             <select class="form-select form-select rounded-1" formControlName="department">
               <option disabled>Select</option>
               @if (masterData) {
@@ -130,7 +130,7 @@
         <!-- Sub Department -->
         <div class="col-md-3">
           <div class="form-group">
-            <label class="form-label">Sub Dept.</label>
+            <label class="form-label">Sub Dept.<span style="color: red;">*</span></label>
             <select class="form-select form-select rounded-1" formControlName="subDepartment">
               <option disabled>Select</option>
               @if (masterData) {
@@ -152,7 +152,7 @@
         <!-- Shifted 2 columns to the right -->
         <div class="col-md-3">
           <div class="form-group">
-            <label class="form-label">Division</label>
+            <label class="form-label">Division<span style="color: red;">*</span></label>
             <select class="form-select form-select rounded-1" formControlName="division">
               <option selected>SESS</option>
               @if (masterData) {
@@ -170,7 +170,7 @@
         <!-- Category -->
         <div class="col-md-3">
           <div class="form-group">
-            <label class="form-label">Category</label>
+            <label class="form-label">Category<span style="color: red;">*</span></label>
             <select class="form-select form-select rounded-1" formControlName="category">
               <option disabled>Select</option>
               @if (masterData) {
@@ -188,7 +188,7 @@
         <!-- Cadre -->
         <div class="col-md-3">
           <div class="form-group">
-            <label class="form-label">Cadre</label>
+            <label class="form-label">Cadre<span style="color: red;">*</span></label>
             <select class="form-select form-select rounded-1" formControlName="cadre">
               <option disabled>select</option>
               @if (masterData) {
@@ -206,7 +206,7 @@
         <!-- Company -->
         <div class="col-md-3">
           <div class="form-group">
-            <label class="form-label">Company</label>
+            <label class="form-label">Company<span style="color: red;">*</span></label>
             <select class="form-select form-select rounded-1" formControlName="company">
               <option disabled>Select</option>
               @for (master of companyList; track $index) {
@@ -224,7 +224,7 @@
       <div class="row g-3">
         <div class="col-md-3">
           <div class="form-group">
-            <label class="form-label">Location</label>
+            <label class="form-label">Location<span style="color: red;">*</span></label>
             <select class="form-select form-select" formControlName="location">
               <option selected>PLOT NO.10,SEC-8,IMT</option>
             </select>
@@ -237,7 +237,7 @@
         </div>
         <div class="col-md-3">
           <div class="form-group">
-            <label class="form-label">Cost Center</label>
+            <label class="form-label">Cost Center<span style="color: red;">*</span></label>
             <select class="form-select form-select" formControlName="costCentre">
               <option disabled>select</option>
               @if (masterData) {
@@ -255,7 +255,7 @@
         </div>
         <div class="col-md-3">
           <div class="form-group">
-            <label class="form-label">RL Band</label>
+            <label class="form-label">RL Band<span style="color: red;">*</span></label>
             <select class="form-select form-select" formControlName="rlBand">
               <option selected disabled>Select</option>
               @if (masterData) {
@@ -277,7 +277,7 @@
         <!-- Name in Capital Letters -->
         <div class="col-md-3">
           <div class="form-group">
-            <label class="form-label d-block mb-1">Name in Capital Letters</label>
+            <label class="form-label d-block mb-1">Name in Capital Letters<span style="color: red;">*</span></label>
             <input type="text" class="form-control rounded-1" placeholder="Name in Capital Letters"
               formControlName="fullName">
             <div class="text-danger" style="min-height: 1.25rem;">
@@ -291,9 +291,10 @@
         <!-- Father's/Husband's Name -->
         <div class="col-md-3">
           <div class="form-group">
-            <label class="form-label d-block mb-1 required">Father's/Husband's Name</label>
-            <input type="text" class="form-control rounded-1"
-              placeholder="Enter Your Father/Husband Name" formControlName="fatherOrHusbandName">
+            <label class="form-label d-block mb-1 required">Father's/Husband's Name<span
+                style="color: red;">*</span></label>
+            <input type="text" class="form-control rounded-1" placeholder="Enter Your Father/Husband Name"
+              formControlName="fatherOrHusbandName">
             <div class="text-danger" style="min-height: 1.25rem;">
               <span
                 *ngIf="personalInfoForm.controls['fatherOrHusbandName'].touched || personalInfoForm.controls['fatherOrHusbandName'].dirty">
@@ -336,7 +337,7 @@
         <!-- Age -->
         <div class="col-md-3">
           <div class="form-group">
-            <label class="form-label">Age</label>
+            <label class="form-label">Age<span style="color: red;">*</span></label>
             <input type="number" class="form-control rounded-1" formControlName="age">
             <div class="text-danger mt-1" style="min-height: 1.25rem;">
               <span
@@ -349,7 +350,7 @@
         <!-- Gender -->
         <div class="col-md-3">
           <div class="form-group">
-            <label class="form-label">Gender</label>
+            <label class="form-label">Gender<span style="color: red;">*</span></label>
             <select class="form-select form-select rounded-1" formControlName="gender">
               <option value="" disabled selected>Select Gender</option>
               <option value="Female">Female</option>
@@ -366,7 +367,7 @@
         <!-- Marital Status -->
         <div class="col-md-3">
           <div class="form-group">
-            <label class="form-label">Marital Status</label>
+            <label class="form-label">Marital Status<span style="color: red;">*</span></label>
             <select class="form-select form-select rounded-1" formControlName="maritalStatus">
               <option value="" disabled selected>Select Marital Status</option>
               <option value="Married">Married</option>
@@ -397,8 +398,7 @@
         <div class="col-md-2">
           <div class="form-group">
             <label class="form-label">Nationality</label>
-            <input type="text" class="form-control rounded-1" placeholder=""
-              formControlName="nationality">
+            <input type="text" class="form-control rounded-1" placeholder="" formControlName="nationality">
             <div class="text-danger"
               *ngIf="personalInfoForm.controls['nationality'].touched || personalInfoForm.controls['nationality'].dirty">
               <span *ngIf="personalInfoForm.controls['nationality'].errors?.['required']">This is
@@ -466,7 +466,7 @@
         </div>
         <div class="col-md-4">
           <div class="form-group">
-            <label class="form-label mb-1">Shift Type</label>
+            <label class="form-label mb-1">Shift Type<span style="color: red;">*</span></label>
             <select class="form-select form-select" formControlName="shiftType">
               <option value="" disabled selected>Select Shift Type</option>
               <option value="Fixed">Fixed</option>
@@ -482,7 +482,7 @@
         </div>
         <div class="col-md-4">
           <div class="form-group">
-            <label class="form-label">Shift Option</label>
+            <label class="form-label">Shift Option<span style="color: red;">*</span></label>
             <select class="form-select form-select" formControlName="shiftOption">
               <option disabled>Select
               </option>
@@ -681,7 +681,7 @@
       <div class="row">
         <div class="col-md-3">
           <div class="form-group mb-2">
-            <label class="form-label">Present Address</label>
+            <label class="form-label">Present Address<span style="color: red;">*</span></label>
             <textarea class="form-control rounded-1" placeholder="Enter Present Address"
               formControlName="presentAddress"></textarea>
 
@@ -694,7 +694,7 @@
         </div>
         <div class="col-md-3">
           <div class="form-group mb-2">
-            <label class="form-label">Permanent Address</label>
+            <label class="form-label">Permanent Address<span style="color: red;">*</span></label>
             <textarea class="form-control rounded-1" placeholder="Enter Permanent Address"
               formControlName="permanentAddress"></textarea>
             <div class="text-danger"
@@ -740,8 +740,7 @@
         <div class="col-2">
           <div class="form-group mb-2">
             <label class="form-label">Pincode</label>
-            <input type="text" class="form-control rounded-1" placeholder="Enter Pincode"
-              formControlName="pincode">
+            <input type="text" class="form-control rounded-1" placeholder="Enter Pincode" formControlName="pincode">
             <div class="text-danger"
               *ngIf="contactFamilyForm.controls['pincode'].touched || contactFamilyForm.controls['pincode'].dirty">
               <span *ngIf="contactFamilyForm.controls['pincode'].errors?.['required']">This is
@@ -751,7 +750,7 @@
         </div>
       </div>
 
-      <div class="row"> 
+      <div class="row">
         <div class="col-3">
           <div class="form-group">
             <label class="form-label">Email</label>
@@ -942,8 +941,8 @@
                     <td><input type="date" class="form-control rounded-1" formControlName="fromDate">
                     </td>
                     <td><input type="date" class="form-control rounded-1" formControlName="toDate"></td>
-                    <td><input type="text" class="form-control rounded-1"
-                        formControlName="reasonForLeaving" placeholder="Reason"></td>
+                    <td><input type="text" class="form-control rounded-1" formControlName="reasonForLeaving"
+                        placeholder="Reason"></td>
                     <td>
                       <button class="btn btn-danger" (click)="removeExperience(i)">Remove</button>
                     </td>
@@ -1024,7 +1023,7 @@
 
             <div class="col-md-3">
               <div class="form-group mb-1">
-                <label class="form-label">Interview Date:</label>
+                <label class="form-label">Interview Date:<span style="color: red;">*</span></label>
                 <input type="date" class="form-control rounded-1" formControlName="interviewDate">
                 <div class="text-danger"
                   *ngIf="additionalInfoForm.controls['interviewDate'].touched || additionalInfoForm.controls['interviewDate'].dirty">
@@ -1059,7 +1058,7 @@
             </div>
             <div class="col-md-3">
               <div class="form-group mb-1">
-                <label class="form-label">Date of Joining:</label>
+                <label class="form-label">Date of Joining:<span style="color: red;">*</span></label>
                 <input type="date" class="form-control rounded-1" formControlName="dateOfJoining">
                 <div class="text-danger"
                   *ngIf="additionalInfoForm.controls['dateOfJoining'].touched || additionalInfoForm.controls['dateOfJoining'].dirty">
@@ -1077,8 +1076,7 @@
           <div class="col-md-3">
             <div class="form-group mb-1">
               <label class="form-label">Salary:</label>
-              <input type="number" class="form-control rounded-1" formControlName="salary"
-                placeholder="Enter Salary">
+              <input type="number" class="form-control rounded-1" formControlName="salary" placeholder="Enter Salary">
               <div class="text-danger"
                 *ngIf="additionalInfoForm.controls['salary'].touched || additionalInfoForm.controls['salary'].dirty">
                 <span *ngIf="additionalInfoForm.controls['salary'].errors?.['required']">This is
@@ -1244,8 +1242,7 @@
           </div>
           <div class="col-md-3">
             <label class="form-label">HRA:</label>
-            <input type="number" class="form-control rounded-1" placeholder="Enter HRA Amount"
-              formControlName="hra">
+            <input type="number" class="form-control rounded-1" placeholder="Enter HRA Amount" formControlName="hra">
             <div class="text-danger"
               *ngIf="salaryPayrollForm.controls['hra'].touched || salaryPayrollForm.controls['hra'].dirty">
               <span *ngIf="salaryPayrollForm.controls['hra'].errors?.['required']">This is
@@ -1451,8 +1448,7 @@
           </div>
           <div class="col-md-3">
             <label class="form-label">Remarks:</label>
-            <input type="text" class="form-control rounded-1" placeholder="Enter Remarks"
-              formControlName="remarks">
+            <input type="text" class="form-control rounded-1" placeholder="Enter Remarks" formControlName="remarks">
             <div class="text-danger"
               *ngIf="salaryPayrollForm.controls['remarks'].touched || salaryPayrollForm.controls['remarks'].dirty">
               <span *ngIf="salaryPayrollForm.controls['remarks'].errors?.['required']">This is
@@ -1469,50 +1465,75 @@
           <div class="row mb-2">
 
             <div class="form-group mb-2 d-flex col-md-3">
-              <div for="Employee Type" class="me-2">Employee Type:</div><br>
+              <div for="Employee Type" class="me-2">Employee Type:<span style="color: red;">*</span></div><br>
               <input type="radio" value="permanent" formControlName="employeeType">
               <label for="Permanent" class="me-1">Permanent</label>
               <input type="radio" value="casual" formControlName="employeeType">
               <label for="Casual" class="me-1">Casual</label>
+              <div class="text-danger"
+                *ngIf="salaryPayrollForm.controls['employeeType'].touched || salaryPayrollForm.controls['employeeType'].dirty">
+                <span *ngIf="salaryPayrollForm.controls['employeeType'].errors?.['required']">This is
+                  Required</span>
+              </div>
             </div>
 
             <div class="form-group mb-2 d-flex col-md-3">
-              <label for="Wages Calculation">Wages Calculation:</label><br>
+              <label for="Wages Calculation">Wages Calculation:<span style="color: red;">*</span></label><br>
               <input type="radio" formControlName="wageCalculationType" value="monthly"> <label for="Fixed"
                 class="me-1">Monthly</label>
               <input type="radio" formControlName="wageCalculationType" value="daily">
               <label for="Daily" class="me-1">Daily</label>
+              <div class="text-danger"
+                *ngIf="salaryPayrollForm.controls['wageCalculationType'].touched || salaryPayrollForm.controls['wageCalculationType'].dirty">
+                <span *ngIf="salaryPayrollForm.controls['wageCalculationType'].errors?.['required']">This is
+                  Required</span>
+              </div>
             </div>
 
             <div class="form-group mb-2 d-flex col-md-3">
-              <label for="Payment Type">Payment Type:</label><br>
-              <input type="radio" formControlName="paymentType" value="bank"> <label for="Bank"
-                class="me-1"> Bank</label>
+              <label for="Payment Type">Payment Type:<span style="color: red;">*</span></label><br>
+              <input type="radio" formControlName="paymentType" value="bank"> <label for="Bank" class="me-1">
+                Bank</label>
               <input type="radio" formControlName="paymentType" value="cheque"> <label for="Cheque"
                 class="me-1">Cheque</label>
               <input type="radio" formControlName="paymentType" value="neft"> <label for="NEFT"
                 class="me-1">NEFT</label>
+              <div class="text-danger"
+                *ngIf="salaryPayrollForm.controls['paymentType'].touched || salaryPayrollForm.controls['paymentType'].dirty">
+                <span *ngIf="salaryPayrollForm.controls['paymentType'].errors?.['required']">This is
+                  Required</span>
+              </div>
             </div>
 
             <div class="form-group mb-2 d-flex col-md-2">
-              <label for="Overtime" class="me-2">Overtime:</label><br>
+              <label for="Overtime" class="me-2">Overtime:<span style="color: red;">*</span></label><br>
               <input type="checkbox" formControlName="overtimeEnabled"> <label for="Enable">Enable</label>
+              <div class="text-danger"
+                *ngIf="salaryPayrollForm.controls['overtimeEnabled'].touched || salaryPayrollForm.controls['overtimeEnabled'].dirty">
+                <span *ngIf="salaryPayrollForm.controls['overtimeEnabled'].errors?.['required']">This is
+                  Required</span>
+              </div>
             </div>
             <!-- <div class="col-md-2"> -->
-              <div class="form-group mb-2 d-flex col-md-3">
-                <label for="Fooding">Fooding: </label> <br>
-                <!-- <div class="d-flex"> -->
-                  <!-- <div class="dis-dev"> -->
-                    <input type="checkbox" formControlName="foodingEnabled"> <label for="Enable">Enable</label>
-                  <!-- </div> -->
-                <!-- </div> -->
+            <div class="form-group mb-2 d-flex col-md-3">
+              <label for="Fooding">Fooding:<span style="color: red;">*</span></label> <br>
+              <!-- <div class="d-flex"> -->
+              <!-- <div class="dis-dev"> -->
+              <input type="checkbox" formControlName="foodingEnabled"> <label for="Enable">Enable</label>
+              <div class="text-danger"
+                *ngIf="salaryPayrollForm.controls['foodingEnabled'].touched || salaryPayrollForm.controls['foodingEnabled'].dirty">
+                <span *ngIf="salaryPayrollForm.controls['foodingEnabled'].errors?.['required']">This is
+                  Required</span>
               </div>
+              <!-- </div> -->
+              <!-- </div> -->
+            </div>
             <!-- </div> -->
           </div>
         </div>
         <div class="row">
 
-          
+
 
         </div>
 
@@ -1614,7 +1635,7 @@
             <h6><strong>FORM F - Gratuity</strong></h6>
             <div class="row">
               <div class="col-3">
-                <label>Nominee's for Gratuity *</label>
+                <label>Nominee's for Gratuity<span style="color: red;">*</span></label>
                 <input type="text" class="form-control mb-2" formControlName="gratuityNominee">
                 <div class="text-danger"
                   *ngIf="statutoryForm.controls['gratuityNominee'].touched || statutoryForm.controls['gratuityNominee'].dirty">
@@ -1623,7 +1644,7 @@
                 </div>
               </div>
               <div class="col-3">
-                <label>SHARE %age of nominee</label>
+                <label>SHARE %age of nominee<span style="color: red;">*</span></label>
                 <input type="number" class="form-control mb-2" formControlName="gratuitySharePercent">
                 <div class="text-danger"
                   *ngIf="statutoryForm.controls['gratuitySharePercent'].touched || statutoryForm.controls['gratuitySharePercent'].dirty">
