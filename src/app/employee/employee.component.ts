@@ -22,7 +22,7 @@ export class EmployeeComponent implements OnInit {
   formData:any;
   employeeService=inject(EmployeeService);
   employeeForm: FormGroup;
-  step = 5;
+  step = 1;
   masterData: any;
   companyList: any []= [];
   validationErrors: string[] = [];
@@ -57,21 +57,21 @@ export class EmployeeComponent implements OnInit {
         age:['',Validators.required],
         maritalStatus:['',Validators.required],
         gender:['',Validators.required],
-        nationality:['',Validators.required],
+        nationality:[''],
         religion:[''],
         caste:[''],
         region:[''],
         identityMark:[''],
         shiftType:['',Validators.required],
         shiftOption:['',Validators.required],
-        weight:['',Validators.required],
-        bloodGroup:['',Validators.required],
+        weight:[''],
+        bloodGroup:[''],
         employerLiability : [0],
-        reportingDate:['',Validators.required],
+        reportingDate:[''],
         transferFrom:[''],
         transferTo:[''],
         transferDate:[''],
-        appointmentMonths:[''],
+        appointmentMonths:[0],
         bankAccountNo:[''],
         bankName:[''],
         bankIfscCode:[''],
@@ -83,7 +83,7 @@ export class EmployeeComponent implements OnInit {
         cadre:['',Validators.required],
         company:['',Validators.required],
         location:[''],
-        rlBand:[0,Validators.required],
+        rlBand:['',Validators.required],
       }),
 
       contactFamily: this.fb.group({ 
@@ -164,7 +164,7 @@ export class EmployeeComponent implements OnInit {
       }),
       statutory: this.fb.group({
         esiInsuranceNo: ['',Validators.required],
-        pfAccountNo:['',Validators.required],
+        pfAccountNo:[''],
         esiEmployerCode:[''],
         esiLocalOffice:[''],
         dispensary:[''],
