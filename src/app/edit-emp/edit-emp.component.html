@@ -695,7 +695,9 @@
             <div class="form-group">
               <div class="mb-1">
                 <label class="form-label">Entry date</label>
-                <p-datepicker [minDate]="minDate" formControlName="entryDate" />
+                <p-datepicker [minDate]="minDate" dateFormat="dd/mm/yy" formControlName="entryDate" />
+                <!-- <p-calendar [minDate]="minDate" dateFormat="dd/mm/yy" formControlName="entryDate"></p-calendar> -->
+
                 <div class="text-danger"
                   *ngIf="personalInfoForm.controls['entryDate'].touched || personalInfoForm.controls['entryDate'].dirty">
                   <span *ngIf="personalInfoForm.controls['entryDate'].errors?.['required']">This is

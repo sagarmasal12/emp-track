@@ -61,6 +61,7 @@
             <div class="mb-1">
               <label class="form-label">Entry date</label>
               <p-datepicker [minDate]="minDate" formControlName="entryDate" />
+
               <div class="text-danger"
                 *ngIf="personalInfoForm.controls['entryDate'].touched || personalInfoForm.controls['entryDate'].dirty">
                 <span *ngIf="personalInfoForm.controls['entryDate'].errors?.['required']">This is
@@ -154,7 +155,7 @@
           <div class="form-group">
             <label class="form-label">Division<span style="color: red;">*</span></label>
             <select class="form-select form-select rounded-1" formControlName="division">
-              <option selected>SESS</option>
+              <option  disabled>select</option>
               @if (masterData) {
               @for (master of masterData['division']; track $index) {
               <option [value]="master.masterId">{{ master.masterName }}</option>
