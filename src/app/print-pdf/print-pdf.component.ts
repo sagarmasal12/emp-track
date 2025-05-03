@@ -90,6 +90,23 @@ export class PrintPdfComponent {
       
     });
   }
+
+  printDroddownValue(masterName: string, id: number) {
+    const value = this.masterData[masterName].find((m:any)=> m.masterId == id);
+  if(value != undefined) {
+    return value.masterName
+  } else {
+    return "NA"
+  }
+  }
+  getCompanyData(id:number) {
+    const value = this.companyList.find((m:any)=> m.companyId == id);
+    if(value != undefined) {
+      return value.companyName
+    } else {
+      return "NA"
+    }
+  }
   GetCompanies( ){
     this.employeeService.GetCompanies().subscribe({
       next: (response) => {

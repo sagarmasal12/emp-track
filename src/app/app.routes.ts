@@ -5,6 +5,8 @@ import { LoginComponent } from './login/login.component';
 import { LayoutComponent } from './layout/layout.component';
 import { EditEmpComponent } from './edit-emp/edit-emp.component';
 import { PrintPdfComponent } from './print-pdf/print-pdf.component';
+import { MasterComponent } from './master/master.component';
+import { CompanyComponent } from './company/company.component';
 
 export const routes: Routes = [
   {
@@ -27,6 +29,14 @@ export const routes: Routes = [
       {
         path:"newlist",
         component:NewlistComponent
+      },
+      {
+        path:"master",
+        component:MasterComponent
+      },
+      {
+        path:"company",
+        component:CompanyComponent
       },
       {
         path:"editemp/:id",

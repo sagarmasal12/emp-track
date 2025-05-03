@@ -39,25 +39,25 @@
       <div class="col-md-3">
         <div class="form-group">
           <label class="form-label required">Post Applied For*</label>
-          <p>{{pdfData.postAppliedFor}}</p>
+          <p>{{printDroddownValue('postAppliedFor',pdfData.postAppliedFor)}}</p>
         </div>
       </div>
       <div class="col-md-3">
         <div class="form-group">
-          <label class="form-label">Designation*</label>
-          <p>{{pdfData.designation}}</p>
+          <label class="form-label">Designation*</label> 
+          <p>{{printDroddownValue('designation',pdfData.designation)}}</p>
         </div>
       </div>
       <div class="col-md-3">
         <div class="form-group">
-          <label class="form-label">Department*</label>
-          <p>{{pdfData.department}}</p>
+          <label class="form-label">Department*</label> 
+          <p>{{printDroddownValue('department',pdfData.dedepartmentsignation)}}</p>
         </div>
       </div>
       <div class="col-md-3">
         <div class="form-group">
-          <label class="form-label">Sub Dept.*</label>
-          <p>{{pdfData.subDepartment}}</p>
+          <label class="form-label">Sub Dept.*</label> 
+          <p>{{printDroddownValue('subDepartment',pdfData.subDepartment)}}</p>
         </div>
       </div>
     </div>
@@ -66,26 +66,26 @@
     <div class="row g-3">
       <div class="col-md-3">
         <div class="form-group">
-          <label class="form-label">Division*</label>
-          <p>{{pdfData.division}}</p>
+          <label class="form-label">Division*</label> 
+          <p>{{printDroddownValue('division',pdfData.division)}}</p>
         </div>
       </div>
       <div class="col-md-3">
         <div class="form-group">
-          <label class="form-label">Category*</label>
-          <p>{{pdfData.category}}</p>
+          <label class="form-label">Category*</label> 
+          <p>{{printDroddownValue('category',pdfData.category)}}</p>
         </div>
       </div>
       <div class="col-md-3">
         <div class="form-group">
-          <label class="form-label">Cadre*</label>
-          <p>{{pdfData.cadre}}</p>
+          <label class="form-label">Cadre*</label> 
+          <p>{{printDroddownValue('cadre',pdfData.cadre)}}</p>
         </div>
       </div>
       <div class="col-md-3">
         <div class="form-group">
-          <label class="form-label">Company*</label>
-          <p>{{pdfData.company}}</p>
+          <label class="form-label">Company*</label> 
+          <p>{{getCompanyData(pdfData.company)}}</p>
         </div>
       </div>
     </div>
@@ -99,14 +99,14 @@
       </div>
       <div class="col-md-3">
         <div class="form-group">
-          <label class="form-label">Cost Center*</label>
-          <p>{{pdfData.costCentre}}</p>
+          <label class="form-label">Cost Center*</label> 
+          <p>{{printDroddownValue('costCentre',pdfData.costCentre)}}</p>
         </div>
       </div>
       <div class="col-md-3">
         <div class="form-group">
-          <label class="form-label">RL Band*</label>
-          <p>{{pdfData.rlBand}}</p>
+          <label class="form-label">RL Band*</label> 
+          <p>{{printDroddownValue('rlBand',pdfData.rlBand)}}</p>
         </div>
       </div>
     </div>
@@ -210,12 +210,13 @@
         <div class="form-group">
           <label class="form-label mb-1">Shift Type*</label>
           <p>{{pdfData.shiftType}}</p>
+            
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group">
-          <label class="form-label">Shift Option*</label>
-          <p>{{pdfData.shiftOption}}</p>
+          <label class="form-label">Shift Option*</label> 
+          <p>{{printDroddownValue('shiftOption',pdfData.shiftOption)}}</p>
         </div>
       </div>
     </div>
@@ -229,14 +230,14 @@
       </div>
       <div class="col-md-3">
         <div class="form-group w-100">
-          <label class="form-label">Transfer From</label>
-          <p>{{pdfData.transferFrom}}</p>
+          <label class="form-label">Transfer From</label> 
+          <p>{{printDroddownValue('transferFrom',pdfData.transferFrom)}}</p>
         </div>
       </div>
       <div class="col-md-3">
         <div class="form-group w-100">
-          <label class="form-label">Transfer To</label>
-          <p>{{pdfData.transferTo}}</p>
+          <label class="form-label">Transfer To</label> 
+          <p>{{printDroddownValue('transferTo',pdfData.transferTo)}}</p>
         </div>
       </div>
       <div class="col-md-2">
@@ -327,14 +328,14 @@
     <div class="row">
       <div class="col-md-3">
         <div class="form-group mb-2">
-          <label class="required">State</label>
-          <p>{{pdfData.state}}</p>
+          <label class="required">State</label> 
+          <p>{{printDroddownValue('state',pdfData.state)}}</p>
         </div>
       </div>
       <div class="col-md-3">
         <div class="form-group mb-2">
-          <label class="required">district</label>
-          <p>{{pdfData.district}}</p>
+          <label class="required">district</label> 
+          <p>{{printDroddownValue('district',pdfData.district)}}</p>
         </div>
       </div>
       <div class="col-md-3">

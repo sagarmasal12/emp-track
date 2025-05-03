@@ -1,0 +1,75 @@
+<div class="container mt-4">
+    <div class="row">
+      <!-- Form Column -->
+      <div class="col-md-4">
+        <form [formGroup]="companyForm" (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label class="form-label">Company Name</label>
+            <input type="text" class="form-control" formControlName="companyName">
+            <div class="text-danger" *ngIf="companyForm.get('companyName')?.touched && companyForm.get('companyName')?.invalid">
+              Required
+            </div>
+          </div>
+  
+          <div class="mb-3">
+            <label class="form-label">Pin Code</label>
+            <input type="text" class="form-control" formControlName="pinCode">
+            <div class="text-danger" *ngIf="companyForm.get('pinCode')?.touched && companyForm.get('pinCode')?.invalid">
+              6-digit pin code required
+            </div>
+          </div>
+  
+          <div class="mb-3">
+            <label class="form-label">Address</label>
+            <textarea class="form-control" formControlName="address"></textarea>
+            <div class="text-danger" *ngIf="companyForm.get('address')?.touched && companyForm.get('address')?.invalid">
+              Required
+            </div>
+          </div>
+  
+          <div class="mb-3">
+            <label class="form-label">Phone</label>
+            <input type="text" class="form-control" formControlName="phone">
+            <div class="text-danger" *ngIf="companyForm.get('phone')?.touched && companyForm.get('phone')?.invalid">
+              10-digit phone required
+            </div>
+          </div>
+  
+          <button class="btn btn-primary me-2" type="submit" [disabled]="companyForm.invalid">
+            {{ editingId ? 'Update' : 'Add' }}
+          </button>
+          <button class="btn btn-secondary" type="button" (click)="resetForm()">Reset</button>
+        </form>
+      </div>
+  
+      <!-- Grid Column -->
+      <div class="col-md-8">
+        <table class="table table-bordered">
+          <thead class="table-light">
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Pin</th>
+              <th>Address</th>
+              <th>Phone</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let c of companies">
+              <td>{{ c.companyId }}</td>
+              <td>{{ c.companyName }}</td>
+              <td>{{ c.pinCode }}</td>
+              <td>{{ c.address }}</td>
+              <td>{{ c.phone }}</td>
+              <td>
+                <button class="btn btn-sm btn-info me-1" (click)="edit(c)">Edit</button>
+                <button class="btn btn-sm btn-danger" (click)="delete(c.companyId)">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
