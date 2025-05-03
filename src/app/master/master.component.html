@@ -1,0 +1,66 @@
+<div class="container mt-4">
+    <div class="row">
+      <!-- Form -->
+      <div class="col-md-4">
+        <form [formGroup]="masterForm" (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label for="masterFor" class="form-label">Master For</label>
+            <select id="masterFor" class="form-select" formControlName="masterFor">
+              <option value="">Select</option>
+              <option *ngFor="let item of masterForOptions" [value]="item">{{ item }}</option>
+            </select>
+            <div class="text-danger" *ngIf="masterForm.get('masterFor')?.touched && masterForm.get('masterFor')?.invalid">
+              Required
+            </div>
+          </div>
+  
+          <div class="mb-3">
+            <label for="masterName" class="form-label">Master Name</label>
+            <input type="text" id="masterName" class="form-control" formControlName="masterName">
+            <div class="text-danger" *ngIf="masterForm.get('masterName')?.touched && masterForm.get('masterName')?.invalid">
+              Required
+            </div>
+          </div>
+  
+          <div class="mb-3">
+            <label for="parentMasterId" class="form-label">Parent Master ID</label>
+            <input type="number" id="parentMasterId" class="form-control" formControlName="parentMasterId">
+            <span>For Adding District Provide 29 id here</span>
+          </div>
+  
+          <button type="submit" class="btn btn-primary me-2" [disabled]="masterForm.invalid">
+            {{ editingId ? 'Update' : 'Add' }}
+          </button>
+          <button type="button" class="btn btn-secondary" (click)="resetForm()">Reset</button>
+        </form>
+      </div>
+  
+      <!-- Grid -->
+      <div class="col-md-8">
+        <table class="table table-bordered">
+          <thead class="table-light">
+            <tr>
+              <th>ID</th>
+              <th>For</th>
+              <th>Name</th>
+              <th>Parent ID</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let m of masters">
+              <td>{{ m.masterId }}</td>
+              <td>{{ m.masterFor }}</td>
+              <td>{{ m.masterName }}</td>
+              <td>{{ m.parentMasterId }}</td>
+              <td>
+                <button class="btn btn-sm btn-info me-1" (click)="edit(m)">Edit</button>
+                <button class="btn btn-sm btn-danger" (click)="delete(m.masterId)">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
