@@ -26,9 +26,10 @@ export class PrintPdfComponent {
   companyList: any []= [];
   validationErrors: string[] = [];
   editId:number = 0;
-  isApiSucces: boolean = false;
+  isApiSucces: boolean = true;
   date:Date|undefined;
   minDate:Date | undefined;
+  pdfData:any;
   empData:any;
   constructor(private fb: FormBuilder,private activateRoute: ActivatedRoute) {
     this.activateRoute.params.subscribe((res:any)=>{
@@ -68,13 +69,8 @@ export class PrintPdfComponent {
   getEmpBYId( ){
     this.employeeService.getEmployeeById(this.editId).subscribe({
       next: (response) => {
-        this.empData =  response;
-     
-      debugger;
-      setTimeout(()=>{
-        this.isApiSucces = true;
-      },1000)
-      
+        this.pdfData =  response;
+        console.log("pdf data", this.pdfData)
       },
       error: (err) => {
         alert(JSON.stringify(err.error))

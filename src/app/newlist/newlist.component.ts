@@ -6,6 +6,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Table, TableModule } from 'primeng/table';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
+
 @Component({
   selector: 'app-newlist',
   imports: [CommonModule,RouterLink,DatePipe,TableModule,IconFieldModule,InputIconModule],

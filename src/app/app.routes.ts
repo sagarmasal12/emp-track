@@ -4,6 +4,7 @@ import { NewlistComponent } from './newlist/newlist.component';
 import { LoginComponent } from './login/login.component';
 import { LayoutComponent } from './layout/layout.component';
 import { EditEmpComponent } from './edit-emp/edit-emp.component';
+import { PrintPdfComponent } from './print-pdf/print-pdf.component';
 
 export const routes: Routes = [
   {
@@ -30,6 +31,10 @@ export const routes: Routes = [
       {
         path:"editemp/:id",
         component:EditEmpComponent
+      },
+      {
+        path:"printpdf/:id",
+        component:PrintPdfComponent
       }
     ]
   }
